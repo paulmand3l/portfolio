@@ -1,0 +1,21 @@
+canvas#backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+#about .headshot {
+  float: left;
+  margin-right: 15px;
+}
+#about .text p {
+  line-height: 100%;
+  font-weight: 300;
+}
+#about .text p.name {
+  font-size: 48pt;
+  margin-left: -3px;
+}
+#about .text p.title {
+  font-size: 22pt;
+}

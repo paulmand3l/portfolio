@@ -1,0 +1,10 @@
+.result {
+  position: absolute;
+}
+form#seed {
+  z-index: 1000;
+}
+form#seed #query {
+  border: 2px solid lightGray;
+  box-shadow: 3px 10px 30px rgba(0, 0, 0, 0.4);
+}
