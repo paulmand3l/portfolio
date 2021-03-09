@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "portfolio-ba40b"
+  },
+  "targets": {
+    "portfolio-ba40b": {
+      "hosting": {
+        "portfolio": [
+          "paulmandel-portfolio"
+        ]
+      }
+    }
+  }
+}

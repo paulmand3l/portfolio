@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="mti-inactive">
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900|Merriweather:400" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>
+        FaceMotion |
+        mand3l
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The software, design and robotics portfolio of Paul Mandel.">
+    <meta name="author" content="Paul Mandel">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/base/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/base/css/base-noframe.css">
+    <link rel="stylesheet" type="text/css" href="/static/facemotion/css/slider-demo.css">
+    <link rel="stylesheet" type="text/css" href="/static/facemotion/css/jquery.slider.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/facemotion/css/style.css">
+    <link rel="shortcut icon" href="/static//base/img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+    <script type="text/javascript" async="" src="/static/snoop/sn.js"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript" src="http://fast.fonts.net/jsapi/57aed01a-504f-4ba3-a643-3ebfb24a6375.js"> </script>
+    <script src="/static/jquery/js/jquery.min.js"> </script>
+    <script src="/static/base/js/sugar-1.3.9.min.js"> </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32216917-1']);
+    _gaq.push(['_setDomainName', 'mand3l.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+    <script data-validation="snoop_embed_code_ok" type="text/javascript">
+    (function() {
+      var sn = document.createElement('script');
+      sn.type = 'text/javascript';
+      sn.async = true;
+      sn.src = '/static/snoop/sn.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(sn, s);
+    })();
+    </script>
+</head>
+
+<body id="facemotion" class="">
+    <div id="side-menu">
+        <img class="headshot" width="120px" height="120px" src="/static/base/img/headshot.png">
+<p class="bio">Hi! I'm Paul. I'm a designer and technologist who specializes in leading cross-functional teams to deliver great products with experiences that go beyond traditional screen-based UIs. I'm not currently looking for new projects, but if you want to connect feel free to drop me a line.</p>
+        <p><a href="https://paulmandel-resume.web.app/">» Resume</a></p>
+        <ul class="unstyled inline centered">
+            <li><a href="mailto:paul@mand3l.com"><img width="50px" height="50px" src="/static/base/img/gmail.png"></a></li>
+            <li><a href="http://www.github.com/paulmand3l/" target="_blank"><img width="50px" height="50px" src="/static/base/img/github.png"></a></li>
+            <li><a href="http://blog.mand3l.com/" target="_blank"><img width="50px" height="50px" src="/static/base/img/rss.png"></a></li>
+            <li><a href="http://www.linkedin.com/in/pmandel/" target="_blank"><img width="50px" height="50px" src="/static/base/img/linkedin.png"></a></li>
+            <li><a href="https://www.facebook.com/pmandel" target="_blank"><img width="50px" height="50px" src="/static/base/img/facebook.png"></a></li>
+        </ul>
+    </div>
+    <div id="wrapper">
+        <div class="navbar clearfix">
+            <div class="navbar-inner">
+                <p class="brand">FaceMotion</p>
+            </div>
+        </div>
+        <div id="main" class="container">
+            <div class="row">
+                <div class="span3">
+                    <ul id="tabs" class="nav nav-tabs">
+                        <li class="active">
+                            <a class="emotion-controls" href="#emotions">Emotions</a>
+                        </li>
+                        <li>
+                            <a class="muscle-controls" href="#musculature">Musculature</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="musculature" class="tab-pane">
+                            <div class="control">
+                                <p>Inner Occipitofrontalis</p>
+                                <input class="slider muscle" id="inner-occipitofrontalis" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Outer Occipitofrontalis</p>
+                                <input class="slider muscle" id="outer-occipitofrontalis" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Corrugator</p>
+                                <input class="slider muscle" id="corrugator" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Procerus</p>
+                                <input class="slider muscle" id="procerus" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Orbicularis Oculi</p>
+                                <input class="slider muscle" id="orbicularis-oculi" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Levator Labii</p>
+                                <input class="slider muscle" id="levator-labii" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Levator Palpabrae</p>
+                                <input class="slider muscle" id="levator-palpabrae" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Zygomaticus</p>
+                                <input class="slider muscle" id="zygomaticus" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Buccinator</p>
+                                <input class="slider muscle" id="buccinator" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Orbicularis Oris</p>
+                                <input class="slider muscle" id="orbicularis-oris" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Depressor Anguli Oris</p>
+                                <input class="slider muscle" id="depressor-anguli-oris" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Mentalis</p>
+                                <input class="slider muscle" id="mentalis" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Jaw</p>
+                                <input class="slider muscle" id="jaw" type="slider" value="0">
+                            </div>
+                        </div>
+                        <div id="emotions" class="tab-pane active">
+                            <div class="control">
+                                <p>Joy</p>
+                                <input class="slider emotion" id="joy" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Sadness</p>
+                                <input class="slider emotion" id="sadness" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Anger</p>
+                                <input class="slider emotion" id="anger" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Disgust</p>
+                                <input class="slider emotion" id="disgust" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Fear</p>
+                                <input class="slider emotion" id="fear" type="slider" value="0">
+                            </div>
+                            <div class="control">
+                                <p>Surprise</p>
+                                <input class="slider emotion" id="surprise" type="slider" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="face-wrapper" class="span9">
+                    <canvas id="face" width="700" height="400"> </canvas>
+                    <a id="toggle-muscles" class="btn btn-mini">Toggle muscle view</a>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+    <script src="/static/bootstrap/js/bootstrap-transition.js"> </script>
+    <script src="/static/bootstrap/js/bootstrap-modal.js"> </script>
+    <script src="/static/bootstrap/js/bootstrap-tab.js"> </script>
+    <script src="/static/bootstrap/js/bootstrap-tooltip.js"> </script>
+    <script src="/static/bootstrap/js/bootstrap-popover.js"> </script>
+    <script src="/static/bootstrap/js/bootstrap-button.js"> </script>
+    <script src="/static/bootstrap/js/bootstrap-affix.js"> </script>
+    <script src="/static/base/js/core.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/jshashtable-2.1_src.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/jquery.numberformatter-1.2.3.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/tmpl.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/jquery.dependClass-0.1.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/draggable-0.1.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/jquery.slider.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/paper.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/morphologies.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/face.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/input.js"> </script>
+    <script type="text/javascript" src="/static/facemotion/js/slider-demo.js"> </script>
+    <a href="https://github.com/paulmand3l/facemotion">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png">
+    </a>
+
+</body>
+
+</html>
