@@ -75,16 +75,13 @@
             <div id="content">
                 <div id="project">
                     <div class="row banner">
-                        <div class="span8">
-                            <div class="async-wrapper">
-                                <img title="" alt="Thome" src="http://static.mand3l.com/project-images/thome.jpg" style="height: 349px;">
+                        <div class="span12">
+                            <div class="controls">
+                                <input id="type-here" class="span12" type="text" placeholder="type here">
                             </div>
-                        </div>
-                        <div class="sidebar span4">
-                            <h2 class="title">Thome</h2>
-                            <p>Experimental gesture-based text input.</p>
-                            <!-- <p><a href="/thome">Try it »</a></p> -->
-                            <p>Temporarily down for performance improvements.</p>
+                            <div id="lines">
+                              <p class="line"></p>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -115,12 +112,141 @@
     <script src="/static/flexslider/jquery.flexslider.js" type="text/javascript"> </script>
     <script type="text/javascript">
     $(function() {
-      $('.flexslider').flexslider({
-        animation: "slide",
-        controlNav: false,
+      const inputEl = document.getElementById('type-here');
+      const linesEl = document.getElementById('lines');
+
+      let currentLine = document.getElementClass
+      const reverseLookup = {};
+      const coverage = {
+        a: ['q', 'a', 'z'],
+        s: ['w', 's', 'x'],
+        d: ['e', 'd', 'c'],
+        f: ['r', 'f', 'v', 't', 'g', 'b'],
+        j: ['y', 'h', 'n', 'u', 'j', 'm'],
+        k: ['i', 'k'],
+        l: ['o', 'l'],
+        ';': ['p'],
+        ' ': [],
+        'Backspace': [],
+        'ArrowLeft': [],
+        'ArrowRight': [],
+        'Shift': [],
+        'Meta': [],
+        'Control': [],
+      };
+
+      const mapping = {};
+      for (let key in coverage) {
+        const letters = coverage[key];
+        letters.forEach(letter => mapping[letter] = key)
+      }
+
+      const isLetter = c => !!c.match(/[a-z;]/);
+      const getBaseWord = w => w.split('').map(c => mapping[c]).join('');
+
+      $.get("https://cdn.jsdelivr.net/gh/first20hours/google-10000-english/google-10000-english.txt").then(words => {
+        words = words.split('\n').filter(word => word.length > 0).map(word => word.trim());
+        words.forEach(word => {
+          const baseWord = getBaseWord(word);
+          if (!reverseLookup[baseWord]) reverseLookup[baseWord] = [];
+          if (word === baseWord) {
+            reverseLookup[baseWord].unshift(word);
+          } else {
+            reverseLookup[baseWord].push(word);
+          }
+        });
       });
-      $('.async-wrapper img').height($('.async-wrapper').outerHeight());
-      // If we know this visitor
+
+      const tokenizeLine = line => {
+        const tokens = [];
+        let lastCharWasLetter = false;
+        let currentToken = '';
+        line.split('').forEach(c => {
+          if (lastCharWasLetter != isLetter(c) && currentToken.length > 0) {
+            tokens.push(currentToken);
+            currentToken = '';
+          }
+
+          currentToken += c;
+          lastCharWasLetter = isLetter(c);
+        });
+
+        if (currentToken.length > 0) tokens.push(currentToken);
+        return tokens;
+      }
+
+      const getTokenIndex = letterCount => {
+        const tokens = tokenizeLine(inputEl.value);
+
+        let tokenIndex, letterIndex = 0;
+        for (tokenIndex = 0; tokenIndex < tokens.length; tokenIndex++) {
+          letterIndex += tokens[tokenIndex].length;
+          if (letterIndex >= letterCount) break;
+        }
+
+        if (!isLetter(tokens[tokenIndex])) tokenIndex += 1;
+        console.log(letterCount, tokens, tokens[tokenIndex], tokenIndex);
+        return tokenIndex
+      }
+
+      const cycleWord = (word, resetCycle) => {
+        const baseWord = getBaseWord(word);
+        const candidates = reverseLookup[baseWord];
+        if (!candidates) return baseWord;
+        const wordIndex = candidates.indexOf(word);
+        if (wordIndex < 0 || resetCycle) return candidates[0];
+        return candidates[(wordIndex + 1) % candidates.length];
+      }
+
+      const cycleSelectedWord = resetCycle => {
+        if (inputEl.value.length === 0) return;
+        const { selectionStart, selectionEnd } = inputEl;
+        const startTokenIndex = getTokenIndex(selectionStart);
+        const endTokenIndex = getTokenIndex(selectionEnd);
+        if (startTokenIndex !== endTokenIndex) return;
+        const tokenIndex = startTokenIndex;
+
+        const tokens = tokenizeLine(inputEl.value).map((token, i) => {
+          if (i !== tokenIndex) return token;
+          return cycleWord(token, resetCycle);
+        });
+
+        inputEl.value = tokens.join('');
+        inputEl.selectionStart = selectionStart;
+        inputEl.selectionEnd = selectionEnd;
+      }
+
+      const handleKeydown = e => {
+        if (e.key === "Enter") {
+          const newLine = document.createElement('p');
+          newLine.classList.add('line');
+          newLine.innerHTML = inputEl.value;
+          linesEl.prepend(newLine);
+          inputEl.value = '';
+          return;
+        }
+
+        if (e.key === "Escape") {
+          cycleSelectedWord();
+          return;
+        }
+
+        if (!coverage[e.key]) {
+          console.log("Blocked", e.key);
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+
+      const handleInput = e => {
+        if (e.inputType === 'insertText' && isLetter(e.data)) {
+          cycleSelectedWord(true);
+        }
+      }
+
+      inputEl.addEventListener('keydown', handleKeydown);
+      inputEl.addEventListener('input', handleInput);
+
       if ("hashtag" in localStorage) {
         console.log("I'm watching you...");
         $.post('/' + localStorage.hashtag + '/', {
