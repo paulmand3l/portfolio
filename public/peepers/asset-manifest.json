@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/peepers/static/css/main.3ff7ec64.chunk.css",
+    "main.js": "/peepers/static/js/main.f8e59b2c.chunk.js",
+    "main.js.map": "/peepers/static/js/main.f8e59b2c.chunk.js.map",
+    "runtime~main.js": "/peepers/static/js/runtime~main.770d55dd.js",
+    "runtime~main.js.map": "/peepers/static/js/runtime~main.770d55dd.js.map",
+    "static/js/2.7776f426.chunk.js": "/peepers/static/js/2.7776f426.chunk.js",
+    "static/js/2.7776f426.chunk.js.map": "/peepers/static/js/2.7776f426.chunk.js.map",
+    "index.html": "/peepers/index.html",
+    "precache-manifest.4b285f0365df7c4b50662124fe28b12f.js": "/peepers/precache-manifest.4b285f0365df7c4b50662124fe28b12f.js",
+    "service-worker.js": "/peepers/service-worker.js",
+    "static/css/main.3ff7ec64.chunk.css.map": "/peepers/static/css/main.3ff7ec64.chunk.css.map"
+  }
+}
