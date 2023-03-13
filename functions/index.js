@@ -2,8 +2,11 @@ const {initializeApp} = require("firebase-admin/app");
 const functions = require("firebase-functions");
 const axios = require("axios");
 const ical = require("ical-generator");
+const {defineString} = require("firebase-functions/params");
 
 initializeApp();
+
+const authToken = defineString("BEARER_TOKEN");
 
 const GRAPH_URL = "https://www.volosports.com/graphql";
 
@@ -74,8 +77,12 @@ const getLeagueStandings = (leagueId) => ({
 });
 
 const getICalForUserId = async (userId) => {
-  const response = await axios.post(GRAPH_URL, getSchedulePayload(userId));
-  console.log("Game schedule for", userId, response.data);
+  const response = await axios.post(GRAPH_URL, getSchedulePayload(userId), {
+    headers: {
+      Authorization: authToken.value(),
+    },
+  });
+  console.log("Game schedule for", userId);
 
   const calendar = ical({name: "Volo Games"});
 
@@ -120,25 +127,33 @@ const getICalForUserId = async (userId) => {
           const otherRecordText =
             `${otherRecord.win}-${otherRecord.lose}-${otherRecord.tie}`;
 
-          calendar.createEvent({
-            start: new Date(game.start_time),
-            end: new Date(game.end_time),
-            summary: `${myTeam.name} v. ${otherTeam.name}`,
-            description: `${game.field_name}
+          // eslint-disable-next-line max-len
+          console.log(`Making calendar event from ${game.start_time}->${game.end_time}, ${myTeam.name} vs ${otherTeam.name} at ${game.field_name}`);
 
-${myTeam.name} (${myRecordText})
-v.
-${otherTeam.name} (${otherRecordText})`,
-            location:
-              `${game.location.name} ${game.location.formatted_address}`,
-          });
+          try {
+            calendar.createEvent({
+              start: new Date(game.start_time),
+              end: new Date(game.end_time),
+              summary: `${myTeam.name} v. ${otherTeam.name}`,
+              description: `${game.field_name}
+
+  ${myTeam.name} (${myRecordText})
+  v.
+  ${otherTeam.name} (${otherRecordText})`,
+              location:
+                `${game.location.name} ${game.location.formatted_address}`,
+            });
+          } catch (err) {
+            console.log("Error creating calendar event");
+            console.log(err);
+          }
         }));
       }));
 
   return calendar;
 };
 
-exports.refreshCalendar = functions.https.onRequest(async (req, res) => {
+exports.volocal = functions.https.onRequest(async (req, res) => {
   const userId = req.query.userId;
 
   if (!userId) {
