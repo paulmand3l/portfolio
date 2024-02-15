@@ -1,18 +1,18 @@
 module.exports.getSchedulePayload = (userId) => ({
-  operationName: 'UserGames',
+  operationName: "UserGames",
   variables: {
     input: {
-      which: '_id',
+      which: "_id",
       search: userId,
     },
   },
   query: `
     query UserGames($input: UserInfoInput!) {
       getUserByInfo(input: $input) {
-        leagues {
+        activeLeagues {
           _id
           displayName
-          schedule {
+          schedules {
             games {
               start_time
               end_time
@@ -33,6 +33,10 @@ module.exports.getSchedulePayload = (userId) => ({
                   _id
                 }
               }
+              teamRsvps {
+                teamId
+                totalYesCount
+              }
             }
           }
         }
@@ -42,7 +46,7 @@ module.exports.getSchedulePayload = (userId) => ({
 });
 
 module.exports.getLeagueStandingsPayload = (leagueId) => ({
-  operationName: 'LeagueStandings',
+  operationName: "LeagueStandings",
   variables: {
     input: {
       leagueId: leagueId,
@@ -51,22 +55,18 @@ module.exports.getLeagueStandingsPayload = (leagueId) => ({
   query: `
     query LeagueStandings($input: LeagueStandingsInput!) {
       leagueStandings(input: $input) {
-        standings {
-          team {
-            _id
-          }
-          WIN
-          LOSE
-          FORFEIT
-          TIE
-        }
+        teamId
+        WIN
+        LOSE
+        FORFEIT
+        TIE
       }
     }
   `,
 });
 
-module.exports.getBirthdaysPayload = (userId) => ({
-  operationName: 'UserTeamMateBirthdays',
+module.exports.getBirthdaysPayload = () => ({
+  operationName: "UserTeamMateBirthdays",
   variables: {},
   query: `
     query UserTeamMateBirthdays {
