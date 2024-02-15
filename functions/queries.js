@@ -1,8 +1,8 @@
-module.exports.getSchedulePayload = (userId) => ({
-  operationName: "UserGames",
+module.exports.getSchedulePayload = userId => ({
+  operationName: 'UserGames',
   variables: {
     input: {
-      which: "_id",
+      which: '_id',
       search: userId,
     },
   },
@@ -45,8 +45,8 @@ module.exports.getSchedulePayload = (userId) => ({
   `,
 });
 
-module.exports.getLeagueStandingsPayload = (leagueId) => ({
-  operationName: "LeagueStandings",
+module.exports.getLeagueStandingsPayload = leagueId => ({
+  operationName: 'LeagueStandings',
   variables: {
     input: {
       leagueId: leagueId,
@@ -66,7 +66,7 @@ module.exports.getLeagueStandingsPayload = (leagueId) => ({
 });
 
 module.exports.getBirthdaysPayload = () => ({
-  operationName: "UserTeamMateBirthdays",
+  operationName: 'UserTeamMateBirthdays',
   variables: {},
   query: `
     query UserTeamMateBirthdays {

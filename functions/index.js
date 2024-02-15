@@ -7,9 +7,9 @@ initializeApp();
 
 exports.volocal = functions.https.onRequest(async (req, res) => {
   console.log(
-      'Received request from origin',
-      JSON.stringify(req.headers),
-      JSON.stringify(req.query),
+    'Received request from origin',
+    JSON.stringify(req.headers),
+    JSON.stringify(req.query)
   );
   const userId = req.query.userId;
   const authToken = req.query.authToken;
@@ -26,9 +26,9 @@ exports.volocal = functions.https.onRequest(async (req, res) => {
 
 exports.volobirthday = functions.https.onRequest(async (req, res) => {
   console.log(
-      'Received request from origin',
-      JSON.stringify(req.headers),
-      JSON.stringify(req.query),
+    'Received request from origin',
+    JSON.stringify(req.headers),
+    JSON.stringify(req.query)
   );
   const userId = req.query.userId;
   const authToken = req.query.authToken;

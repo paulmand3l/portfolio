@@ -28,42 +28,40 @@ module.exports.getBirthdayICalForUserId = async (userId, authToken) => {
     !response.data.data.currentUserLeagueConnections.length
   ) {
     console.error(
-        'User info response missing leagues',
-        JSON.stringify(response.data.data),
+      'User info response missing leagues',
+      JSON.stringify(response.data.data)
     );
     throw new Error('User info response missing leagues');
   }
 
   const players = {};
   const leagues = {};
-  response.data.data.currentUserLeagueConnections.forEach(
-      ({league, team}) => {
-        if (league.archived) {
-          return;
-        }
+  response.data.data.currentUserLeagueConnections.forEach(({league, team}) => {
+    if (league.archived) {
+      return;
+    }
 
-        if (!team) {
-          return;
-        }
+    if (!team) {
+      return;
+    }
 
-        console.log(league);
+    console.log(league);
 
-        team.players.forEach((player) => {
-          players[player._id] = player;
-          if (!leagues[player._id]) {
-            leagues[player._id] = [];
-          }
-          leagues[player._id].push(league.name);
-        });
-      },
-  );
+    team.players.forEach(player => {
+      players[player._id] = player;
+      if (!leagues[player._id]) {
+        leagues[player._id] = [];
+      }
+      leagues[player._id].push(league.name);
+    });
+  });
 
   console.log(players, leagues);
 
-  Object.values(players).forEach((player) => {
+  Object.values(players).forEach(player => {
     try {
       let playerLeagues = '';
-      leagues[player._id].sort().forEach((name) => {
+      leagues[player._id].sort().forEach(name => {
         playerLeagues += `${name}
 `;
       });

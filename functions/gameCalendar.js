@@ -1,17 +1,17 @@
-const axios = require("axios");
-const ical = require("ical-generator");
-const { getSchedulePayload, getLeagueStandingsPayload } = require("./queries");
-const { GRAPH_URL } = require("./constants");
+const axios = require('axios');
+const ical = require('ical-generator');
+const {getSchedulePayload, getLeagueStandingsPayload} = require('./queries');
+const {GRAPH_URL} = require('./constants');
 
 module.exports.getICalForUserId = async (userId, authToken) => {
-  console.log("Fetching schedule for", userId);
+  console.log('Fetching schedule for', userId);
   if (
     !userId ||
     !authToken ||
     authToken.length < 600 ||
-    authToken.indexOf("QmVhcmVyIGV5SmhiR2N") === 0
+    authToken.indexOf('QmVhcmVyIGV5SmhiR2N') === 0
   ) {
-    return ical({ name: "Invalid Calendar" });
+    return ical({name: 'Invalid Calendar'});
   }
 
   const response = await axios.post(GRAPH_URL, getSchedulePayload(userId), {
@@ -19,27 +19,27 @@ module.exports.getICalForUserId = async (userId, authToken) => {
       Authorization: `Bearer ${authToken}`,
     },
   });
-  console.log("Got game schedule for", userId);
+  console.log('Got game schedule for', userId);
 
-  const calendar = ical({ name: "Volo Games" });
+  const calendar = ical({name: 'Volo Games'});
 
   const teamRecords = {};
 
   if (!response.data.data.getUserByInfo.activeLeagues) {
     console.error(
-      "User info response missing leagues",
+      'User info response missing leagues',
       JSON.stringify(response.data.data)
     );
-    throw new Error("User info response missing leagues");
+    throw new Error('User info response missing leagues');
   }
 
   await Promise.all(
     response.data.data.getUserByInfo.activeLeagues.map(
-      async ({ _id: leagueId, schedules }) => {
+      async ({_id: leagueId, schedules}) => {
         console.log(
-          "Fetching standings for user",
+          'Fetching standings for user',
           userId,
-          "in league",
+          'in league',
           leagueId
         );
         const response = await axios.post(
@@ -51,7 +51,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
             },
           }
         );
-        response.data.data.leagueStandings.forEach((standing) => {
+        response.data.data.leagueStandings.forEach(standing => {
           teamRecords[standing.teamId] = {
             win: Number(standing.WIN),
             lose: Number(standing.LOSE) + Number(standing.FORFEIT || 0),
@@ -59,15 +59,15 @@ module.exports.getICalForUserId = async (userId, authToken) => {
           };
         });
 
-        const games = schedules.flatMap((schedule) => schedule.games);
+        const games = schedules.flatMap(schedule => schedule.games);
         console.log(games);
 
         await Promise.all(
-          games.map(async (game) => {
+          games.map(async game => {
             let myTeam = null;
             let myTeamIndex = null;
             game.teams.forEach((team, i) => {
-              team.players.forEach((player) => {
+              team.players.forEach(player => {
                 if (player._id === userId) {
                   myTeam = team;
                   myTeamIndex = i;
@@ -82,7 +82,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
             });
 
             const teamRSVPs = {};
-            game.teamRsvps.forEach(({ teamId, totalYesCount }) => {
+            game.teamRsvps.forEach(({teamId, totalYesCount}) => {
               teamRSVPs[teamId] = totalYesCount;
             });
 
@@ -116,7 +116,7 @@ ${otherTeam.name} ${otherRecordText} (${otherTeam.color.name})`,
                 location: `${game.location.name}, ${address}`,
               });
             } catch (err) {
-              console.log("Error creating calendar event");
+              console.log('Error creating calendar event');
               console.log(err);
             }
           })
