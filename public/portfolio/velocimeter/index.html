@@ -1,187 +1,484 @@
 <!DOCTYPE html>
 <html lang="en" class="mti-inactive">
-
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900|Merriweather:400" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
-    <title>
-        mand3l
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The software, design and robotics portfolio of Paul Mandel.">
-    <meta name="author" content="Paul Mandel">
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/static/base/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/home/css/home.css">
-    <link rel="stylesheet" type="text/css" href="/static/home/css/portfolio.css">
-    <link rel="stylesheet" type="text/css" href="/static/mathscribe/css/jqmath-0.3.0.css">
-    <link rel="stylesheet" type="text/css" href="/static/flexslider/flexslider.css">
-    <link rel="shortcut icon" href="/static//base/img/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/bootstrap/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900|Merriweather:400"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta charset="utf-8" />
+    <title>mand3l</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The software, design and robotics portfolio of Paul Mandel."
+    />
+    <meta name="author" content="Paul Mandel" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/bootstrap/css/bootstrap.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/base/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/static/home/css/home.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/home/css/portfolio.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/mathscribe/css/jqmath-0.3.0.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/flexslider/flexslider.css"
+    />
+    <link rel="shortcut icon" href="/static//base/img/favicon.ico" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="/static/bootstrap/ico/apple-touch-icon-144-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="/static/bootstrap/ico/apple-touch-icon-114-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png"
+    />
     <script type="text/javascript" async="" src="/static/snoop/sn.js"></script>
-    <script type="text/javascript" async="" src="https://www.google-analytics.com/ga.js"></script>
-    <script src="/static/jquery/js/jquery.min.js"> </script>
-    <script src="/static/base/js/sugar-1.3.9.min.js"> </script>
+    <script
+      type="text/javascript"
+      async=""
+      src="https://www.google-analytics.com/ga.js"
+    ></script>
+    <script src="/static/jquery/js/jquery.min.js"></script>
+    <script src="/static/base/js/sugar-1.3.9.min.js"></script>
     <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-32216917-1']);
-    _gaq.push(['_setDomainName', 'mand3l.com']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32216917-1']);
+      _gaq.push(['_setDomainName', 'mand3l.com']);
+      _gaq.push(['_trackPageview']);
+      (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src =
+          ('https:' == document.location.protocol
+            ? 'https://ssl'
+            : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
     </script>
     <script data-validation="snoop_embed_code_ok" type="text/javascript">
-    (function() {
-      var sn = document.createElement('script');
-      sn.type = 'text/javascript';
-      sn.async = true;
-      sn.src = '/static/snoop/sn.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(sn, s);
-    })();
+      (function () {
+        var sn = document.createElement('script');
+        sn.type = 'text/javascript';
+        sn.async = true;
+        sn.src = '/static/snoop/sn.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(sn, s);
+      })();
     </script>
-</head>
+  </head>
 
-<body id="portfolio" class="">
+  <body id="portfolio" class="">
     <div id="side-menu">
-        <img class="headshot" width="120px" height="120px" src="/static/base/img/headshot.png">
-<p class="bio">Hi! I'm Paul. I'm a designer and technologist who specializes in leading cross-functional teams to deliver great products with experiences that go beyond traditional screen-based UIs. I'm not currently looking for new projects, but if you want to connect feel free to drop me a line.</p>
-        <p><a href="https://paulmandel-resume.web.app/">» Resume</a></p>
-        <ul class="unstyled inline centered">
-            <li><a href="mailto:paul@mand3l.com"><img width="50px" height="50px" src="/static/base/img/gmail.png"></a></li>
-            <li><a href="http://www.github.com/paulmand3l/" target="_blank"><img width="50px" height="50px" src="/static/base/img/github.png"></a></li>
-            <li><a href="http://blog.mand3l.com/" target="_blank"><img width="50px" height="50px" src="/static/base/img/rss.png"></a></li>
-            <li><a href="http://www.linkedin.com/in/pmandel/" target="_blank"><img width="50px" height="50px" src="/static/base/img/linkedin.png"></a></li>
-            <li><a href="https://www.facebook.com/pmandel" target="_blank"><img width="50px" height="50px" src="/static/base/img/facebook.png"></a></li>
-        </ul>
+      <img
+        class="headshot"
+        width="120px"
+        height="120px"
+        src="/static/base/img/headshot.png"
+      />
+      <p class="bio">
+        Hi! I'm Paul. I'm a designer and technologist who specializes in leading
+        cross-functional teams to deliver great products with experiences that
+        go beyond traditional screen-based UIs. I'm not currently looking for
+        new projects, but if you want to connect feel free to drop me a line.
+      </p>
+      <p><a href="/paul_mandel_resume.pdf">» Resume</a></p>
+      <ul class="unstyled inline centered">
+        <li>
+          <a href="mailto:paul@mand3l.com"
+            ><img width="50px" height="50px" src="/static/base/img/gmail.png"
+          /></a>
+        </li>
+        <li>
+          <a href="http://www.github.com/paulmand3l/" target="_blank"
+            ><img width="50px" height="50px" src="/static/base/img/github.png"
+          /></a>
+        </li>
+        <li>
+          <a href="http://blog.mand3l.com/" target="_blank"
+            ><img width="50px" height="50px" src="/static/base/img/rss.png"
+          /></a>
+        </li>
+        <li>
+          <a href="http://www.linkedin.com/in/pmandel/" target="_blank"
+            ><img
+              width="50px"
+              height="50px"
+              src="/static/base/img/linkedin.png"
+          /></a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/pmandel" target="_blank"
+            ><img
+              width="50px"
+              height="50px"
+              src="/static/base/img/facebook.png"
+          /></a>
+        </li>
+      </ul>
     </div>
     <div id="wrapper">
-        <div class="navbar clearfix">
-            <div class="navbar-inner">
-                <a class="brand noMagic" href="/portfolio/">Paul<br>Mandel</a>
-            </div>
+      <div class="navbar clearfix">
+        <div class="navbar-inner">
+          <a class="brand noMagic" href="/portfolio/">Paul<br />Mandel</a>
         </div>
-        <div id="main" class="container">
-            <div id="content">
-                <div id="project">
-                    <div class="row banner">
-                        <div class="span8">
-                            <div class="async-wrapper">
-                                <div class="flexslider">
-                                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                                        <ul class="slides" style="width: 800%; transition-duration: 0s; transform: translate3d(-620px, 0px, 0px);">
-                                            <li class="clone" style="width: 620px; float: left; display: block;">
-                                                <img title="" alt="Velocimeter Circuit" src="/static/project-images/circuit.png" style="height: 349px;">
-                                            </li>
-                                            <li style="width: 620px; float: left; display: block;" class="flex-active-slide">
-                                                <img title="" alt="Velocimeter Front" src="/static/project-images/velocimeter.jpg" style="height: 349px;">
-                                            </li>
-                                            <li style="width: 620px; float: left; display: block;">
-                                                <img title="" alt="Velocimeter Circuit" src="/static/project-images/circuit.png" style="height: 349px;">
-                                            </li>
-                                            <li style="width: 620px; float: left; display: block;" class="clone">
-                                                <img title="" alt="Velocimeter Front" src="/static/project-images/velocimeter.jpg" style="height: 349px;">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <ul class="flex-direction-nav">
-                                        <li><a class="flex-prev" href="#">Previous</a></li>
-                                        <li><a class="flex-next" href="#">Next</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sidebar span4">
-                            <h2 class="title">Velocimeter</h2>
-                            <p>Ground-truth velocity sensor.</p>
-                            <p></p>
-                        </div>
+      </div>
+      <div id="main" class="container">
+        <div id="content">
+          <div id="project">
+            <div class="row banner">
+              <div class="span8">
+                <div class="async-wrapper">
+                  <div class="flexslider">
+                    <div
+                      class="flex-viewport"
+                      style="overflow: hidden; position: relative"
+                    >
+                      <ul
+                        class="slides"
+                        style="
+                          width: 800%;
+                          transition-duration: 0s;
+                          transform: translate3d(-620px, 0px, 0px);
+                        "
+                      >
+                        <li
+                          class="clone"
+                          style="width: 620px; float: left; display: block"
+                        >
+                          <img
+                            title=""
+                            alt="Velocimeter Circuit"
+                            src="/static/project-images/circuit.png"
+                            style="height: 349px"
+                          />
+                        </li>
+                        <li
+                          style="width: 620px; float: left; display: block"
+                          class="flex-active-slide"
+                        >
+                          <img
+                            title=""
+                            alt="Velocimeter Front"
+                            src="/static/project-images/velocimeter.jpg"
+                            style="height: 349px"
+                          />
+                        </li>
+                        <li style="width: 620px; float: left; display: block">
+                          <img
+                            title=""
+                            alt="Velocimeter Circuit"
+                            src="/static/project-images/circuit.png"
+                            style="height: 349px"
+                          />
+                        </li>
+                        <li
+                          style="width: 620px; float: left; display: block"
+                          class="clone"
+                        >
+                          <img
+                            title=""
+                            alt="Velocimeter Front"
+                            src="/static/project-images/velocimeter.jpg"
+                            style="height: 349px"
+                          />
+                        </li>
+                      </ul>
                     </div>
-                    <hr>
-                    <div class="description">
-                        <h3>intro</h3>
-                        <p>Much robotics research in recent years has been devoted to the subject of odometry. Knowing a robot’s precise location in the world is key for navigation and obstacle detection and avoidance. Currently a number of methods are used, including wheel odometry, GPS, and SLAM systems, but each of these has flaws in its current implementation. Because wheel odometry is inherently an indirect measurement, it is only valid for short periods of time and fails completely if the vehicle is running on sand or another similarly deformable material. GPS is prone to outages and failures in canyons and under bridges and has an exponential price-accuracy relationship. SLAM performed on external landmarks is processing-intensive because of the feature-recognition and matching necessary.</p>
-                        <p>By using an optical mouse chip to track the ground directly beneath the vehicle, we can overcome these obstacles. Since we are measuring ground-truth, wheel slip does not create any errors so we can theoretically track on sand or track the velocity of a vehicle that is drifting around a corner. Since there are no satellites involved, outages will only be caused by optical obstructions of the ground and monolithic optical mouse IC’s are remarkably inexpensive for their capabilities. Though optical flow is a subset of SLAM, the processing is done in hardware in the optical mouse IC, so performance is unrelated to the interfacing microprocessor.</p>
-                        <p>This is not to say, though, that using an optical mouse IC does not come with its own problems. A standard optical mouse is designed to work in contact with the surface it is measuring and can only read up to 40in/s, making it worthless for all but the simplest of robots. I have overcome both of these obstacles and created a simple and compact packaging for the optical mouse IC that makes it extremely useful to large mobile robots as a ground-truth velocimeter.</p>
-                        <h3>Hardware</h3>
-                        <p>The hardware design for this system focused on the requirements of being securely mounted on the underbelly of a car. To function underneath a car, the system must be able to attach to the curvy stamped sheet-metal forms and be water and dirt resistant enough to avoid damage due to the dirt and rocks kicked up by the wheels. This necessitated an enclosed design to protect the electronics and a shield for the lens to avoid scratching and other damage.</p>
-                        <p>To attach to the car, I decided to use four 5862K65 (Ultra-High-Pull Neodymium Disc Magnet 3/8" Dia, 1/4" Thick, 4.7 Pull lbs, Nickel Plated) magnets from McMaster-Carr, one in each corner. This allows the system to be attached anywhere underneath the car without having to worry about mounting bolts or fasteners.</p>
-                        <p>The power for the system comes from an integral 9V battery that externally plugs into the board for easy connection/disconnection. The battery is included inside the case to provide shielding for it, as well.</p>
-                        <p><img src="/static/home/img/projects/velocimeter/enclosure.jpg"></p>
-                        <h3>Optics</h3>
-                        <p>The optics are very important as they scale the velocity and surface features so that the optical mouse can function. The system uses an Edmund Optics NT46-660 aspherical condenser lens (15mm x 12mm) in addition to the standard optical mouse lens included with the ADNS-3080.</p>
-                        <p>We can calculate the magnification of the system so that we can convert the velocity measured by the ADNS-3080 into the real velocity of the road:</p>
-                        <p>$$M = {d_{image}}/{d_{object}} = h_{image}/h_{object}$$</p>
-                        <p>The size of one count of the ADNS-3080 on the optical plane is .0025in. Converting this to the road plane:</p>
-                        <p>$${1.2cm}/h_{road} = {1ct @ pf}/{1ct @ rd}$$ $$1ct @ rd = h_{road}/1.2 * 1ct @ pf$$</p>
-                        <p>This equation gives us a factor by which to scale the ‘counts’ per second coming out of the system to a ‘road cm’ per second which gives us the absolute velocity of the vehicle in both X and Y.</p>
-                        <h3>Electronics</h3>
-                        <p>This system is based around the Avago ADNS-3080 High-performance Optical Mouse Sensor. It is Avago’s highest performance model, designed for high-end gaming mice, and can detect motion up to 40in/s and 15g acceleration at 6400 frames per second at 400cpi resolution. It has a non-standard 20-pin offset DIP which makes it difficult to prototype with as a custom breakout board is required in all cases. It communicates over a 3-line (MISO, MOSI, SCLK) SPI serial port that is easily accessible through an interfacing microcontroller and supports simple registry read/write operations and a burst mode that is useful for streaming large amounts of data quickly.</p>
-                        <p>A Microchip PIC18F2221 microcontroller acts as the interface between the computer and the ADNS-3080. The PIC family of microcontrollers is a standard low-cost embedded option for simplistic applications. They include hardware modules for various standard functions such as timing, serial communication, digital input and output, and D/A conversion.</p>
-                        <p>The final IC in the system is the MAXIM MAX232, a TTL to RS-232 level shifter. The TTL signals output by the PIC’s USART range from +5V to 0V, whereas the RS-232 standard requires signals of +12V to -12V. The MAX232 uses charge pumps to make up this gap and requires several large external capacitors.</p>
-                        <p>I custom-designed the PCB you see in the picture above and sent it out to have it built. I did all the assembly myself.</p>
-                        <p><img src="/static/home/img/projects/velocimeter/circuit.png"></p>
-                        <h3>Software</h3>
-                        <p>There are three main components to the software architecture used in the system.</p>
-                        <p><img src="/static/home/img/projects/velocimeter/software.jpg"></p>
-                        <p>The ADNS-3080 has a very low level interface using a synchronous serial port and direct registry reading and writing. It also supports a special ‘streaming’ mode of communication for transmitting or receiving large amounts of specially-formatted data. For more information on the communication protocol used by the ADNS-3080, please reference the ADNS-3080 datasheet online.</p>
-                        <p>The PIC18f2221 is from a standard family of microcontrollers (PIC18) produced by Microchip. It is programmed in-circuit in C using a special IDE and compiler distributed free to students. It is equipped with many digital I/O ports, a hardware EUSART (asynchronous to communicate over RS-232), and a hardware MSSP (synchronous to communicate via SPI). All of these ports are easily set up and accessed via function calls in the code.<p>
-                                <p>The program I wrote for the PIC is designed to serve as a direct pass-through connection to the ADNS-3080, with a few exceptions. This means that if you send ‘0x00 0xFF’ (read from register zero and return the result) over the serial port, you get back ‘0x00 0x17’, which is the product ID, the default value of that registry (and a good way to check if communication is working all up and down the line). The cases where this breaks down are for the streaming modes. The PIC intercepts a write to either 0x40 or 0x50 and takes control of the process:</p>
-                                <dl class="dl-horizontal"> <dt>0x50</dt>
-                                    <dd>To grab a frame, the PIC needs to download 900 uint8’s from the ADNS-3080. Unfortunately, the PIC doesn’t have enough room in its onboard memory to accommodate all that data, so it returns 9 strings of 100 uint8’s each. When using this mode, set up the a binary read to take in 100 uint8’s 9 times so your serial connection doesn’t time out. You should only really use this to adjust the focus and make sure there’s proper illumination because the frame rate is only around 1hz.</dd> <dt>0x40</dt>
-                                    <dd>Instead of grabbing the motion data as is, the PIC erases the motion data, waits a variable amount of time, and then returns the amount of time it waited and the x and y motion data, effectively giving a very precise and scalable velocity reading. It returns exactly those 3 uint8’s, so you should configure your serial read command appropriately.</dd>
-                                </dl>
-                                <p>The host PC, in this case the computer in the back of the vehicle, runs some version of Matlab to work with the computer’s serial port. To interface the ADNS-3080 breakout with XPC, I created a mask in Simulink that handles all the serial communication and just spits out the time-compensated x and y velocities, updating at 15hz. This greatly simplifies interaction with the ADNS-3080 breakout for most users. Any users wishing to use the pass-through functionality described above are advised to use a custom m-script run through regular Matlab.</p> <iframe src="/static/home/pdf/velocimeter.pdf" width="100%" height="800" style="border: none;"></iframe>
-                    </div>
+                    <ul class="flex-direction-nav">
+                      <li><a class="flex-prev" href="#">Previous</a></li>
+                      <li><a class="flex-next" href="#">Next</a></li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
+              <div class="sidebar span4">
+                <h2 class="title">Velocimeter</h2>
+                <p>Ground-truth velocity sensor.</p>
+                <p></p>
+              </div>
             </div>
-        </div>
-        <div id="footer">
-            <div class="centered">
-                <p class="muted">© Paul Mandel</p>
+            <hr />
+            <div class="description">
+              <h3>intro</h3>
+              <p>
+                Much robotics research in recent years has been devoted to the
+                subject of odometry. Knowing a robot’s precise location in the
+                world is key for navigation and obstacle detection and
+                avoidance. Currently a number of methods are used, including
+                wheel odometry, GPS, and SLAM systems, but each of these has
+                flaws in its current implementation. Because wheel odometry is
+                inherently an indirect measurement, it is only valid for short
+                periods of time and fails completely if the vehicle is running
+                on sand or another similarly deformable material. GPS is prone
+                to outages and failures in canyons and under bridges and has an
+                exponential price-accuracy relationship. SLAM performed on
+                external landmarks is processing-intensive because of the
+                feature-recognition and matching necessary.
+              </p>
+              <p>
+                By using an optical mouse chip to track the ground directly
+                beneath the vehicle, we can overcome these obstacles. Since we
+                are measuring ground-truth, wheel slip does not create any
+                errors so we can theoretically track on sand or track the
+                velocity of a vehicle that is drifting around a corner. Since
+                there are no satellites involved, outages will only be caused by
+                optical obstructions of the ground and monolithic optical mouse
+                IC’s are remarkably inexpensive for their capabilities. Though
+                optical flow is a subset of SLAM, the processing is done in
+                hardware in the optical mouse IC, so performance is unrelated to
+                the interfacing microprocessor.
+              </p>
+              <p>
+                This is not to say, though, that using an optical mouse IC does
+                not come with its own problems. A standard optical mouse is
+                designed to work in contact with the surface it is measuring and
+                can only read up to 40in/s, making it worthless for all but the
+                simplest of robots. I have overcome both of these obstacles and
+                created a simple and compact packaging for the optical mouse IC
+                that makes it extremely useful to large mobile robots as a
+                ground-truth velocimeter.
+              </p>
+              <h3>Hardware</h3>
+              <p>
+                The hardware design for this system focused on the requirements
+                of being securely mounted on the underbelly of a car. To
+                function underneath a car, the system must be able to attach to
+                the curvy stamped sheet-metal forms and be water and dirt
+                resistant enough to avoid damage due to the dirt and rocks
+                kicked up by the wheels. This necessitated an enclosed design to
+                protect the electronics and a shield for the lens to avoid
+                scratching and other damage.
+              </p>
+              <p>
+                To attach to the car, I decided to use four 5862K65
+                (Ultra-High-Pull Neodymium Disc Magnet 3/8" Dia, 1/4" Thick, 4.7
+                Pull lbs, Nickel Plated) magnets from McMaster-Carr, one in each
+                corner. This allows the system to be attached anywhere
+                underneath the car without having to worry about mounting bolts
+                or fasteners.
+              </p>
+              <p>
+                The power for the system comes from an integral 9V battery that
+                externally plugs into the board for easy
+                connection/disconnection. The battery is included inside the
+                case to provide shielding for it, as well.
+              </p>
+              <p>
+                <img
+                  src="/static/home/img/projects/velocimeter/enclosure.jpg"
+                />
+              </p>
+              <h3>Optics</h3>
+              <p>
+                The optics are very important as they scale the velocity and
+                surface features so that the optical mouse can function. The
+                system uses an Edmund Optics NT46-660 aspherical condenser lens
+                (15mm x 12mm) in addition to the standard optical mouse lens
+                included with the ADNS-3080.
+              </p>
+              <p>
+                We can calculate the magnification of the system so that we can
+                convert the velocity measured by the ADNS-3080 into the real
+                velocity of the road:
+              </p>
+              <p>$$M = {d_{image}}/{d_{object}} = h_{image}/h_{object}$$</p>
+              <p>
+                The size of one count of the ADNS-3080 on the optical plane is
+                .0025in. Converting this to the road plane:
+              </p>
+              <p>
+                $${1.2cm}/h_{road} = {1ct @ pf}/{1ct @ rd}$$ $$1ct @ rd =
+                h_{road}/1.2 * 1ct @ pf$$
+              </p>
+              <p>
+                This equation gives us a factor by which to scale the ‘counts’
+                per second coming out of the system to a ‘road cm’ per second
+                which gives us the absolute velocity of the vehicle in both X
+                and Y.
+              </p>
+              <h3>Electronics</h3>
+              <p>
+                This system is based around the Avago ADNS-3080 High-performance
+                Optical Mouse Sensor. It is Avago’s highest performance model,
+                designed for high-end gaming mice, and can detect motion up to
+                40in/s and 15g acceleration at 6400 frames per second at 400cpi
+                resolution. It has a non-standard 20-pin offset DIP which makes
+                it difficult to prototype with as a custom breakout board is
+                required in all cases. It communicates over a 3-line (MISO,
+                MOSI, SCLK) SPI serial port that is easily accessible through an
+                interfacing microcontroller and supports simple registry
+                read/write operations and a burst mode that is useful for
+                streaming large amounts of data quickly.
+              </p>
+              <p>
+                A Microchip PIC18F2221 microcontroller acts as the interface
+                between the computer and the ADNS-3080. The PIC family of
+                microcontrollers is a standard low-cost embedded option for
+                simplistic applications. They include hardware modules for
+                various standard functions such as timing, serial communication,
+                digital input and output, and D/A conversion.
+              </p>
+              <p>
+                The final IC in the system is the MAXIM MAX232, a TTL to RS-232
+                level shifter. The TTL signals output by the PIC’s USART range
+                from +5V to 0V, whereas the RS-232 standard requires signals of
+                +12V to -12V. The MAX232 uses charge pumps to make up this gap
+                and requires several large external capacitors.
+              </p>
+              <p>
+                I custom-designed the PCB you see in the picture above and sent
+                it out to have it built. I did all the assembly myself.
+              </p>
+              <p>
+                <img src="/static/home/img/projects/velocimeter/circuit.png" />
+              </p>
+              <h3>Software</h3>
+              <p>
+                There are three main components to the software architecture
+                used in the system.
+              </p>
+              <p>
+                <img src="/static/home/img/projects/velocimeter/software.jpg" />
+              </p>
+              <p>
+                The ADNS-3080 has a very low level interface using a synchronous
+                serial port and direct registry reading and writing. It also
+                supports a special ‘streaming’ mode of communication for
+                transmitting or receiving large amounts of specially-formatted
+                data. For more information on the communication protocol used by
+                the ADNS-3080, please reference the ADNS-3080 datasheet online.
+              </p>
+              <p>
+                The PIC18f2221 is from a standard family of microcontrollers
+                (PIC18) produced by Microchip. It is programmed in-circuit in C
+                using a special IDE and compiler distributed free to students.
+                It is equipped with many digital I/O ports, a hardware EUSART
+                (asynchronous to communicate over RS-232), and a hardware MSSP
+                (synchronous to communicate via SPI). All of these ports are
+                easily set up and accessed via function calls in the code.
+              </p>
+              <p></p>
+              <p>
+                The program I wrote for the PIC is designed to serve as a direct
+                pass-through connection to the ADNS-3080, with a few exceptions.
+                This means that if you send ‘0x00 0xFF’ (read from register zero
+                and return the result) over the serial port, you get back ‘0x00
+                0x17’, which is the product ID, the default value of that
+                registry (and a good way to check if communication is working
+                all up and down the line). The cases where this breaks down are
+                for the streaming modes. The PIC intercepts a write to either
+                0x40 or 0x50 and takes control of the process:
+              </p>
+              <dl class="dl-horizontal">
+                <dt>0x50</dt>
+                <dd>
+                  To grab a frame, the PIC needs to download 900 uint8’s from
+                  the ADNS-3080. Unfortunately, the PIC doesn’t have enough room
+                  in its onboard memory to accommodate all that data, so it
+                  returns 9 strings of 100 uint8’s each. When using this mode,
+                  set up the a binary read to take in 100 uint8’s 9 times so
+                  your serial connection doesn’t time out. You should only
+                  really use this to adjust the focus and make sure there’s
+                  proper illumination because the frame rate is only around 1hz.
+                </dd>
+                <dt>0x40</dt>
+                <dd>
+                  Instead of grabbing the motion data as is, the PIC erases the
+                  motion data, waits a variable amount of time, and then returns
+                  the amount of time it waited and the x and y motion data,
+                  effectively giving a very precise and scalable velocity
+                  reading. It returns exactly those 3 uint8’s, so you should
+                  configure your serial read command appropriately.
+                </dd>
+              </dl>
+              <p>
+                The host PC, in this case the computer in the back of the
+                vehicle, runs some version of Matlab to work with the computer’s
+                serial port. To interface the ADNS-3080 breakout with XPC, I
+                created a mask in Simulink that handles all the serial
+                communication and just spits out the time-compensated x and y
+                velocities, updating at 15hz. This greatly simplifies
+                interaction with the ADNS-3080 breakout for most users. Any
+                users wishing to use the pass-through functionality described
+                above are advised to use a custom m-script run through regular
+                Matlab.
+              </p>
+              <iframe
+                src="/static/home/pdf/velocimeter.pdf"
+                width="100%"
+                height="800"
+                style="border: none"
+              ></iframe>
             </div>
+          </div>
         </div>
+      </div>
+      <div id="footer">
+        <div class="centered">
+          <p class="muted">© Paul Mandel</p>
+        </div>
+      </div>
     </div>
-    <script src="/static/bootstrap/js/bootstrap-transition.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-modal.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-tab.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-tooltip.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-popover.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-button.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-affix.js"> </script>
-    <script src="/static/base/js/core.js"> </script>
-    <script src="/static/base/js/base.js"> </script>
-    <script src="/static/mathscribe/js/jqmath-etc-0.3.0.min.js" type="text/javascript"> </script>
-    <script src="/static/flexslider/jquery.flexslider.js" type="text/javascript"> </script>
+    <script src="/static/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-affix.js"></script>
+    <script src="/static/base/js/core.js"></script>
+    <script src="/static/base/js/base.js"></script>
+    <script
+      src="/static/mathscribe/js/jqmath-etc-0.3.0.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/static/flexslider/jquery.flexslider.js"
+      type="text/javascript"
+    ></script>
     <script type="text/javascript">
-    $(function() {
-      $('.flexslider').flexslider({
-        animation: "slide",
-        controlNav: false,
-      });
-      $('.async-wrapper img').height($('.async-wrapper').outerHeight());
-      // If we know this visitor
-      if ("hashtag" in localStorage) {
-        console.log("I'm watching you...");
-        $.post('/' + localStorage.hashtag + '/', {
-          project: "Velocimeter",
-          csrfmiddlewaretoken: 'LHFk8cbJBfNKYliPhD7kJNw05XZuRBBu'
+      $(function () {
+        $('.flexslider').flexslider({
+          animation: 'slide',
+          controlNav: false,
         });
-      }
-    });
+        $('.async-wrapper img').height($('.async-wrapper').outerHeight());
+        // If we know this visitor
+        if ('hashtag' in localStorage) {
+          console.log("I'm watching you...");
+          $.post('/' + localStorage.hashtag + '/', {
+            project: 'Velocimeter',
+            csrfmiddlewaretoken: 'LHFk8cbJBfNKYliPhD7kJNw05XZuRBBu',
+          });
+        }
+      });
     </script>
-    <script type="text/javascript">
-    </script>
-
-</body>
-
+    <script type="text/javascript"></script>
+  </body>
 </html>

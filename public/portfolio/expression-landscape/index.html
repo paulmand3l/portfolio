@@ -1,197 +1,490 @@
 <!DOCTYPE html>
 <html lang="en" class="mti-inactive">
-
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900|Merriweather:400" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
-    <title>
-        mand3l
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The software, design and robotics portfolio of Paul Mandel.">
-    <meta name="author" content="Paul Mandel">
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/static/base/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/home/css/home.css">
-    <link rel="stylesheet" type="text/css" href="/static/home/css/portfolio.css">
-    <link rel="stylesheet" type="text/css" href="/static/mathscribe/css/jqmath-0.3.0.css">
-    <link rel="stylesheet" type="text/css" href="/static/flexslider/flexslider.css">
-    <link rel="shortcut icon" href="/static//base/img/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/bootstrap/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900|Merriweather:400"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta charset="utf-8" />
+    <title>mand3l</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The software, design and robotics portfolio of Paul Mandel."
+    />
+    <meta name="author" content="Paul Mandel" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/bootstrap/css/bootstrap.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/base/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/static/home/css/home.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/home/css/portfolio.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/mathscribe/css/jqmath-0.3.0.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/flexslider/flexslider.css"
+    />
+    <link rel="shortcut icon" href="/static//base/img/favicon.ico" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="/static/bootstrap/ico/apple-touch-icon-144-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="/static/bootstrap/ico/apple-touch-icon-114-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png"
+    />
     <script type="text/javascript" async="" src="/static/snoop/sn.js"></script>
-    <script type="text/javascript" async="" src="https://www.google-analytics.com/ga.js"></script>
-    <script src="/static/jquery/js/jquery.min.js"> </script>
-    <script src="/static/base/js/sugar-1.3.9.min.js"> </script>
+    <script
+      type="text/javascript"
+      async=""
+      src="https://www.google-analytics.com/ga.js"
+    ></script>
+    <script src="/static/jquery/js/jquery.min.js"></script>
+    <script src="/static/base/js/sugar-1.3.9.min.js"></script>
     <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-32216917-1']);
-    _gaq.push(['_setDomainName', 'mand3l.com']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32216917-1']);
+      _gaq.push(['_setDomainName', 'mand3l.com']);
+      _gaq.push(['_trackPageview']);
+      (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src =
+          ('https:' == document.location.protocol
+            ? 'https://ssl'
+            : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
     </script>
     <script data-validation="snoop_embed_code_ok" type="text/javascript">
-    (function() {
-      var sn = document.createElement('script');
-      sn.type = 'text/javascript';
-      sn.async = true;
-      sn.src = '/static/snoop/sn.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(sn, s);
-    })();
+      (function () {
+        var sn = document.createElement('script');
+        sn.type = 'text/javascript';
+        sn.async = true;
+        sn.src = '/static/snoop/sn.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(sn, s);
+      })();
     </script>
-</head>
+  </head>
 
-<body id="portfolio" class="">
+  <body id="portfolio" class="">
     <div id="side-menu">
-        <img class="headshot" width="120px" height="120px" src="/static/base/img/headshot.png">
-<p class="bio">Hi! I'm Paul. I'm a designer and technologist who specializes in leading cross-functional teams to deliver great products with experiences that go beyond traditional screen-based UIs. I'm not currently looking for new projects, but if you want to connect feel free to drop me a line.</p>
-        <p><a href="https://paulmandel-resume.web.app/">» Resume</a></p>
-        <ul class="unstyled inline centered">
-            <li><a href="mailto:paul@mand3l.com"><img width="50px" height="50px" src="/static/base/img/gmail.png"></a></li>
-            <li><a href="http://www.github.com/paulmand3l/" target="_blank"><img width="50px" height="50px" src="/static/base/img/github.png"></a></li>
-            <li><a href="http://blog.mand3l.com/" target="_blank"><img width="50px" height="50px" src="/static/base/img/rss.png"></a></li>
-            <li><a href="http://www.linkedin.com/in/pmandel/" target="_blank"><img width="50px" height="50px" src="/static/base/img/linkedin.png"></a></li>
-            <li><a href="https://www.facebook.com/pmandel" target="_blank"><img width="50px" height="50px" src="/static/base/img/facebook.png"></a></li>
-        </ul>
+      <img
+        class="headshot"
+        width="120px"
+        height="120px"
+        src="/static/base/img/headshot.png"
+      />
+      <p class="bio">
+        Hi! I'm Paul. I'm a designer and technologist who specializes in leading
+        cross-functional teams to deliver great products with experiences that
+        go beyond traditional screen-based UIs. I'm not currently looking for
+        new projects, but if you want to connect feel free to drop me a line.
+      </p>
+      <p><a href="/paul_mandel_resume.pdf">» Resume</a></p>
+      <ul class="unstyled inline centered">
+        <li>
+          <a href="mailto:paul@mand3l.com"
+            ><img width="50px" height="50px" src="/static/base/img/gmail.png"
+          /></a>
+        </li>
+        <li>
+          <a href="http://www.github.com/paulmand3l/" target="_blank"
+            ><img width="50px" height="50px" src="/static/base/img/github.png"
+          /></a>
+        </li>
+        <li>
+          <a href="http://blog.mand3l.com/" target="_blank"
+            ><img width="50px" height="50px" src="/static/base/img/rss.png"
+          /></a>
+        </li>
+        <li>
+          <a href="http://www.linkedin.com/in/pmandel/" target="_blank"
+            ><img
+              width="50px"
+              height="50px"
+              src="/static/base/img/linkedin.png"
+          /></a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/pmandel" target="_blank"
+            ><img
+              width="50px"
+              height="50px"
+              src="/static/base/img/facebook.png"
+          /></a>
+        </li>
+      </ul>
     </div>
     <div id="wrapper">
-        <div class="navbar clearfix">
-            <div class="navbar-inner">
-                <a class="brand noMagic" href="/portfolio/">Paul<br>Mandel</a>
-            </div>
+      <div class="navbar clearfix">
+        <div class="navbar-inner">
+          <a class="brand noMagic" href="/portfolio/">Paul<br />Mandel</a>
         </div>
-        <div id="main" class="container">
-            <div id="content">
-                <div id="project">
-                    <div class="row banner">
-                        <div class="span8">
-                            <div class="async-wrapper">
-                                <img title="" alt="Tank face" src="/static/project-images/face.png" style="height: 349px;">
-                            </div>
-                        </div>
-                        <div class="sidebar span4">
-                            <h2 class="title">Expression Landscape</h2>
-                            <p>Complex facial expressions on a robot.</p>
-                            <p>With <a href="http://www.brigugl.io/">Louise Briguglio</a> and <a href="http://jasontheblock.com/">Jason Block</a> </p>
-                            <p>I was project manager, developed the initial <a href="/facemotion">facial simulator</a>, came up with the research experiment and designed and built the visualization.</p>
-                            <p></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="description">
-                        <style> .results-wrapper {   width: 940px; } .face-wrapper {   overflow: hidden; } canvas#face {   height: 400px;   margin-left: -250px; } svg {   height: 500px; } svg .axis path, svg .axis line {   fill: none;   stroke: black;   shape-rendering: crispEdges; } svg .axis text {   font-family: sans-serif;   font-size: 11px;   font-weight: bold;   text-anchor: end; } svg .response {   text-anchor: middle;   font-size: 10px;   text-shadow: 0px 0px 2px white; } </style>
-                        <h3>A Brief Story</h3>
-                        <p>You are having dinner at a restaurant. Your waitress arrives to take your order, asking how you are.</p>
-                        <p>“Fine,” you reply. “How are you?”</p>
-                        <p>“Great!” she responds with a smile that is perhaps a bit too wide and stiff. You notice a subtle tension around her eyes. You infer that she is not, in reality, great but is masking her distress. Perhaps her boss has just yelled at her or her car broke down on the way to work.</p>
-                        <p>Humans are incredibly adept at interpreting facial expressions. We can even tell the difference between deliberate expressions—expressions that are intentional or acted, such as smiling despite feeling anxious or disappointed—and spontaneous expressions which are unconscious and genuine manifestations of felt emotion (Ekman & Rosenberg 1997).</p>
-                        <h3>Background</h3>
-                        <p>While most humans are innately talented at displaying and interpreting facial expressions, embodied conversational agents (ECAs) rarely, if ever, achieve the same range or nuance found in human expression.</p>
-                        <p>Tank, an ECA, is a product of the <a href="www.roboceptionist.org">“Roboceptionist” project</a> at Carnegie Mellon University. Tank and his predecessors are social robots with rich and emotional backstories. Ideally, people using Tank will explore his story and feel empathy for his character.</p>
-                        <p>Like many ECA's, Tank is equipped with an expressive face which is programmed to display a wide variety of emotions. The emotion to display at any given moment was determined through a number of factors, including long term pre-programmed "stories", recent conversation history, and the phrase Tank is currently saying. A phrase may be tagged with multiple sequential emotions so that, as the phrase is spoken, Tank's face must quickly switch between several distinct emotions.</p>
-                        <div class="row">
-                            <div class="span3"> <a href="http://imgur.com/8TrAk8m"><img src="https://i.imgur.com/8TrAk8m.png" title="Hosted by imgur.com" /></a> </div>
-                            <div class="span3"> <a href="http://imgur.com/4rkUVvO"><img src="https://i.imgur.com/4rkUVvO.png" title="Hosted by imgur.com" /></a> </div>
-                            <div class="span3"> <a href="http://imgur.com/dif6ln5"><img src="https://i.imgur.com/dif6ln5.png" title="Hosted by imgur.com" /></a> </div>
-                            <div class="span3"> <a href="http://imgur.com/5OCmSSC"><img src="https://i.imgur.com/5OCmSSC.png" title="Hosted by imgur.com" /></a> </div>
-                        </div>
-                        <p>Our team interviewed community members about their feelings toward Tank. While many people found him helpful, some also confessed that they found him “creepy” or “awkward.” Through our interviews, we discovered that much of this awkwardness came down to two things: 1) unnatural-seeming facial expressions and movements and 2) mismatch between the emotions suggested by the spoken text and the perceived emotions.</p>
-                        <p>Given this apparent mismatch between Tank's intended expression and many viewer's receptions, our goal was to understand how we might increase empathy for Tank and other ECAs by exploring how people interpret the expression of complex and nuanced emotion by an animated face. In particular, we wanted to find a way to calibrate a face to make sure emotions were interpreted correctly.</p>
-                        <h3>Inspiration</h3>
-                        <p>In his book, Making Comics, Scott McCloud adapts Paul Eckman's classification of human emotion (joy, sadness, anger, disgust, fear, and surprise) to create a framework for expressing emotion in simple, drawn faces. McCloud describes in detail how anatomical muscle groups within the face create each of Eckman’s six expressions. Additionally, McCloud describes how the fundamental emotions can combine to create complex emotions (e.g. joy + sadness = nostalgia) (McCloud 2011).</p>
-                        <p>Randall Munroe, the author of the webcomic, xkcd, released a survey asking participants to name a random color displayed on their screen from the RGB color space. He collected five million color names from 222,500 user sessions. By identifying the most popular responses, he was able to draw a <a href="http://blog.xkcd.com/2010/05/03/color-survey-results/">map identifying the “boundaries” of each commonly identified color on a two-dimensional plane</a>.</p>
-                        <h3>Process</h3>
-                        <p>Our group conducted a descriptive design study to understand how people identify complex emotion in an animated face. Specifically, we explored Eckman’s six expressions (joy, sadness, anger, disgust, fear, and surprise) combined in pairs to form 16 unique, complex expressions.</p>
-                        <p>We first developed an <a href="/facemotion">expressive web-based facial simulator</a> capable of complex expression. It can generate expressions that combine Eckman’s six fundamental expressions in various proportions and levels of arousal (e.g. 30% fear + 40% sadness + 20% disgust).</p>
-                        <p>We created a web-based <a href="/facemotion/survey">survey</a> that displayed one of the complex expression to the participant. The participant was asked to label the displayed emotion. As of this writing, we have 3,392 expressions were identified from 337 unique user sessions.</p>
-                        <h3>Data &amp; Visualization</h3>
-                        <p>We initially visualized our results as scatter plots, as shown below. We highlighted the most popular responses and grouped them with convex hulls to emphasize the spatial clustering of dominant terminology.</p>
-                        <p>Move your mouse around the scatter plot to see the corresponding face.</p>
-                        <div class="results-wrapper">
-                            <div class="row">
-                                <form class="form-inline span8"> <select class="emotionX">
-                                        <option value="joy" selected="selected">Joy</option>
-                                        <option value="sadness">Sadness</option>
-                                        <option value="anger">Anger</option>
-                                        <option value="disgust">Disgust</option>
-                                        <option value="fear">Fear</option>
-                                        <option value="surprise">Surprise</option>
-                                    </select> <select class="emotionY">
-                                        <option value="joy">Joy</option>
-                                        <option value="sadness">Sadness</option>
-                                        <option value="anger" selected="selected">Anger</option>
-                                        <option value="disgust">Disgust</option>
-                                        <option value="fear">Fear</option>
-                                        <option value="surprise">Surprise</option>
-                                    </select> </form>
-                            </div>
-                            <div class="row"> <svg class="xy span8"></svg>
-                                <div class="face-wrapper span4"> <canvas id="face"></canvas> </div>
-                            </div>
-                        </div>
-                        <h3>Insights</h3>
-                        <ul>
-                            <li>When surprise is a component of a complex expression, participants were more likely to identify it than the other expression. This trend may, in part, result from how the face is rendered. Even in the neutral position, there is a slight gap between the iris of the eye and the top lid, which possibly contributes to the look of surprise.</li>
-                            <li>When negative expressions (particularly fear, sadness, and disgust) were combined with the positive expression, joy, the participant was more likely to use a negative label to describe the outcome.</li>
-                            <li>Usually, participants were more likely to “correctly” identify an expression when it consisted of one high-valence expression combined with a low-valence expression (e.g. 90% anger + 10% sadness). One notable exception is the combination of anger and disgust. Both are correctly identified by participants, but there is very little obvious clustering of the data points within the graph.</li>
-                            <li>While fear, anger, and disgust are all perceived more strongly than joy, fear is perceived more strongly than anger and disgust when paired with those emotions in particular.</li>
-                        </ul>
-                        <script src="/static/base/js/d3.v3.min.js" type="text/javascript"> </script>
-                        <script src="/static/facemotion/js/paper.js" type="text/javascript"> </script>
-                        <script src="/static/facemotion/js/morphologies.js" type="text/javascript"> </script>
-                        <script src="/static/facemotion/js/face.js" type="text/javascript"> </script>
-                        <script src="/static/facemotion/js/results.js" type="text/javascript"> </script>
-                    </div>
+      </div>
+      <div id="main" class="container">
+        <div id="content">
+          <div id="project">
+            <div class="row banner">
+              <div class="span8">
+                <div class="async-wrapper">
+                  <img
+                    title=""
+                    alt="Tank face"
+                    src="/static/project-images/face.png"
+                    style="height: 349px"
+                  />
                 </div>
+              </div>
+              <div class="sidebar span4">
+                <h2 class="title">Expression Landscape</h2>
+                <p>Complex facial expressions on a robot.</p>
+                <p>
+                  With <a href="http://www.brigugl.io/">Louise Briguglio</a> and
+                  <a href="http://jasontheblock.com/">Jason Block</a>
+                </p>
+                <p>
+                  I was project manager, developed the initial
+                  <a href="/facemotion">facial simulator</a>, came up with the
+                  research experiment and designed and built the visualization.
+                </p>
+                <p></p>
+              </div>
             </div>
-        </div>
-        <div id="footer">
-            <div class="centered">
-                <p class="muted">© Paul Mandel</p>
+            <hr />
+            <div class="description">
+              <style>
+                .results-wrapper {
+                  width: 940px;
+                }
+                .face-wrapper {
+                  overflow: hidden;
+                }
+                canvas#face {
+                  height: 400px;
+                  margin-left: -250px;
+                }
+                svg {
+                  height: 500px;
+                }
+                svg .axis path,
+                svg .axis line {
+                  fill: none;
+                  stroke: black;
+                  shape-rendering: crispEdges;
+                }
+                svg .axis text {
+                  font-family: sans-serif;
+                  font-size: 11px;
+                  font-weight: bold;
+                  text-anchor: end;
+                }
+                svg .response {
+                  text-anchor: middle;
+                  font-size: 10px;
+                  text-shadow: 0px 0px 2px white;
+                }
+              </style>
+              <h3>A Brief Story</h3>
+              <p>
+                You are having dinner at a restaurant. Your waitress arrives to
+                take your order, asking how you are.
+              </p>
+              <p>“Fine,” you reply. “How are you?”</p>
+              <p>
+                “Great!” she responds with a smile that is perhaps a bit too
+                wide and stiff. You notice a subtle tension around her eyes. You
+                infer that she is not, in reality, great but is masking her
+                distress. Perhaps her boss has just yelled at her or her car
+                broke down on the way to work.
+              </p>
+              <p>
+                Humans are incredibly adept at interpreting facial expressions.
+                We can even tell the difference between deliberate
+                expressions—expressions that are intentional or acted, such as
+                smiling despite feeling anxious or disappointed—and spontaneous
+                expressions which are unconscious and genuine manifestations of
+                felt emotion (Ekman & Rosenberg 1997).
+              </p>
+              <h3>Background</h3>
+              <p>
+                While most humans are innately talented at displaying and
+                interpreting facial expressions, embodied conversational agents
+                (ECAs) rarely, if ever, achieve the same range or nuance found
+                in human expression.
+              </p>
+              <p>
+                Tank, an ECA, is a product of the
+                <a href="www.roboceptionist.org">“Roboceptionist” project</a> at
+                Carnegie Mellon University. Tank and his predecessors are social
+                robots with rich and emotional backstories. Ideally, people
+                using Tank will explore his story and feel empathy for his
+                character.
+              </p>
+              <p>
+                Like many ECA's, Tank is equipped with an expressive face which
+                is programmed to display a wide variety of emotions. The emotion
+                to display at any given moment was determined through a number
+                of factors, including long term pre-programmed "stories", recent
+                conversation history, and the phrase Tank is currently saying. A
+                phrase may be tagged with multiple sequential emotions so that,
+                as the phrase is spoken, Tank's face must quickly switch between
+                several distinct emotions.
+              </p>
+              <div class="row">
+                <div class="span3">
+                  <a href="http://imgur.com/8TrAk8m"
+                    ><img
+                      src="https://i.imgur.com/8TrAk8m.png"
+                      title="Hosted by imgur.com"
+                  /></a>
+                </div>
+                <div class="span3">
+                  <a href="http://imgur.com/4rkUVvO"
+                    ><img
+                      src="https://i.imgur.com/4rkUVvO.png"
+                      title="Hosted by imgur.com"
+                  /></a>
+                </div>
+                <div class="span3">
+                  <a href="http://imgur.com/dif6ln5"
+                    ><img
+                      src="https://i.imgur.com/dif6ln5.png"
+                      title="Hosted by imgur.com"
+                  /></a>
+                </div>
+                <div class="span3">
+                  <a href="http://imgur.com/5OCmSSC"
+                    ><img
+                      src="https://i.imgur.com/5OCmSSC.png"
+                      title="Hosted by imgur.com"
+                  /></a>
+                </div>
+              </div>
+              <p>
+                Our team interviewed community members about their feelings
+                toward Tank. While many people found him helpful, some also
+                confessed that they found him “creepy” or “awkward.” Through our
+                interviews, we discovered that much of this awkwardness came
+                down to two things: 1) unnatural-seeming facial expressions and
+                movements and 2) mismatch between the emotions suggested by the
+                spoken text and the perceived emotions.
+              </p>
+              <p>
+                Given this apparent mismatch between Tank's intended expression
+                and many viewer's receptions, our goal was to understand how we
+                might increase empathy for Tank and other ECAs by exploring how
+                people interpret the expression of complex and nuanced emotion
+                by an animated face. In particular, we wanted to find a way to
+                calibrate a face to make sure emotions were interpreted
+                correctly.
+              </p>
+              <h3>Inspiration</h3>
+              <p>
+                In his book, Making Comics, Scott McCloud adapts Paul Eckman's
+                classification of human emotion (joy, sadness, anger, disgust,
+                fear, and surprise) to create a framework for expressing emotion
+                in simple, drawn faces. McCloud describes in detail how
+                anatomical muscle groups within the face create each of Eckman’s
+                six expressions. Additionally, McCloud describes how the
+                fundamental emotions can combine to create complex emotions
+                (e.g. joy + sadness = nostalgia) (McCloud 2011).
+              </p>
+              <p>
+                Randall Munroe, the author of the webcomic, xkcd, released a
+                survey asking participants to name a random color displayed on
+                their screen from the RGB color space. He collected five million
+                color names from 222,500 user sessions. By identifying the most
+                popular responses, he was able to draw a
+                <a href="http://blog.xkcd.com/2010/05/03/color-survey-results/"
+                  >map identifying the “boundaries” of each commonly identified
+                  color on a two-dimensional plane</a
+                >.
+              </p>
+              <h3>Process</h3>
+              <p>
+                Our group conducted a descriptive design study to understand how
+                people identify complex emotion in an animated face.
+                Specifically, we explored Eckman’s six expressions (joy,
+                sadness, anger, disgust, fear, and surprise) combined in pairs
+                to form 16 unique, complex expressions.
+              </p>
+              <p>
+                We first developed an
+                <a href="/facemotion">expressive web-based facial simulator</a>
+                capable of complex expression. It can generate expressions that
+                combine Eckman’s six fundamental expressions in various
+                proportions and levels of arousal (e.g. 30% fear + 40% sadness +
+                20% disgust).
+              </p>
+              <p>
+                We created a web-based
+                <a href="/facemotion/survey">survey</a> that displayed one of
+                the complex expression to the participant. The participant was
+                asked to label the displayed emotion. As of this writing, we
+                have 3,392 expressions were identified from 337 unique user
+                sessions.
+              </p>
+              <h3>Data &amp; Visualization</h3>
+              <p>
+                We initially visualized our results as scatter plots, as shown
+                below. We highlighted the most popular responses and grouped
+                them with convex hulls to emphasize the spatial clustering of
+                dominant terminology.
+              </p>
+              <p>
+                Move your mouse around the scatter plot to see the corresponding
+                face.
+              </p>
+              <div class="results-wrapper">
+                <div class="row">
+                  <form class="form-inline span8">
+                    <select class="emotionX">
+                      <option value="joy" selected="selected">Joy</option>
+                      <option value="sadness">Sadness</option>
+                      <option value="anger">Anger</option>
+                      <option value="disgust">Disgust</option>
+                      <option value="fear">Fear</option>
+                      <option value="surprise">Surprise</option>
+                    </select>
+                    <select class="emotionY">
+                      <option value="joy">Joy</option>
+                      <option value="sadness">Sadness</option>
+                      <option value="anger" selected="selected">Anger</option>
+                      <option value="disgust">Disgust</option>
+                      <option value="fear">Fear</option>
+                      <option value="surprise">Surprise</option>
+                    </select>
+                  </form>
+                </div>
+                <div class="row">
+                  <svg class="xy span8"></svg>
+                  <div class="face-wrapper span4">
+                    <canvas id="face"></canvas>
+                  </div>
+                </div>
+              </div>
+              <h3>Insights</h3>
+              <ul>
+                <li>
+                  When surprise is a component of a complex expression,
+                  participants were more likely to identify it than the other
+                  expression. This trend may, in part, result from how the face
+                  is rendered. Even in the neutral position, there is a slight
+                  gap between the iris of the eye and the top lid, which
+                  possibly contributes to the look of surprise.
+                </li>
+                <li>
+                  When negative expressions (particularly fear, sadness, and
+                  disgust) were combined with the positive expression, joy, the
+                  participant was more likely to use a negative label to
+                  describe the outcome.
+                </li>
+                <li>
+                  Usually, participants were more likely to “correctly” identify
+                  an expression when it consisted of one high-valence expression
+                  combined with a low-valence expression (e.g. 90% anger + 10%
+                  sadness). One notable exception is the combination of anger
+                  and disgust. Both are correctly identified by participants,
+                  but there is very little obvious clustering of the data points
+                  within the graph.
+                </li>
+                <li>
+                  While fear, anger, and disgust are all perceived more strongly
+                  than joy, fear is perceived more strongly than anger and
+                  disgust when paired with those emotions in particular.
+                </li>
+              </ul>
+              <script
+                src="/static/base/js/d3.v3.min.js"
+                type="text/javascript"
+              ></script>
+              <script
+                src="/static/facemotion/js/paper.js"
+                type="text/javascript"
+              ></script>
+              <script
+                src="/static/facemotion/js/morphologies.js"
+                type="text/javascript"
+              ></script>
+              <script
+                src="/static/facemotion/js/face.js"
+                type="text/javascript"
+              ></script>
+              <script
+                src="/static/facemotion/js/results.js"
+                type="text/javascript"
+              ></script>
             </div>
+          </div>
         </div>
+      </div>
+      <div id="footer">
+        <div class="centered">
+          <p class="muted">© Paul Mandel</p>
+        </div>
+      </div>
     </div>
-    <script src="/static/bootstrap/js/bootstrap-transition.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-modal.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-tab.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-tooltip.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-popover.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-button.js"> </script>
-    <script src="/static/bootstrap/js/bootstrap-affix.js"> </script>
-    <script src="/static/base/js/core.js"> </script>
-    <script src="/static/base/js/base.js"> </script>
-    <script src="/static/mathscribe/js/jqmath-etc-0.3.0.min.js" type="text/javascript"> </script>
-    <script src="/static/flexslider/jquery.flexslider.js" type="text/javascript"> </script>
+    <script src="/static/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-affix.js"></script>
+    <script src="/static/base/js/core.js"></script>
+    <script src="/static/base/js/base.js"></script>
+    <script
+      src="/static/mathscribe/js/jqmath-etc-0.3.0.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/static/flexslider/jquery.flexslider.js"
+      type="text/javascript"
+    ></script>
     <script type="text/javascript">
-    $(function() {
-      $('.flexslider').flexslider({
-        animation: "slide",
-        controlNav: false,
-      });
-      $('.async-wrapper img').height($('.async-wrapper').outerHeight());
-      // If we know this visitor
-      if ("hashtag" in localStorage) {
-        console.log("I'm watching you...");
-        $.post('/' + localStorage.hashtag + '/', {
-          project: "Expression Landscape",
-          csrfmiddlewaretoken: 'LHFk8cbJBfNKYliPhD7kJNw05XZuRBBu'
+      $(function () {
+        $('.flexslider').flexslider({
+          animation: 'slide',
+          controlNav: false,
         });
-      }
-    });
+        $('.async-wrapper img').height($('.async-wrapper').outerHeight());
+        // If we know this visitor
+        if ('hashtag' in localStorage) {
+          console.log("I'm watching you...");
+          $.post('/' + localStorage.hashtag + '/', {
+            project: 'Expression Landscape',
+            csrfmiddlewaretoken: 'LHFk8cbJBfNKYliPhD7kJNw05XZuRBBu',
+          });
+        }
+      });
     </script>
-    <script type="text/javascript">
-    </script>
-
-</body>
-
+    <script type="text/javascript"></script>
+  </body>
 </html>
