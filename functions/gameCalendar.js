@@ -60,67 +60,143 @@ module.exports.getICalForUserId = async (userId, authToken) => {
         });
 
         const games = schedules.flatMap(schedule => schedule.games);
-        console.log(games);
 
-        await Promise.all(
-          games.map(async game => {
-            let myTeam = null;
-            let myTeamIndex = null;
-            game.teams.forEach((team, i) => {
-              team.players.forEach(player => {
-                if (player._id === userId) {
-                  myTeam = team;
-                  myTeamIndex = i;
-                }
-              });
+        const gameDays = {};
+
+        games.map(game => {
+          const gameDay = new Date(game.start_time).toDateString();
+          if (!gameDays[gameDay]) {
+            gameDays[gameDay] = [];
+          }
+
+          gameDays[gameDay].push(game);
+        });
+
+        Object.values(gameDays).forEach(games => {
+          games.forEach(game => {
+            game.teams.forEach(team => {
+              if (team.players.some(player => player._id === userId)) {
+                team.isMyTeam = true;
+                game.isMyGame = true;
+              }
+
+              team.name = team.name.trim();
 
               if (!teamRecords[team._id]) {
                 throw new Error(
                   `No record for team ${team.name} (${team._id})`
                 );
               }
+              const record = teamRecords[team._id];
+              team.record = `${record.win}-${record.lose}-${record.tie}`;
+
+              game[team._id] = team;
             });
 
-            const teamRSVPs = {};
+            game.address = `${game.location.name}, ${game.location.formatted_address}`;
+
             game.teamRsvps.forEach(({teamId, totalYesCount}) => {
-              teamRSVPs[teamId] = totalYesCount;
+              game[teamId].rsvps = totalYesCount;
+            });
+          });
+
+          const game = games.find(game => game.isMyGame);
+          const otherGames = games.filter(game => !game.isMyGame);
+
+          console.log('other games today', otherGames);
+
+          const gameTimes = {};
+          otherGames.forEach(otherGame => {
+            const timeSlot = otherGame.start_time;
+            if (!gameTimes[timeSlot]) {
+              gameTimes[timeSlot] = [];
+            }
+            gameTimes[timeSlot].push(otherGame);
+          });
+
+          const otherGameInfo = [];
+          Object.keys(gameTimes)
+            .sort((t1, t2) => new Date(t1).getTime() - new Date(t2).getTime())
+            .forEach(timeSlot => {
+              let [hours, minutes] = new Date(timeSlot)
+                .toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles'})
+                .split(' ')[0]
+                .split(':');
+              hours = parseInt(hours);
+              if (hours > 12) {
+                hours -= 12;
+              }
+              otherGameInfo.push(`${hours}:${minutes} PT`);
+              gameTimes[timeSlot].forEach(game => {
+                otherGameInfo.push(
+                  game.teams
+                    .map(team => `${team.name}(${team.rsvps})`)
+                    .join(' v. ')
+                );
+              });
             });
 
-            if (!myTeam) return;
-
-            const otherTeam = game.teams[1 - myTeamIndex];
-            const myRecord = teamRecords[myTeam._id];
-            const otherRecord = teamRecords[otherTeam._id];
-            const myRSVPs = teamRSVPs[myTeam._id];
-            const otherRSVPs = teamRSVPs[otherTeam._id];
-
-            const myRecordText = `${myRecord.win}-${myRecord.lose}-${myRecord.tie}`;
-            const otherRecordText = `${otherRecord.win}-${otherRecord.lose}-${otherRecord.tie}`;
-
-            // eslint-disable-next-line max-len
-            console.log(
-              `Making calendar event from ${game.start_time}->${game.end_time}, ${myTeam.name} vs ${otherTeam.name} at ${game.field_name}`
-            );
-            const address = game.location.formatted_address;
-
+          if (!game) {
             try {
               calendar.createEvent({
-                start: new Date(game.start_time),
-                end: new Date(game.end_time),
-                summary: `${myTeam.name.trim()}(${myRSVPs}) v. ${otherTeam.name.trim()}(${otherRSVPs})`,
-                description: `${game.field_name}
-
-${myTeam.name} ${myRecordText} (${myTeam.color.name})
-v.
-${otherTeam.name} ${otherRecordText} (${otherTeam.color.name})`,
-                location: `${game.location.name}, ${address}`,
+                start: new Date(otherGames[0].start_time),
+                end: new Date(otherGames[0].end_time),
+                summary: 'BYE WEEK',
+                description: `Other games:
+                
+${otherGameInfo.join('\n')}`,
+                location: game.address,
               });
             } catch (err) {
               console.log('Error creating calendar event');
               console.log(err);
             }
-          })
-        );
+          }
+
+          let myTeam = null;
+          let myTeamIndex = null;
+          game.teams.forEach((team, i) => {
+            if (team.isMyTeam) {
+              myTeam = team;
+              myTeamIndex = i;
+            }
+          });
+
+          const teamRSVPs = {};
+          game.teamRsvps.forEach(({teamId, totalYesCount}) => {
+            teamRSVPs[teamId] = totalYesCount;
+          });
+
+          if (!myTeam) return;
+
+          const otherTeam = game.teams[1 - myTeamIndex];
+
+          // eslint-disable-next-line max-len
+          console.log(
+            `Making calendar event from ${game.start_time}->${game.end_time}, ${myTeam.name} vs ${otherTeam.name} at ${game.field_name}`
+          );
+
+          try {
+            calendar.createEvent({
+              start: new Date(game.start_time),
+              end: new Date(game.end_time),
+              summary: `${myTeam.name}(${myTeam.rsvps}) v. ${otherTeam.name}(${otherTeam.rsvps})`,
+              description: `${game.field_name}
+
+${myTeam.name} ${myTeam.record} (${myTeam.color.name})
+v.
+${otherTeam.name} ${otherTeam.record} (${otherTeam.color.name})
+
+Other games:
+
+${otherGameInfo.join('\n')}`,
+              location: game.address,
+            });
+          } catch (err) {
+            console.log('Error creating calendar event');
+            console.log(err);
+          }
+        });
       }
     )
   );
