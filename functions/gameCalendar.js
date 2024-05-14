@@ -147,6 +147,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
 ${otherGameInfo.join('\n')}`,
                 location: game.address,
               });
+              return;
             } catch (err) {
               console.log('Error creating calendar event');
               console.log(err);
