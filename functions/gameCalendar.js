@@ -78,9 +78,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
             team.name = team.name.trim();
 
             if (!teamRecords[team._id]) {
-              throw new Error(
-                `No record for team ${team.name} (${team._id})`
-              );
+              throw new Error(`No record for team ${team.name} (${team._id})`);
             }
             const record = teamRecords[team._id];
             team.record = `${record.win}-${record.lose}-${record.tie}`;
@@ -133,7 +131,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
             });
 
           if (!game) {
-            console.log("BYE WEEK");
+            console.log('BYE WEEK');
             try {
               calendar.createEvent({
                 start: new Date(otherGames[0].start_time),
