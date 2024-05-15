@@ -69,41 +69,37 @@ module.exports.getICalForUserId = async (userId, authToken) => {
             gameDays[gameDay] = [];
           }
 
+          game.teams.forEach(team => {
+            if (team.players.some(player => player._id === userId)) {
+              team.isMyTeam = true;
+              game.isMyGame = true;
+            }
+
+            team.name = team.name.trim();
+
+            if (!teamRecords[team._id]) {
+              throw new Error(
+                `No record for team ${team.name} (${team._id})`
+              );
+            }
+            const record = teamRecords[team._id];
+            team.record = `${record.win}-${record.lose}-${record.tie}`;
+
+            game[team._id] = team;
+          });
+
+          game.address = `${game.location.name}, ${game.location.formatted_address}`;
+
+          game.teamRsvps.forEach(({teamId, totalYesCount}) => {
+            game[teamId].rsvps = totalYesCount;
+          });
+
           gameDays[gameDay].push(game);
         });
 
         Object.values(gameDays).forEach(games => {
-          games.forEach(game => {
-            game.teams.forEach(team => {
-              if (team.players.some(player => player._id === userId)) {
-                team.isMyTeam = true;
-                game.isMyGame = true;
-              }
-
-              team.name = team.name.trim();
-
-              if (!teamRecords[team._id]) {
-                throw new Error(
-                  `No record for team ${team.name} (${team._id})`
-                );
-              }
-              const record = teamRecords[team._id];
-              team.record = `${record.win}-${record.lose}-${record.tie}`;
-
-              game[team._id] = team;
-            });
-
-            game.address = `${game.location.name}, ${game.location.formatted_address}`;
-
-            game.teamRsvps.forEach(({teamId, totalYesCount}) => {
-              game[teamId].rsvps = totalYesCount;
-            });
-          });
-
           const game = games.find(game => game.isMyGame);
           const otherGames = games.filter(game => !game.isMyGame);
-
-          console.log('other games today', otherGames);
 
           const gameTimes = {};
           otherGames.forEach(otherGame => {
@@ -137,21 +133,22 @@ module.exports.getICalForUserId = async (userId, authToken) => {
             });
 
           if (!game) {
+            console.log("BYE WEEK");
             try {
               calendar.createEvent({
                 start: new Date(otherGames[0].start_time),
                 end: new Date(otherGames[0].end_time),
                 summary: 'BYE WEEK',
                 description: `Other games:
-                
+
 ${otherGameInfo.join('\n')}`,
-                location: game.address,
+                location: otherGames[0].address,
               });
-              return;
             } catch (err) {
               console.log('Error creating calendar event');
               console.log(err);
             }
+            return;
           }
 
           let myTeam = null;
