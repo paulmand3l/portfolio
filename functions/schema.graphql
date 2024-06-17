@@ -1,0 +1,6888 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+input ActivateDivisionsInput {
+  leagueId: ID!
+  skillLevels: [String]
+}
+
+type ActivitiesGraphItem {
+  activityName: String!
+  revenue: Int!
+  signups: Int!
+}
+
+interface ActivityItem {
+  _id: ID!
+  userId: ID!
+  organizationId: ID!
+  type: String!
+  _created: String!
+  status: String
+  user: User!
+  organization: Organization!
+}
+
+input ActivityItemInput {
+  promptId: ID!
+  submission: [ActivitySubmission]!
+}
+
+type ActivityModalItem {
+  activityName: String!
+  numSignups: Int!
+  numTeams: Int!
+  totalRevenue: Int!
+  numCaptains: Int!
+}
+
+input ActivitySubmission {
+  value: Int!
+  type: String!
+  customTypeQuestion: String
+  comment: String
+}
+
+input AddNationalProgramTagInput {
+  name: String!
+}
+
+input AddPlayerToDropinInput {
+  dropInSlotId: ID!
+  playerId: ID!
+}
+
+type AddPlayerToDropinResponse {
+  registrant: Registrant!
+  dropInSlotId: ID!
+}
+
+input AddResolutionNoteInput {
+  incidentReportId: ID!
+  note: String!
+}
+
+input AddTeamToDivisionInput {
+  leagueId: ID!
+  teamId: ID!
+  divisionId: ID!
+}
+
+input AllowDropinsInput {
+  leagueId: ID!
+  maxDropinsPerGame: Int!
+}
+
+type ApprovedVenue {
+  _id: ID!
+  shorthandName: String!
+  pdfUploads: [String]
+  sportDetails: [SportDescription]
+  image: ImageType
+  venueFeatures: [String]
+  place_id: ID!
+  location: Coordinates!
+  viewport: Viewport!
+  neighborhood: String
+  city: String
+  state: String
+  zip: Int
+  maps_url_query: String
+  formatted_address: String
+  timezone: String!
+  disabled: Boolean
+  sublocations: [String]
+  neighborhoodId: ID
+  venuePermits: [Permit]
+  name: String
+  organization: Organization!
+}
+
+input ApprovedVenuesListInput {
+  organizationId: ID
+  searchText: String
+  disabledOnly: Boolean
+  pagination: PaginationInput
+  shorthandNameSearch: String
+}
+
+input ArchiveLeagueInput {
+  leagueId: ID!
+}
+
+type AssemblerMutationResponse {
+  league: League!
+}
+
+input AssignIncidentReportInput {
+  incidentReportId: ID!
+  userId: ID
+  directorLevel: Boolean
+}
+
+input AssignProgramToShiftLogInput {
+  shift_log_id: ID!
+  associated_programs: [ID!]!
+}
+
+input AssignShiftLogInput {
+  assignee_user_id: ID!
+  shift_log_id: ID!
+}
+
+input AssignShiftLogSectionInput {
+  assignee_user_id: ID!
+  shift_log_id: ID!
+  section: ShiftLogSection!
+}
+
+type AvailableCreditSchema {
+  organizationId: ID!
+  amount: Int!
+  used: Int!
+  organizationName: String
+}
+
+type AvailableDivision {
+  _id: ID!
+  name: String!
+  teams: [Team]
+  capacity: Int
+  permanent: Boolean
+  skillLevel: String
+}
+
+input BannerMessageInput {
+  message: String!
+  organizationId: ID!
+}
+
+input basicInfoInput {
+  organizationId: ID!
+  name: String
+  email: String
+  website: String
+  location: String
+  phone: String
+  waiver: String
+}
+
+input BoundsInput {
+  ne: CoordinatesInput!
+  sw: CoordinatesInput!
+}
+
+type BrandOptions {
+  primaryColor: String
+  secondaryColor: String
+  headerHideName: Boolean
+  headerHideContact: Boolean
+}
+
+input BulkEmailInput {
+  organizationId: ID!
+  subject: String!
+  bodyHtml: String!
+  from: String
+  genders: [String]
+  selectedStatus: String
+  cityName: String
+  dateLow: String
+  dateHigh: String
+  registrationOption: String
+  sportNames: [String]
+  seasonNames: [String]
+  registrantTypes: [String]
+  selectedPrograms: [ID]
+  teamNames: [String]
+  searchText: String
+  membershipOnly: Boolean
+  hasSelectedAll: Boolean!
+  selected: [String]!
+  isMore: Boolean!
+  isMarketingEmail: Boolean!
+}
+
+input BulkNoteInput {
+  genders: [String]
+  selectedStatus: String
+  cityName: String
+  dateLow: String
+  dateHigh: String
+  registrationOption: String
+  sportNames: [String]
+  seasonNames: [String]
+  registrantTypes: [String]
+  selectedPrograms: [ID]
+  teamNames: [String]
+  searchText: String
+  membershipOnly: Boolean
+  hasSelectedAll: Boolean!
+  selected: [ID]!
+  isMore: Boolean!
+  note: String!
+  type: String!
+}
+
+type ChargeData {
+  id: String
+  status: String
+  isLegacyCharge: Boolean!
+  programPriceCents: Int!
+  promoDiscountCents: Int!
+  afterDiscountCents: Int!
+  processingFeeCents: Int!
+  flatFeeCents: Int!
+  totalFeeCents: Int!
+  donationCents: Int!
+  creditCents: Int!
+  totalTransferCents: Int!
+  totalChargeCents: Int!
+  feePercentage: Float!
+  refundCents: Int!
+  orgNetCents: Int!
+  promoCodeId: ID
+  promoCodeStr: String
+  amount: Int!
+  before_fees: Int!
+  promo_code: String
+  promo_discount: Int!
+  amount_refunded: Int!
+  org_total: Int!
+}
+
+input ChargeDataInput {
+  totalChargeCents: Int!
+  refundCents: Int!
+}
+
+enum ChatNotificationType {
+  message
+  reaction
+}
+
+input ChatSearchInput {
+  search: String!
+  pagination: PaginationInput!
+}
+
+type ChatSearchResponse {
+  users: [UserData]
+  totalCount: Int!
+}
+
+input CheckGroupPasswordInput {
+  groupId: ID!
+  password: String!
+}
+
+type CheckInPlayerResponse {
+  _id: ID!
+  picture: String
+  firstName: String!
+  lastName: String!
+  email: String
+  phone_number: String
+}
+
+input CheckVerificationEmailInput {
+  email: String!
+  code: String!
+}
+
+type ChildProgramReference {
+  leagueId: ID!
+  dateOfProgram: String!
+}
+
+type City {
+  _id: ID!
+  formatted_name: String!
+  name: String!
+  state_name: String
+}
+
+type Color {
+  hex: String
+  name: String
+}
+
+input ColorInput {
+  hex: String!
+  name: String!
+}
+
+type CommentResponse {
+  _id: ID
+  createdAt: String
+  firstName: String
+  lastName: String
+  text: String
+  isMember: Boolean
+  userId: ID
+}
+
+input CommentsInput {
+  whichName: String!
+  whichAction: String!
+  commentId: ID!
+}
+
+type CommentsResponse {
+  comments: [CommentResponse]
+}
+
+interface CommonUser {
+  _id: ID!
+  isVoloPassMember: Boolean!
+  username: String!
+  fullName: String
+  firstName: String
+  lastName: String
+  is_host: Boolean!
+  address: String
+  gender: String
+  zip: String
+  shirt_size: String
+  birthday: String
+  picture: String
+  shiftLogs(pagination: PaginationInput, skipPagination: Boolean): ShiftLogsResponse!
+  leagues: [League]
+  deactivated: Boolean
+  allLeagues: [League]
+  activeLeagues: [League]
+  email: String!
+  phone_number: String
+  countryCode: String
+  roles: [String]!
+  age: Int
+  contactInfoHidden: Boolean!
+  player_details: PlayerDetailsType
+  phoneTokens: [String]
+  favoritePrograms: [League]
+  favoriteProgramIds: [ID]
+  player_strikes(showInvalidatedStrikes: Boolean): PlayerStrikes!
+  mobile_client_version: String
+  mobile_client_build_number: String
+}
+
+input CompetitionLevelsInput {
+  hidden: Boolean
+  level: String
+  description: String
+}
+
+type CompetitionLevelsResponse {
+  competitionLevels: [CompetitionLevelsType]!
+}
+
+type CompetitionLevelsType {
+  hidden: Boolean
+  level: String
+  description: String
+}
+
+type ConfirmDropinResponse {
+  game: Game
+  team: Team
+  league: League
+  registrant: Registrant
+  dropInSlotId: ID!
+  _id: ID!
+  errored: Boolean!
+}
+
+type ContactPreferencesList {
+  email: Boolean
+  phone: Boolean
+  text: Boolean
+}
+
+input ContactUsChatInput {
+  name: String!
+  from: String!
+  subject: String!
+  bodyHtml: String!
+  platform: String!
+  version: String!
+  organizationId: ID
+}
+
+type ContactUsChatResponse {
+  response: String!
+}
+
+input ContactUsEmailInput {
+  bodyHtml: String
+  name: String
+  from: String
+  subject: String
+  needs: [String]
+  cityName: String
+}
+
+type Coordinates {
+  lat: Float
+  lng: Float
+}
+
+input CoordinatesInput {
+  lat: Float!
+  lng: Float!
+}
+
+type CovidPrompt implements ActivityItem {
+  _id: ID!
+  userId: ID!
+  organizationId: ID!
+  leagueId: ID!
+  gameId: ID!
+  type: String!
+  _created: String!
+  status: String
+  user: User!
+  organization: Organization!
+  league: League!
+  game: Game!
+}
+
+input CreateCsvInput {
+  genders: [String!]
+  selectedStatus: String
+  cityName: String
+  dateLow: String
+  dateHigh: String
+  registrationOption: String
+  sportNames: [String!]
+  seasonNames: [String!]
+  registrantTypes: [String!]
+  selectedPrograms: [ID!]
+  teamNames: [String!]
+  searchText: String
+  membershipOnly: Boolean
+  hasSelectedAll: Boolean!
+  selected: [ID!]!
+  isMore: Boolean!
+  hubSpot: Boolean!
+  selectedColumns: [String!]!
+  whichType: String!
+}
+
+input CreateCSVScheduleInput {
+  data: [[String]]!
+  leagueId: ID!
+  filename: String!
+  scheduleType: ScheduleType!
+}
+
+input CreateDayInput {
+  weekId: ID!
+  date: String!
+  isTournament: Boolean
+}
+
+type CreateFromExistingResponse {
+  leagueId: ID!
+}
+
+input CreateGameInput {
+  dayId: ID!
+  venueId: ID!
+  subScheduleId: ID!
+  startTime: String!
+  endTime: String!
+  subvenue: String
+  teams: [ID!]!
+}
+
+input CreateIncidentReportInput {
+  organization_id: ID!
+  incident_date: DateTime!
+  incident_type: IncidentType
+  incident_flag: IncidentFlag
+  venue_id: ID
+  venue_input: String!
+  sport_name: String
+  parties_involved: [PartyInvolvedInput!]!
+  reported_by: ReportedByInput!
+  primary_staff_witness: PrimaryStaffWitnessInput!
+  other_supporting_staff: String
+  witnesses: [WitnessInput]
+  altercation_description: String
+  called_911: Boolean
+  altercation_types: [String]
+  injury_causes: [String]
+  injury_description: String
+  injury_dispositions: [String]
+  medical_services_provided: [String]
+  medical_services_other: String
+  possible_existing_condition: Boolean
+}
+
+type CreateShiftLogCsvResponse {
+  data: String!
+}
+
+input CreateShiftLogInput {
+  organization: ID!
+  associated_programs: [ID!]
+  day_of_week: String!
+  date_of_shift: DateTime!
+  venue: ID!
+  sub_venue: String
+  sports: [String!]!
+  pulse_check_rating: Int!
+  pulse_check_notes: String
+  referees_reported: Boolean!
+  referee_game_management_feedback: [String!]
+  referee_notes: String
+  hosts_reported: Boolean!
+  hosts_experience_feedback: [String!]
+  co_host_names: String
+  hosts_notes: String
+  players_reported: Boolean!
+  player_issues: [String!]
+  player_notes: String
+  shirts_reported: Boolean!
+  missing_shirts: [MissingShirtInput!]
+  shirts_notes: String
+  equipment_reported: Boolean!
+  equipment_issues: [String!]
+  equipment_issues_notes: String
+  venue_reported: Boolean!
+  venue_overview: [String!]
+  lights_overview: [String!]
+  venue_notes: String
+  sponsor_bar_reported: Boolean!
+  sponsor_bar_overview: [String!]
+  attendance_estimate_overview: String
+  sponsor_bar_name: String
+  sponsor_bar_notes: String
+  daily_programming_reported: Boolean!
+  daily_programs: [DailyProgramInput!]
+  daily_programming_notes: String
+  technology_reported: Boolean!
+  technology_notes: String
+  content_capture_reported: Boolean!
+  miscellaneous_reported: Boolean!
+  miscellaneous_notes: String
+}
+
+input CreateStandingsRulesetInput {
+  type: StandingsRulesetScope!
+  organizationId: ID
+  leagueId: ID
+  activity: String
+  standingsRulesetId: ID
+}
+
+input CreateTbdTeamInput {
+  leagueId: ID!
+}
+
+input CreateTournamentInput {
+  subScheduleId: ID!
+}
+
+input CreateWeekInput {
+  leagueId: ID!
+  is_tournament: Boolean
+  weekNum: Int
+}
+
+type CreditListItem {
+  paymentId: ID!
+  date: String!
+  reason: String!
+  amount: Int!
+}
+
+type CreditListResponse {
+  credits: [CreditListItem]!
+  totalCredits: Int!
+}
+
+type CreditsSchema {
+  _id: ID!
+  organizationId: ID!
+  createdBy: ID
+  creditAmount: Int!
+  creditNote: String!
+  reasonType: String
+  date: String
+}
+
+type CriteriaResponse {
+  menCriteria: Boolean!
+  womenCriteria: Boolean!
+  playersCriteria: Boolean!
+  minMen: Int
+  minWomen: Int
+  minPlayers: Int
+  menNeeded: Int!
+  womenNeeded: Int!
+  playersNeeded: Int!
+}
+
+input CurrentLeagueTeamPricingInput {
+  leagueId: ID!
+  prepaidTeamsAllowed: Boolean
+  earlyBird: LeagueTeamPricingInput!
+  regular: LeagueTeamPricingInput!
+  lastChance: LeagueTeamPricingInput!
+  memberPrice: Int
+  nonMemberPrice: Int
+  memberDropinPrice: Int
+}
+
+type CurrentUser implements CommonUser {
+  _id: ID!
+  isVoloPassMember: Boolean!
+  username: String!
+  email: String!
+  fullName: String
+  firstName: String
+  lastName: String
+  is_admin: Boolean!
+  is_host: Boolean!
+  address: String
+  gender: String
+  zip: String
+  shirt_size: String
+  birthday: String
+  picture: String
+  shiftLogs(pagination: PaginationInput, skipPagination: Boolean): ShiftLogsResponse!
+  leagues: [League]
+  deactivated: Boolean
+  allLeagues: [League]
+  activeLeagues: [League]
+  leagueConnections: [UserLeagueConnection]
+  city_filter: Filter
+  organization: Organization
+  notifications: Notifications
+  contactPreferences: ContactPreferencesList
+  notificationPreferences: NotificationPreferences
+  roles: [String]!
+  organizationId: ID
+  paymentSources: [PaymentSource]!
+  hasStripeId: Boolean!
+  age: Int
+  phone_number: String
+  countryCode: String
+  contactInfoHidden: Boolean!
+  emailVerified: Boolean
+  chosenPlan: String
+  is_private: Boolean
+  emailHidden: Boolean!
+  phoneHidden: Boolean!
+  privacyPreferences: PrivacyPreferences
+  credits: [CreditsSchema]
+  availableCredits: [AvailableCreditSchema]
+  staff_of: [ID]
+  membershipExpires: String
+  organizations: [ModelInfo]
+  hostLeagues: [ModelInfo]
+  _created: String
+  player_details: PlayerDetailsType
+  homeOrganization: ID
+  status: String
+  phoneTokens: [String]
+  favoritePrograms: [League]
+  favoriteProgramIds: [ID]
+  player_strikes(showInvalidatedStrikes: Boolean): PlayerStrikes!
+  mobile_client_version: String
+  mobile_client_build_number: String
+}
+
+input CurrentUserAddPaymentSourceInput {
+  tokenId: String!
+}
+
+input CurrentUserConfirmDropinInput {
+  platform: String
+  begins: String
+  ends: String
+  dropInSlotId: ID
+  gameId: ID
+  donationCents: Int
+  creditCents: Int
+  waiverSigned: Boolean
+  cancellationPolicyAgreed: Boolean
+  promoCodeStr: String
+  teamId: ID
+  vpInCart: Boolean
+}
+
+input CurrentUserDailyConnectionsInput {
+  dateLow: String
+  dateHigh: String
+}
+
+input CurrentUserDeletePaymentSourceInput {
+  paymentSourceId: String!
+}
+
+input CurrentUserInput {
+  _id: ID
+  username: String
+  email: String
+  firstName: String
+  lastName: String
+  gender: String
+  zip: String
+  shirt_size: String
+  birthday: String
+  is_private: Boolean
+  emailHidden: Boolean
+  phoneHidden: Boolean
+  chosenPlan: String
+  address: String
+  homeOrganization: ID
+}
+
+input CurrentUserIsInProgramInput {
+  leagueId: ID!
+}
+
+type CurrentUserIsInProgramResponse {
+  isInProgram: Boolean!
+}
+
+input CurrentUserJoinPrepaidTeamInput {
+  password: String!
+  prepaidGroupId: ID!
+  notes: String
+  whyYouPlay: String
+  platform: String
+  customResponsesList: [CustomResponseInput]
+  waiverSigned: Boolean
+}
+
+type CurrentUserLeagueConnection {
+  league: League!
+  registrant: Registrant!
+  group: Group
+  team: Team
+  nextGame: TeamGame
+}
+
+input CurrentUserLeagueConnectionInput {
+  leagueId: ID!
+}
+
+input CurrentUserLeagueConnectionsInput {
+  daysOfWeek: [String]
+}
+
+input CurrentUserRegisterForProgramInput {
+  divisionSelection: String
+  donationAmount: Int
+  leagueId: ID!
+  promoCodeStr: String
+  whyYouPlay: String
+  deletePaymentInfo: Boolean
+  isWaitlist: Boolean
+  newGroup: RegisterGroupInput
+  joiningGroupId: ID
+  newPrepaidTeam: RegisterPrepaidTeamInput
+  creditAmount: Int
+  platform: String
+  isHomeScreenReferral: Boolean
+  notes: String
+  customResponsesList: [CustomResponseInput]
+  waiverSigned: Boolean
+  cancellationPolicyAgreed: Boolean
+  vpInCart: Boolean
+}
+
+input CurrentUserRequestDropinRefund {
+  registrantId: ID!
+}
+
+type CurrentUserRequestDropinRefundResponse {
+  registrant: Registrant!
+}
+
+type CurrentUserResponse {
+  currentUser: CurrentUser
+}
+
+input CurrentUserResubscribeInput {
+  userId: ID!
+}
+
+input CurrentUserRsvpNextGameInput {
+  teamId: ID!
+  gameId: ID!
+  response: String!
+}
+
+input CurrentUserSelfWithdrawInput {
+  registrantId: ID!
+}
+
+input CurrentUserSetPaymentSourceDefaultInput {
+  paymentSourceId: String!
+}
+
+input CurrentUserTeamChatsInput {
+  roomStatus: RoomStatus
+  includeAll: Boolean
+}
+
+input CustomCostInput {
+  name: String!
+  cost: Int!
+  frequency: String!
+}
+
+input CustomHostResponsesInput {
+  questionTitle: String!
+  response: String!
+}
+
+type CustomQuestion {
+  questionTitle: String!
+  isMandatoryQuestion: Boolean!
+  isFreeText: Boolean!
+  isDropdown: Boolean!
+  dropdownOptions: [String]
+}
+
+input CustomQuestionInput {
+  questionTitle: String!
+  isMandatoryQuestion: Boolean!
+  isFreeText: Boolean!
+  isDropdown: Boolean!
+  dropdownOptions: [String]
+}
+
+type CustomResponse {
+  questionTitle: String!
+  response: String
+}
+
+input CustomResponseInput {
+  questionTitle: String!
+  response: String
+}
+
+type DailyMetrics {
+  revenueToday: Int!
+  signupsToday: Int!
+  individualToday: Int!
+  groupCaptainToday: Int!
+  privateCaptainToday: Int!
+  groupMemberToday: Int!
+  privateMemberToday: Int!
+  numActiveLeagues: Int!
+  numUpcomingLeagues: Int!
+}
+
+type DailyOperationsModalItem {
+  league: League!
+  openMale: Int
+  openFemale: Int
+  openAny: Int
+  takenAny: Int
+  takenMale: Int
+  takenFemale: Int
+  totalOpen: Int
+  totalTaken: Int
+  numDropInGames: Int
+}
+
+type DailyProgram {
+  _id: ID!
+  program_type: String
+  sport: String
+  status: String
+}
+
+input DailyProgramInput {
+  program_type: String!
+  sport: String!
+  status: String!
+}
+
+type DashboardRegistrantResult {
+  _id: ID!
+  section: DashboardTeamsSection!
+  registrant: Registrant!
+}
+
+type DashboardRegistrantsResponse {
+  count: Int!
+  hasMore: Boolean!
+  results: [DashboardRegistrantResult!]!
+}
+
+input DashboardScheduleInput {
+  """This should be provided as UTC"""
+  dateLow: DateTime
+
+  """This should be provided as UTC"""
+  dateHigh: DateTime
+  programTypes: [ProgramTypeEnum!]
+}
+
+type DashboardScheduleResponse {
+  count: Int!
+  hasMore: Boolean!
+  results: [DashboardScheduleResult!]!
+}
+
+type DashboardScheduleResult {
+  _id: ID!
+  game: Game
+  dropin: Game
+}
+
+enum DashboardTeamsSection {
+  current
+  upcoming
+  past
+}
+
+input DateRange {
+  start: DateTime!
+  end: DateTime!
+}
+
+input DateRangeStrInput {
+  scheduleId: ID!
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+`date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+type Day {
+  _id: ID!
+  week: Week!
+  weekId: ID!
+  week_num: Int!
+  games(input: GameFilterInput): [Game!]!
+  date: String
+  is_tournament: Boolean
+}
+
+input DeactivateUserInput {
+  userId: ID!
+  password: String!
+  reason: String
+}
+
+input DefaultsInput {
+  name: String
+  level: String
+  image: ImageInput
+  description: String!
+}
+
+type DefaultsType {
+  name: String
+  level: String
+  image: ImageType
+  description: String!
+}
+
+input DeleteDayInput {
+  dayId: ID!
+}
+
+input DeleteGameInput {
+  gameId: ID!
+}
+
+input DeletePermitInput {
+  organizationId: ID!
+  approvedVenueId: ID!
+  permitId: ID!
+}
+
+input DeleteResolutionNoteInput {
+  resolutionNoteId: ID!
+}
+
+input DeleteSubScheduleInput {
+  subScheduleId: ID!
+}
+
+input DeleteWeekInput {
+  weekId: ID!
+}
+
+type DiscoverDailyProgram {
+  leagueId: ID
+  gameId: ID
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+type DiscoverDailyResponse {
+  count: Int!
+  endCursor: Int!
+  programs: [DiscoverDailyProgram]
+}
+
+type DiscoverDaysOfWeekResponse {
+  daysOfWeek: [String]!
+}
+
+input DiscoverInput {
+  cityName: String
+  programTypes: [String]
+  sportNames: [String]
+  daysOfWeek: [String]
+  venueIds: [ID]
+  neighborhoodIds: [ID]
+  dateLow: DateTime
+  dateHigh: DateTime
+  seasonNames: [String]
+  programStatus: String
+  pagination: PaginationInput
+  isHost: Boolean
+  leagueIds: [ID]
+  skillLevels: [String]
+  perks: [String]
+  genders: [String]
+  showAllOptions: Boolean
+  timeLow: String
+  timeHigh: String
+  timezone: String
+  minimumMen: Int
+  minimumWomen: Int
+  minimumNonBinary: Int
+  minimumAny: Int
+  view: String
+  programTagIds: [ID]
+  limit: Int
+}
+
+type DiscoverNeighborhoodsResponse {
+  neighborhoods: [Neighborhood]!
+  allNeighborhoods: [Neighborhood]
+}
+
+type DiscoverPerksResponse {
+  perks: [String]!
+}
+
+type DiscoverProgramsResponse {
+  leagues: [League]!
+  count: Int!
+  endCursor: Int!
+}
+
+type DiscoverProgramTagsResponse {
+  programTags: [ProgramTag]!
+}
+
+type DiscoverProgramTypesResponse {
+  programTypes: [String]!
+}
+
+type DiscoverSeasonsResponse {
+  seasons: [String]!
+}
+
+type DiscoverSkillLevelsResponse {
+  skillLevels: [String]!
+}
+
+type DiscoverSportsResponse {
+  sportNames: [String]!
+}
+
+type DiscoverTeamsResponse {
+  teams: [Team]!
+}
+
+type DiscoverVenuesResponse {
+  venues: [ApprovedVenue]!
+  allVenues: [ApprovedVenue]
+}
+
+type Division {
+  _id: ID!
+  organization: ID!
+  name: String!
+  permanent: Boolean
+}
+
+input DivisionInput {
+  divisionId: ID
+  name: String!
+  organizationId: ID!
+  skillLevel: String
+}
+
+input DivisionUpdatesInput {
+  capacity: Int
+  division: ID!
+  teamIds: [ID]
+}
+
+type Donation {
+  userId: ID!
+  stripeCustomerId: String!
+  _id: String!
+  status: StripeSubscriptionStatus!
+  stripePlanId: String!
+  planStartsAt: DateTime!
+  planExpiresAt: DateTime!
+  isStripeAutoRenew: Boolean!
+  amount: Int!
+}
+
+type DonationCancelResponse {
+  donation: Donation!
+}
+
+type DonationInvoice {
+  _id: String!
+  status: StripeInvoiceStatus!
+  total: Int!
+  paid: Boolean!
+  createdAt: DateTime!
+}
+
+type DonationInvoicesResponse {
+  donationInvoices: [DonationInvoice]!
+  hasMore: Boolean!
+}
+
+type DonationsResponse {
+  donations: [Donation]!
+  hasMore: Boolean!
+}
+
+type DonationTotalResponse {
+  donationTotal: Int!
+}
+
+input DropInGamesListInput {
+  pagination: PaginationInput!
+  organizationId: ID!
+  sport: String
+  beginsRange: DateRange!
+  futureOnly: Boolean
+  availableOnly: Boolean
+}
+
+type DropInNotification implements ActivityItem {
+  _id: ID!
+  userId: ID!
+  leagueId: ID!
+  organizationId: ID!
+  gameId: ID!
+  teamId: ID!
+  type: String!
+  _created: String!
+  status: String
+  user: User!
+  league: League!
+  team: Team!
+  game: Game!
+  organization: Organization!
+  dropInId: ID!
+  dropIn: User!
+}
+
+type DropinPricingBreakdownResponse {
+  nonmemberBreakdown: PricingBreakdown
+  memberBreakdown: PricingBreakdown
+  currentUserPaymentCriteria: String!
+  promoCodeMessage: String
+}
+
+input DropinPricingForRegistrationInput {
+  leagueId: ID!
+  donationCents: Int
+  creditCents: Int
+  promoCodeStr: String
+}
+
+type DropInSlot {
+  _id: ID!
+  gameId: ID!
+  team: Team!
+  teamId: ID!
+  leagueId: ID!
+  organizationId: ID!
+  gender: String!
+  createdBy: ID!
+  updatedBy: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+
+  """optional note added by captain"""
+  note: String
+  start_time: DateTime!
+  end_time: DateTime!
+  startTimeStr: String!
+  endTimeStr: String!
+  sharedAt: DateTime
+  sharedBy: ID
+  holdExpiration: DateTime
+  deepLink: String
+  closedAt: DateTime
+  closedBy: ID
+  rsvpId: ID
+  checkinId: ID
+  registrantId: ID
+  isRecurring: Boolean!
+  isRecurringEntireSeason: Boolean!
+  upcomingGameCount: Int!
+  recurringCount: Int!
+}
+
+type DropInSlotsByGameIdResponse {
+  slots: [DropInSlot]!
+}
+
+input DropInSlotsForDateInput {
+  dateEnd: DateTime
+  dateStart: DateTime
+  organizationId: ID
+  sport: String
+  gameId: ID
+}
+
+type DropInSlotsForDateResponse {
+  dropInTeamStats: [GameStats]!
+}
+
+type DropInTeamSlots {
+  _id: ID!
+  anySpots: Int!
+  femaleSpots: Int!
+  maleSpots: Int!
+}
+
+type DropInTeamsResponse {
+  teams: [DropInTeamSlots]!
+}
+
+input EditGameInput {
+  gameId: ID!
+  venueId: ID!
+  startTime: String!
+  endTime: String!
+  subvenue: String
+  teams: [ID!]!
+  dayId: ID
+  weekId: ID
+}
+
+input EditKidsFoundationStatsInput {
+  numberOfKidsEngaged: Int
+  programsCompleted: Int
+  numberOfVolunteersMobilized: Int
+  citiesActivated: Int
+}
+
+type EditKidsFoundationStatsResponse {
+  kidsFoundationStats: KidsFoundationStats!
+}
+
+input EditNationalProgramTagInput {
+  _id: ID!
+  name: String
+  icon: IconInput
+  deleteIcon: Boolean
+}
+
+input EditPendingEmailInput {
+  organizationId: ID!
+  emailId: ID!
+  html: String
+  subject: String
+}
+
+input EditStrikeCountInput {
+  userId: ID!
+  desiredStrikeCount: Int!
+}
+
+type Email {
+  _id: ID!
+  to: [String]
+  from: EmailFrom
+  reply_to: EmailFrom
+  subject: String
+  html: String
+  leagueId: String
+  league: String
+  emailFilters: EmailFilters
+  emailFilterString: String
+  manualEmails: [String]
+  personalizations: [Personalizations]
+  timestamp: String
+  lastUpdated: String
+  _updatedBy: ID
+}
+
+type EmailContent {
+  type: String
+  value: String
+}
+
+input EmailFilterInput {
+  organizationId: ID!
+  isMarketingEmail: Boolean!
+  msgMembershipOnly: Boolean!
+  leagueIds: [ID!]!
+  teamIds: [ID!]!
+  sports: [String!]!
+  cities: [String!]!
+  stages: [String!]!
+  genders: [String!]!
+  playerKinds: [RegistrantType!]!
+  playerTypes: [TeamRoleEnum!]!
+  neighborhoods: [ID!]!
+  approvedVenues: [ID!]!
+  seasons: [String!]!
+  emailAddresses: [String!]!
+}
+
+type EmailFilters {
+  isMarketingEmail: Boolean
+  teamIds: [String]
+  sports: [String]
+  cities: [String]
+  neighborhoods: [String]
+  stages: [String]
+  genders: [String]
+  playerKinds: [String]
+  seasons: [String]
+  msgMembershipOnly: Boolean
+  leagueIds: [String]
+  approvedVenues: [String]
+}
+
+type EmailFrom {
+  email: String
+  name: String
+}
+
+input EmailIsValidInput {
+  email: String!
+}
+
+input EmailPaginationInput {
+  emailId: ID
+  limit: Int
+}
+
+type EmailPersonalizations {
+  to: [EmailTo]
+  emails: [String]
+  bcc: [String]
+  sender: String
+  subject: String
+}
+
+type EmailReplyTo {
+  email: String
+  name: String
+}
+
+type EmailResponse {
+  _id: ID!
+  html: String!
+  tags: [ID]
+  subject: String!
+  _updated: String
+}
+
+type EmailTo {
+  email: String
+}
+
+type ExportStaffResponse {
+  data: String!
+}
+
+input FAQInput {
+  question: String!
+  answer: String!
+}
+
+input FaqsInput {
+  question: String!
+  answer: String!
+}
+
+type FaqsType {
+  question: String!
+  answer: String!
+}
+
+type FAQType {
+  question: String
+  answer: String
+}
+
+type Filter {
+  _id: ID!
+  name: String!
+  formatted_name: String
+}
+
+input FindDropInTeamsInput {
+  leagueId: ID!
+  pagination: PaginationInput!
+}
+
+input ForbidDropinsInput {
+  leagueId: ID!
+}
+
+input ForgotPasswordInput {
+  email: String!
+}
+
+type FormatOptions {
+  label: String!
+  value: String!
+}
+
+input FormatsInput {
+  description: String
+  format: String
+  formatImage: ImageInput
+  gender: String
+  maxPlayersOnField: TotalsInput
+  minPlayersPerGame: TotalsInput
+  minTeamSize: TotalsInput
+}
+
+type FormatsType {
+  description: String
+  format: String
+  formatImage: ImageType
+  gender: String
+  maxPlayersOnField: TotalsType
+  minPlayersPerGame: TotalsType
+  minTeamSize: TotalsType
+}
+
+type FromResponse {
+  email: String!
+  name: String!
+}
+
+type Game {
+  _id: ID!
+  weekId: ID
+  week: Week!
+  dayId: ID
+  day: Day
+  schedule: SubSchedule!
+  week_num: Int!
+  league: League!
+  leagueId: ID!
+  teams: [GameTeam]!
+  winner: ID
+  start_time: DateTime
+  end_time: DateTime
+  date: String!
+  rsvped: [RSVP]!
+  field_name: String!
+  is_tournament: Boolean
+  timezone: String
+  scores: [TeamScoresType]
+  location: LocationType
+  forfeitter: ID
+  tournament_round: Int
+  teamIds: [ID]
+  _creator: String
+  createdBy: String
+  updatedBy: ID
+  _created: String
+  _updated: String
+  startTimeStr: String
+  endTimeStr: String
+  availableTeams: [Team]!
+  teamRsvps: [TeamRSVPS]
+  deepLink: String
+  teamCapacities: [TeamCapacity]!
+  dropInCapacity: GenderCapacities!
+  name: String
+  venue: ApprovedVenue
+  activityName: String
+}
+
+input GameEditScoreInput {
+  gameId: ID!
+  teamScore1: TeamScoreInput!
+  teamScore2: TeamScoreInput!
+}
+
+type GameEditScoreResponse {
+  league: League!
+  game: Game!
+}
+
+input GameFilterInput {
+  subScheduleIds: [ID!]
+  dayId: ID
+  daysOfWeek: [String!]
+  venues: [ScheduleVenuesInput!]
+  times: [String!]
+  scoresReported: ScoresReported
+  teamIds: [ID!]
+  shirtColors: [String]
+  currentUserSchedulesOnly: Boolean
+  includeUnapprovedSubSchedules: Boolean
+}
+
+type GameList {
+  gameList: [GameListStat!]
+}
+
+type GameListStat {
+  gameId: ID!
+  leagueId: ID!
+  capacity: GenderCountResponse!
+  rsvps: GenderCountResponse!
+}
+
+type GameLocation {
+  formatted_address: String
+  name: String
+}
+
+type GameMetricTotals {
+  yes: Int!
+  no: Int!
+  maybe: Int!
+  dropins: Int!
+  na: Int!
+}
+
+enum GameOutcome {
+  WIN
+  WIN_BY_FORFEIT
+  FORFEIT
+  LOSS
+  TIE
+}
+
+input GamesInput {
+  gameIds: [ID]!
+}
+
+type GameStats {
+  gameId: ID!
+  teamId: ID!
+  anyCapacity: Int!
+  femaleCapacity: Int!
+  maleCapacity: Int!
+  anyRsvps: Int!
+  femaleRsvps: Int!
+  maleRsvps: Int!
+}
+
+type GameTeam {
+  _id: ID!
+  name: String!
+  color: Color!
+  score: Int!
+  outcome: GameOutcome
+  players: [User]!
+  captain: ID
+
+  """References User IDs"""
+  coCaptainIds: [ID!]!
+}
+
+type GameTimeCount {
+  startTime: String!
+  count: Int!
+}
+
+type GenderCapacities {
+  a: Int!
+  f: Int!
+  m: Int!
+  gameId: ID!
+}
+
+type GenderComposition {
+  f: Int!
+  m: Int!
+  o: Int!
+}
+
+type GenderCountResponse {
+  a: Int!
+  f: Int!
+  m: Int!
+}
+
+enum GenderEnum {
+  f
+  a
+  m
+}
+
+type GenericNotification implements ActivityItem {
+  _id: ID!
+  userId: ID!
+  organizationId: ID!
+  type: String!
+  _created: String!
+  status: String
+  user: User!
+  organization: Organization!
+  message: String!
+}
+
+type GetActiveCreditsGraphResponse {
+  data: [String]!
+  labels: [String]!
+}
+
+type GetActivitiesGraphResponse {
+  activitiesGraph: [ActivitiesGraphItem]!
+}
+
+type GetActivitiesModalResponse {
+  activities: [ActivityModalItem]!
+}
+
+input GetActivityListResponse {
+  pagination: PaginationInput
+  status: String
+}
+
+type GetCreditsIssuedGraphResponse {
+  data: [Int]!
+  labels: [String]!
+  total: String!
+}
+
+type GetCreditsUsedGraphResponse {
+  total: Int!
+  labels: [String]!
+  data: [Int]!
+}
+
+type GetDailyOperationsModalResponse {
+  leagues: [DailyOperationsModalItem]!
+}
+
+type GetDailyOperationsSnapshotResponse {
+  openMale: Int!
+  openFemale: Int!
+  openAny: Int!
+  openTotal: Int!
+  takenMale: Int!
+  takenFemale: Int!
+  takenAny: Int!
+  takenTotal: Int!
+  percentTaken: String!
+}
+
+type GetDonationsGraphResponse {
+  data: [Int]!
+  labels: [String]!
+  total: Int!
+}
+
+type GetGameForfeitsResponse {
+  total: Int!
+  forfeits: Int!
+}
+
+type GetGameMetricsResponse {
+  total: GameMetricTotals!
+  checkedIn: GameMetricTotals!
+}
+
+input GetGamesOnDayInput {
+  date: String!
+  programId: ID!
+}
+
+type GetGamesOnDayResponse {
+  games: [Game]!
+}
+
+type GetLastGamesResponse {
+  games: [Game]!
+}
+
+type GetMarginsModalResponse {
+  leagues: [MarginsBreakdownItem]!
+}
+
+type GetMarginsSnapshotResponse {
+  totalIncome: String!
+  netIncome: String!
+  netExpenses: String!
+  margin: Float!
+  totalLeagues: Int!
+  unusedPermits: Int!
+  unusedPermitTime: Int!
+}
+
+type GetMembershipRatingsModalResponse {
+  revenue: Int!
+}
+
+type GetMembershipRatingsSnapshotResponse {
+  ability: Float
+  punctuality: Float
+  friendliness: Float
+  cumulativeAverage: Float
+}
+
+type GetMembershipRevenueModalResponse {
+  revenue: Int!
+}
+
+type GetMembershipRevenueSnapshotResponse {
+  data: [Int]!
+  labels: [String]!
+  total: Int!
+  globalAverage: Float!
+}
+
+type GetMembershipSubscriptionsModalResponse {
+  membershipSubscriptions: [HostDashboardPlayerItem]!
+}
+
+type GetMembershipSubscriptionsSnapshotResponse {
+  labels: [String]!
+  numLostMembersData: [Int]!
+  numNewMembersData: [Int]!
+  numTotalSubscribersData: [Int]!
+}
+
+type GetNotificationCountResponse {
+  total: Int!
+}
+
+input GetPlayerCheckinStatusInput {
+  userId: ID!
+  gameId: ID!
+  isDropin: Boolean
+}
+
+type GetPowerUsersModal {
+  powerUsers: [PowerUserItem]!
+}
+
+type GetPowerUsersSnapshot {
+  numPowerUsers: Int!
+}
+
+input GetProgramsOnDayInput {
+  date: String!
+  type: String
+}
+
+type GetProgramsOnDayResponse {
+  programs: [League]!
+}
+
+type GetRatingsModalResponse {
+  ratings: [RatingsModalItem]!
+}
+
+type GetRatingsSnapshotResponse {
+  cumulativeAverage: Float!
+  ratings: [RatingsSnapshotItem]!
+}
+
+type GetRefundsIssuedGraphResponse {
+  data: [Int]!
+  labels: [String]!
+  total: Int!
+}
+
+input GetRetentionInput {
+  hostDashboardFilterInput: HostDashboardFilterInput!
+  toSeasonNames: [String]!
+  fromSeasonNames: [String]!
+}
+
+type GetRetentionModalResponse {
+  players: [HostDashboardPlayerItem]!
+}
+
+type GetRetentionSnapshotResponse {
+  sizeFrom: Int!
+  sizeTo: Int!
+  numOverlap: Int!
+  retentionRate: String!
+}
+
+type GetRevenueBreakdownResponse {
+  revenue: [RevenueBreakdownItem]!
+}
+
+type GetRevenueGraphResponse {
+  data: [Int]!
+  labels: [String]!
+  total: String!
+  globalAverage: Float!
+}
+
+type GetScheduleDetailsResponse {
+  league: League!
+  schedules: [SubSchedule]!
+  weeks: [Week]!
+  days: [Day]!
+  games: [Game]!
+  teams: [Team]!
+}
+
+type GetSentEmailsResponse {
+  emails: [SentEmailResponse]!
+  count: Int
+}
+
+type GetSignupCapacitiesModalResponse {
+  signups: [SignupCapacitiesModalItem]
+}
+
+type GetSignupsBreakdownResponse {
+  signupsBreakdown: [SignupsBreakdown]!
+}
+
+type GetSignupsGraphResponse {
+  data: [Int]!
+  labels: [String]!
+  total: Int!
+}
+
+type GetSignupsModalResponse {
+  signups: [SignupModalItem]!
+}
+
+type GetSignupsTotalResponse {
+  numPrepaid: Int!
+  numGroups: Int!
+  numFreeAgents: Int!
+  total: Int!
+}
+
+type GetStaffBreakdownResponse {
+  active: Int!
+  inSystem: Int!
+}
+
+type GetStaffModalResponse {
+  staff: [StaffModalItem]!
+}
+
+type GetStaffRatingsResponse {
+  data: [Int]!
+  labels: [String]!
+}
+
+input GetStandingsRulesetInput {
+  leagueId: ID
+  standingsRulesetId: ID
+}
+
+type GetTemplateEmailsResponse {
+  emails: [EmailResponse]!
+  tags: [TagsResponse]!
+}
+
+input GetUnsubscribesInput {
+  organization: ID
+}
+
+type GetUserGamesByDateRangeResponse {
+  dates: [DateTime]!
+  games: [Game]!
+  dropins: [Game]!
+  unreleasedLeagues: [League]!
+  unreleasedLeagueIds: [ID]!
+}
+
+type GetUserGamesByDayResponse {
+  games: [Game]!
+  dropins: [Game]!
+  unreleasedLeagueIds: [ID]!
+  unreleasedLeagues: [League]!
+}
+
+input GlobalExpensesInput {
+  defaultShirtCost: Int
+  sportShirtCost: [SportShirtCostInput]
+  insuranceCost: Int
+  marketingCost: Int
+  pricePerGameCost: Int
+}
+
+type GlobalExpensesType {
+  defaultShirtCost: Int
+  sportShirtCost: [SportShirtCost]
+  insuranceCost: Int
+  marketingCost: Int
+  pricePerGameCost: Int
+}
+
+type Group {
+  _id: ID!
+  captainId: ID
+  name: String!
+  color: Color!
+  private: Boolean!
+  prepaid: Boolean!
+  num_members_estimate: Int!
+  notes: String
+  registrants: [Registrant]!
+  captain: User
+  division_selection: String
+  password_hint: String
+  league: League!
+  deepLink: String
+  playerAppLink: String
+  player_notes: Int
+  stats: GroupStats
+  isLocked: Boolean!
+  autolockEnabled: Boolean!
+  autolockThreshold: Int!
+}
+
+input GroupAddRegistrantInput {
+  groupId: ID!
+  registrantId: ID!
+}
+
+input GroupChangeProgramInput {
+  groupId: ID!
+  changeToProgramId: ID!
+}
+
+input GroupCreateNewInput {
+  leagueId: ID!
+}
+
+input GroupDeleteInput {
+  groupId: ID!
+}
+
+input GroupRemoveRegistrantInput {
+  groupId: ID!
+  registrantId: ID!
+}
+
+type GroupResponse {
+  group: Group!
+}
+
+input GroupSetAutolockEnabledInput {
+  groupId: ID!
+  autolockEnabled: Boolean!
+}
+
+input GroupSetAutolockThresholdInput {
+  groupId: ID!
+  autolockThreshold: Int!
+}
+
+input GroupSetCaptainInput {
+  groupId: ID!
+  playerId: ID!
+}
+
+type GroupStats {
+  count: Int!
+  composition: GenderComposition!
+}
+
+input GroupUpdateBasicsInput {
+  groupId: ID!
+  name: String
+  color: ColorInput
+  notes: String
+  num_members_estimate: Int
+}
+
+input GroupUpdateLockedInput {
+  groupId: ID!
+  isLocked: Boolean!
+}
+
+input GroupUpdatePrepaidPasswordInput {
+  groupId: ID!
+  password: String!
+  passwordHint: String
+}
+
+input HeroCtaInput {
+  text: String
+  url: String
+  newTab: Boolean
+}
+
+type HeroCtaType {
+  text: String
+  url: String
+  newTab: Boolean
+}
+
+input HeroImageInput {
+  image: ImageInput
+}
+
+type HeroImageType {
+  image: ImageType
+}
+
+input HeroInput {
+  heroText: String
+  heroSubText: String
+  heroImage: HeroImageInput
+  heroCta: HeroCtaInput
+}
+
+type HeroSlides {
+  _id: ID
+  slideImage: String
+  slideText: String
+  slideSubText: String
+  slideLink: String
+  slideButtonText: String
+  newTab: Boolean
+  secondarySlideButtonText: String
+  secondarySlideLink: String
+  secondaryNewTab: Boolean
+  mobileEnabled: Boolean
+  mobileText: String
+  mobileSubText: String
+  mobileButtonText: String
+  mobileScreenName: String
+  mobileScreenTitle: String
+  mobileImage: String
+  isVoloPass: Boolean
+}
+
+input HeroSlidesInput {
+  slideImage: String
+  slideText: String
+  slideSubText: String
+  slideLink: String
+  slideButtonText: String
+  newTab: Boolean
+  secondarySlideButtonText: String
+  secondarySlideLink: String
+  secondaryNewTab: Boolean
+}
+
+type HeroType {
+  heroText: String
+  heroSubText: String
+  heroImage: HeroImageType
+  heroCta: HeroCtaType
+}
+
+type HomepageDetails {
+  sportDefaults: SportDefaultsType
+  activeSports: [SportDetails]
+  sportDetails: [SportDetails]
+}
+
+input HomepageFaqsInput {
+  faqs: [FaqsInput]!
+}
+
+type HomepageFaqsType {
+  faqs: [FaqsType]!
+}
+
+input HomepageRulesInput {
+  rules: [RulesInput]!
+}
+
+type HomepageRulesType {
+  rules: [RulesType]!
+}
+
+type HomepageSlidesType {
+  heroSlides: [HeroSlides]
+  slideDuration: Int
+}
+
+input HostDashboardFilterInput {
+  cityNames: [String]!
+  period: PeriodInput!
+  timezone: String
+  sportNames: [String]
+  seasonNames: [String]
+  venueIds: [ID]
+  programTypes: [String]
+  neighborhoodIds: [ID]
+  registrantTypes: [String]
+  pagination: PaginationInput
+  sort: SortInput
+  customParam: String
+}
+
+type HostDashboardPlayerItem {
+  userId: ID!
+  firstName: String!
+  lastName: String!
+  phone: String!
+  email: String!
+  gender: String
+}
+
+type HostMessages {
+  email: Boolean!
+}
+
+input HostScanCheckinBarcodeInput {
+  code: String
+  gameId: ID
+  userId: ID
+  teamId: ID
+}
+
+input IconInput {
+  type: String!
+  url: String!
+}
+
+input ImageInput {
+  name: String
+  url: String
+}
+
+type ImageType {
+  name: String
+  url: String
+}
+
+input imageUploadInput {
+  file: String!
+  organizationId: ID!
+  whichType: String!
+  fileType: String!
+}
+
+enum IncidentFlag {
+  green
+  yellow
+  red
+  black
+}
+
+type IncidentReport {
+  _id: ID!
+  resolution_status: ResolutionStatus!
+  assigned_to: User
+  assigned_director: User
+  organization: Organization!
+  incident_date: DateTime!
+  incident_type: IncidentType!
+  incident_flag: IncidentFlag!
+  venue: ApprovedVenue
+  venue_input: String!
+  sport_name: String
+  reported_by: ReportedBy!
+  parties_involved: [PartyInvolved]!
+  primary_staff_witness: PrimaryStaffWitness!
+  other_supporting_staff: String
+  witnesses: [Witness]!
+  altercation_description: String!
+  called_911: Boolean!
+  altercation_types: [String]!
+  injury_causes: [String]!
+  injury_description: String
+  injury_dispositions: [String]!
+  medical_services_provided: [String]
+  medical_services_other: String
+  possible_existing_condition: Boolean!
+  resolution_notes: [ResolutionNote]!
+  uploaded_files: [String]
+  created_by: User!
+  created_at: String!
+  updated_at: String!
+}
+
+type IncidentReportCSVResponse {
+  data: String!
+}
+
+input IncidentReportsQueryInput {
+  timeLow: String
+  timeHigh: String
+  dateLow: String
+  dateHigh: String
+  timezone: String
+  reportedBy: ID
+  venueIds: [ID]
+  assignedTo: [ID]
+  organizationIds: [ID]
+  sportNames: [String]
+  pagination: PaginationInput
+  incidentTypes: [IncidentType]
+  incidentFlags: [IncidentFlag]
+  partiesInvolved: [ID]
+  resolutionStatus: [ResolutionStatus]
+}
+
+type IncidentReportSummaryResponse {
+  totalPastDay: Int!
+  totalPastDayNew: Int!
+  totalPastDayResolved: Int!
+  totalPastDayInProgress: Int!
+  totalPastWeek: Int!
+  totalPastWeekNew: Int!
+  totalPastWeekResolved: Int!
+  totalPastWeekInProgress: Int!
+  totalPastTwoWeeks: Int!
+  totalPastTwoWeeksNew: Int!
+  totalPastTwoWeeksResolved: Int!
+  totalPastTwoWeeksInProgress: Int!
+  totalAllTime: Int!
+  totalAllTimeNew: Int!
+  totalAllTimeResolved: Int!
+  totalAllTimeInProgress: Int!
+}
+
+enum IncidentType {
+  injury
+  altercation
+  injury_and_altercation
+}
+
+type Injury {
+  injury_type: String!
+  body_part: String
+  side: String
+}
+
+input InjuryInput {
+  injury_type: String!
+  body_part: String
+  side: String
+}
+
+input InterestInput {
+  label: String
+  value: String
+}
+
+type KidsFoundationStats {
+  _id: ID!
+  numberOfKidsEngaged: Int!
+  programsCompleted: Int!
+  numberOfVolunteersMobilized: Int!
+  citiesActivated: Int!
+}
+
+type LastRegistrationResponse {
+  registrations: [Registrant]!
+}
+
+type League {
+  _id: ID!
+  name: String!
+  displayName: String!
+  status: LeagueStatus!
+  stage: LeagueStage
+  teams: [Team]
+  teamIds: [ID!]
+  sport: Sport!
+  unassigned_teams: [Team]!
+  num_unassigned_teams: Int!
+  teams_on_multiple_schedules: [Team]!
+  num_teams_on_multiple_schedules: Int!
+  schedules(input: ScheduleFilterInput): [SubSchedule!]!
+  weeks(input: WeekFilterInput): [Week!]!
+  days: [Day!]!
+  gameTimes: [String!]!
+  shiftLogs(pagination: PaginationInput, skipPagination: Boolean): ShiftLogsResponse!
+  start_date: DateTime
+  startDateStr: String
+  header: String
+  price_phase: String
+  timezone: String!
+  num_weeks_estimate: Int!
+  days_of_week_estimate: [String!]
+  has_playoffs_estimate: Boolean!
+  num_playoff_weeks_estimate: Int!
+  start_time_estimate: String!
+  end_time_estimate: String!
+  game_length_in_minutes_estimate: Int!
+  num_games_per_team_per_week_estimate: Int!
+  num_simultaneous_games_estimate: Int!
+  venue: ApprovedVenue!
+  venueId: ID!
+  organization_name: String!
+  organization: Organization!
+  groups: [Group]!
+  freeAgents: [Registrant]!
+  registration: Registration
+  registration_notes: String
+  organizationId: ID!
+  teams_approved: Boolean
+  schedule_approved: Boolean
+  hasDivisions: Boolean!
+  divisionDescriptions: [String]
+  whyYouPlayEnabled: Boolean!
+  details: LeagueDetails!
+  contact: LeagueContact!
+  isPrivate: Boolean!
+  activityName: String
+  seasonName: String
+  archived: Boolean!
+  gender: String!
+  photoUrl: String
+  sponsor_bar: SponsorBar
+  donationsDisabled: Boolean!
+  donateAllProceeds: Boolean!
+  programType: String!
+  featured_order: Int
+  banner_text: String
+  neighborhood: Neighborhood
+  allEmails: [String]!
+  playerSurvey: RatingSurvey!
+  captainSurvey: RatingSurvey!
+  expenses: LeagueExpenses
+  isDaily: Boolean!
+  maxPlayersOnField: TotalsType
+  customNotesMandatory: Boolean!
+  customNotesPrompt: String
+  customQuestionsList: [CustomQuestion]
+  availableDivisions: [AvailableDivision]
+  divisionsActivated: Boolean
+  venueName: String
+  city: String
+  signupsToday: Int!
+  signupMetrics: LeagueSignupMetrics!
+  teamCount: Int!
+  tournament: [Tournament!]!
+  has_tournament: Boolean!
+  stagedReoccuringDates: [String]!
+  isReoccuringParent: Boolean!
+  isReoccuringChild: Boolean!
+  reoccuringChildren: [ChildProgramReference]!
+  minMen: Int
+  minWomen: Int
+  minPlayers: Int
+  suggestedMen: Int
+  suggestedWomen: Int
+  suggestedPlayers: Int
+  staff: [User]!
+  registrantCount: Int
+  registrants: [ID]!
+  registrantObj: [Registrant]!
+  formatType: String
+  staffUsers: [User]
+  deepLink: String
+  playerAppLink: String
+  sportFormatDetails: SportFormatDetails
+  permits: [Permit]
+  guessedPermits: [Permit]
+  permitIds: [ID]
+  timeframe: [String]
+  programTagId: ID
+  programTag: ProgramTag
+  notes: String
+  checkedBy: String
+  playerLink: String
+  hostLink: String
+  accountingCode: String
+  month: String
+  statusString: String
+  styleOfPlay: String
+  blackOutDates: String
+  goalTeamNum: Int
+  margin: Float
+  projectedRevenue: Int
+  goalRevenue: Int
+  maxRevenue: Float
+  built: String
+  cadence: String
+  instructorCoach: String
+  level: String
+  additionalStaff: Int
+  waiverId: ID
+  max_dropins_per_game: Int
+  allow_teams: Boolean
+  _creator: String
+  createdBy: String
+  updatedBy: String
+  _created: String
+  _updated: String
+  tournamentDays: [Day]
+}
+
+type LeagueAllChildrenResponse {
+  children: [League]!
+}
+
+input LeagueBasicsInput {
+  organizationId: ID
+  leagueId: ID
+  activityName: String!
+  seasonName: String!
+  gender: String!
+  name: String!
+  displayName: String!
+  programType: String!
+  formatType: String!
+  divisionDescriptions: [String]!
+  start_date: String
+  days_of_week: [String]
+  startTimeStr: String
+  endTimeStr: String
+  venueId: ID!
+  programTagId: ID
+  allow_teams: Boolean!
+}
+
+type LeagueChatDetails {
+  _id: ID!
+  displayName: String!
+  status: LeagueStatus!
+  stage: String
+  sport: Sport!
+}
+
+type LeagueContact {
+  name: String
+  email: String
+  phoneNumber: String
+  textable: Boolean
+}
+
+input LeagueCreateFromExistingInput {
+  organizationId: ID!
+  copyFromLeagueId: ID!
+  seasonName: ID!
+}
+
+type LeagueDetails {
+  description: String
+  perks: String
+  features: [String]
+  details: String
+  week_descriptions: [String]!
+  week_tags: [String]
+  rules: String
+  sponsor_bar: SponsorBar
+}
+
+type LeagueDiscoverResponse {
+  leagues: [League]!
+}
+
+input LeagueDivisionsInput {
+  leagueId: ID!
+  divisionUpdates: [DivisionUpdatesInput]
+}
+
+type LeagueExpenses {
+  tshirtCostPerPlayer: Int
+  insuranceCostPerPlayer: Int
+  marketingCostPerPlayer: Int
+  numReferees: Int
+  refereeCostPerGame: Int
+  numHosts: Int
+  hostCostPerHour: Int
+  customCosts: [LeagueExpensesCustomCostItem]
+  permitPrice: Int!
+  totalStaffCost: Int!
+  totalRefCost: Int!
+  totalShirtCost: Int!
+}
+
+type LeagueExpensesCustomCostItem {
+  name: String
+  cost: Int
+  frequency: String
+}
+
+type LeagueFreeAgentsResponse {
+  freeAgents: [Registrant]!
+  stats: LeagueFreeAgentStats!
+}
+
+type LeagueFreeAgentStats {
+  total: Int!
+  freeAgentMaleCount: Int!
+  freeAgentFemaleCount: Int!
+  freeAgentOtherCount: Int!
+  waitlistMaleCount: Int!
+  waitlistFemaleCount: Int!
+  waitlistOtherCount: Int!
+}
+
+input LeagueGetBasicInfoInput {
+  organizationId: ID!
+  activityName: String!
+  programType: String
+}
+
+type LeagueGetBasicInfoResponse {
+  formatOptions: [FormatOptions]!
+  programTypes: [ProgramTypesType]!
+  competitionLevels: [CompetitionLevelsType]!
+}
+
+type LeagueGroupsResponse {
+  groups: [Group]!
+  count: Int!
+}
+
+type LeagueInfo {
+  _id: ID!
+  name: String!
+}
+
+input LeagueListInput {
+  pagination: PaginationInput
+  sortBy: String
+  organizationId: ID
+  sport: ID
+  programType: String
+  sportNames: [String]
+  seasonNames: [String]
+  stage: String
+  stages: [String]
+  discoverable: Boolean
+  bounds: BoundsInput
+  omitArchived: Boolean
+  season: String
+  omitReoccuringParents: Boolean
+  omitReoccuringChildren: Boolean
+  programTypes: [String]
+  venueIds: [ID]
+  daysOfWeek: [String]
+  neighborhoodIds: [ID]
+  dateLow: String
+  dateHigh: String
+  programStatus: String
+  nameSearch: String
+  cityName: String
+}
+
+type LeagueListResponse {
+  leagues: [League]!
+  count: Int!
+  endCursor: Int!
+}
+
+type LeagueNotification implements ActivityItem {
+  _id: ID!
+  userId: ID!
+  organizationId: ID!
+  leagueId: ID!
+  type: String!
+  _created: String!
+  status: String
+  user: User!
+  organization: Organization!
+  league: League!
+  message: String!
+}
+
+type LeaguePlayerScheduleDay {
+  _id: ID!
+  dateStr: String!
+  games: [LeaguePlayerScheduleGame]!
+}
+
+type LeaguePlayerScheduleGame {
+  _id: ID!
+  startTimeStr: String!
+  teams: [LeaguePlayerScheduleTeam]!
+}
+
+input LeaguePlayerScheduleInput {
+  leagueId: ID!
+}
+
+type LeaguePlayerScheduleResponse {
+  weeks: [Week!]!
+  tournaments: [Tournament!]!
+}
+
+type LeaguePlayerScheduleTeam {
+  team: Team!
+  outcome: String!
+  score: Int
+}
+
+type LeaguePlayerScheduleWeek {
+  _id: ID!
+  week_num: Int!
+  is_tournament: Boolean
+  days: [LeaguePlayerScheduleDay]!
+}
+
+type LeagueProgramRosterResponse {
+  userId: ID!
+  gender: String
+  picture: String
+  userDisplayInfo: UserDisplayInfo
+}
+
+input LeagueReleaseTeamsInput {
+  leagueId: ID!
+}
+
+type LeagueResponse {
+  league: League!
+}
+
+input LeagueSetJerseysInput {
+  leagueId: ID!
+  jersey_colors: [ColorInput]!
+}
+
+type LeagueSignupMetrics {
+  totalCount: Int!
+  totalRevenue: Int!
+  individualCount: Int!
+  groupCaptainCount: Int!
+  privateCaptainCount: Int!
+  groupMemberCount: Int!
+  privateMemberCount: Int!
+  individualRevenue: Int!
+  groupCaptainRevenue: Int!
+  privateCaptainRevenue: Int!
+  groupMemberRevenue: Int!
+  privateMemberRevenue: Int!
+}
+
+input LeaguesInput {
+  leagueIds: [ID]!
+}
+
+enum LeagueStage {
+  upcoming
+  active
+  archived
+  staged
+}
+
+input LeagueStandingsInput {
+  leagueId: ID!
+  divisionId: ID
+}
+
+enum LeagueStatus {
+  draft
+  staged
+  pending
+  registration_open
+  ready
+  active
+  needs_approval
+  completed
+  cancelled
+  error
+}
+
+input LeagueTeamPricingInput {
+  allow: Boolean
+  individualPrice: Int
+  prepaidTeamPrice: Int
+  startDateStr: String
+  endDateStr: String
+}
+
+type LeagueTeamStandings {
+  team: Team!
+  teamId: ID!
+  rank: Int!
+  WIN: Int!
+  LOSE: Int!
+  TIE: Int!
+  FORFEIT: Int!
+  points_for: Int!
+  points_against: Int!
+  points_differential: Int!
+}
+
+input LeagueUpdateAllowedRegistrationKindsInput {
+  leagueId: ID!
+  blockFreeAgents: Boolean
+  allowWaitlist: Boolean
+  genderLimitsEnabled: Boolean
+  freeAgentLimitsEnabled: Boolean
+  freeAgentsAllowed: Int
+  malesAllowed: Int
+  femalesAllowed: Int
+  blockGroupCaptains: Boolean
+  blockGroupMembers: Boolean
+  blockPrepaidTeamCaptains: Boolean
+  blockPrepaidTeamMembers: Boolean
+}
+
+input LeagueUpdateBannerTextInput {
+  leagueId: ID!
+  banner_text: String
+}
+
+input LeagueUpdateContactInput {
+  leagueId: ID!
+  name: String
+  email: String
+  phoneNumber: String
+  textable: Boolean
+}
+
+input LeagueUpdateDatesTimesInput {
+  leagueId: ID!
+  num_weeks: Int!
+  has_tournament: Boolean!
+  num_tournament_weeks: Int!
+  registrationOpen: String!
+  registrationOpenTime: String!
+  registrationClose: String!
+  registrationCloseTime: String!
+}
+
+input LeagueUpdateDetailsInput {
+  leagueId: ID!
+  discoverable: Boolean
+  description: String
+  perks: String
+  features: [String]
+  rules: String
+  week_descriptions: [String]
+  week_tags: [String]
+  sponsor_bar: SponsorBarInput
+  waiverId: ID
+}
+
+input LeagueUpdateDiscoverabilityInput {
+  leagueId: ID!
+  isDiscoverable: Boolean!
+}
+
+input LeagueUpdateExpensesInput {
+  leagueId: ID!
+  tshirtCostPerPlayer: Int
+  insuranceCostPerPlayer: Int
+  marketingCostPerPlayer: Int
+  numReferees: Int
+  refereeCostPerGame: Int
+  numHosts: Int
+  hostCostPerHour: Int
+  customCosts: [CustomCostInput]
+}
+
+input LeagueUpdateFeaturedOrderInput {
+  leagueId: ID!
+  featured_order: Int
+}
+
+input LeagueUpdateMiscInput {
+  leagueId: ID!
+  notes: String
+  checkedBy: String
+  accountingCode: String
+  statusString: String
+  styleOfPlay: String
+  blackOutDates: String
+  goalTeamNum: Int
+  num_time_slots: Int
+  end_date: String
+}
+
+input LeagueUpdateNeighborhoodInput {
+  leagueId: ID!
+  neighborhood: ID
+}
+
+input LeagueUpdatePermitsInput {
+  leagueId: ID!
+  permitIds: [ID]!
+}
+
+input LeagueUpdatePricingInput {
+  leagueId: ID!
+  prepaidTeamsAllowed: Boolean
+  earlyBird: PricePhaseInput!
+  regular: PricePhaseInput!
+  lastChance: PricePhaseInput!
+  memberPrice: Int
+  nonMemberPrice: Int
+  memberDropinPrice: Int
+}
+
+input LeagueUpdateRatingSurveyInput {
+  leagueId: ID!
+  playerSurvey: RatingSurveyInput!
+  captainSurvey: RatingSurveyInput!
+}
+
+input LeagueUpdateRegistrationNotesInput {
+  leagueId: ID!
+  registration_notes: String
+}
+
+input LeagueUpdateRegistrationOptionsInput {
+  leagueId: ID!
+  whyYouPlayEnabled: Boolean
+  donationsDisabled: Boolean
+  discoverable: Boolean
+  donateAllProceeds: Boolean
+  customNotesMandatory: Boolean
+  customNotesPrompt: String
+  customQuestionsList: [CustomQuestionInput]
+}
+
+input LeagueUpdateRSVPInput {
+  leagueId: ID!
+  minMen: Int
+  minWomen: Int
+  minPlayers: Int
+  suggestedMen: Int
+  suggestedWomen: Int
+  suggestedPlayers: Int
+}
+
+input LeagueUpdateScheduleAndCapacityInput {
+  leagueId: ID!
+  timeframe: TimeframeInput
+  game_length_in_minutes_estimate: Int
+  num_simultaneous_games_estimate: Int
+  num_games_per_team_per_week_estimate: Int
+  min_team_amount: Int
+  max_team_amount: Int
+  min_team_size: Int
+  max_team_size: Int
+  projectedNumOfTeams: Int
+  projectedNumOfPlayers: Int
+  minSize: Int
+  maxSize: Int
+}
+
+input LeagueUpdateSponsorBarInput {
+  leagueId: ID!
+  sponsor_bar: SponsorBarInput
+}
+
+input LeagueUploadPhotoInput {
+  leagueId: ID!
+  image: ImageInput
+}
+
+type LocationInfo {
+  formatted_address: String
+  coordinates: Coordinates
+}
+
+input LocationInput {
+  _id: ID!
+  neighborhood: String
+  name: String
+  formatted_address: String
+  city: String
+  zip: Int
+  timezone: String
+}
+
+type LocationType {
+  _id: ID!
+  neighborhood: String
+  name: String!
+  formatted_address: String!
+  city: String!
+  zip: Int
+  timezone: String!
+}
+
+input LookupVenueInput {
+  placeId: String!
+}
+
+input manageEmailInput {
+  emailId: ID
+  organizationId: ID
+  subject: String
+  html: String
+}
+
+input ManageStaffInput {
+  organizationId: ID!
+  user: ID!
+  leagueId: ID
+}
+
+type MarginsBreakdownItem {
+  leagueId: ID!
+  leagueName: String!
+  totalRevenue: Int!
+  totalExpense: Int!
+  numSignups: Int!
+  registrationEnds: DateTime!
+  margin: Float!
+}
+
+input MemberRatingInput {
+  ability: Int
+  friendliness: Int
+  punctuality: Int
+}
+
+type MemberRatingPrompt implements ActivityItem {
+  _id: ID!
+  userId: ID!
+  organizationId: ID!
+  leagueId: ID!
+  teamId: ID!
+  gameId: ID!
+  type: String!
+  _created: String!
+  status: String
+  user: User!
+  organization: Organization!
+  league: League!
+  team: Team!
+  game: Game!
+  memberIds: [ID]!
+  members: [User]!
+}
+
+input MemberRatingSubmitInput {
+  promptId: ID!
+  memberId: ID!
+  memberRating: MemberRatingInput!
+}
+
+type Membership {
+  userId: ID!
+  stripeCustomerId: String!
+  stripeSubscriptionId: String!
+  status: StripeSubscriptionStatus!
+  stripePlanId: String!
+  promoCode: String
+  planStartsAt: DateTime!
+  planExpiresAt: DateTime!
+  isStripeAutoRenew: Boolean!
+  referredBy: MembershipReferral
+}
+
+type MembershipCancelResponse {
+  membership: Membership!
+  isEarlyCancellation: Boolean!
+  amountChargedInCents: Int
+}
+
+type MembershipCoupon {
+  stripeCouponId: String!
+  valid: Boolean!
+  percentOff: Float
+  amountOff: Int
+  currency: String
+  duration: MembershipDiscountPeriod!
+  durationInMonths: Int
+}
+
+type MembershipCouponsResponse {
+  coupons: [MembershipCoupon]!
+  hasMore: Boolean!
+}
+
+enum MembershipDiscountPeriod {
+  once
+  repeating
+  forever
+}
+
+type MembershipInvoice {
+  stripeInvoiceId: String!
+  status: StripeInvoiceStatus!
+  total: Int!
+  paid: Boolean!
+  createdAt: DateTime!
+}
+
+type MembershipInvoicesResponse {
+  membershipInvoices: [MembershipInvoice]!
+  hasMore: Boolean!
+}
+
+type MembershipReferral {
+  type: MembershipReferralType!
+  id: ID!
+}
+
+input MembershipReferralInput {
+  type: MembershipReferralType!
+  id: ID!
+}
+
+enum MembershipReferralType {
+  user
+  campaign
+}
+
+type MembershipsResponse {
+  memberships: [Membership]!
+  hasMore: Boolean!
+}
+
+enum MembershipTrialType {
+  TWO_WEEKS
+  FOUR_WEEKS
+}
+
+type MessageCenterResponse {
+  emailCount: Int!
+}
+
+type MessageResponse {
+  message: String!
+}
+
+type MiscCosts {
+  name: String!
+  amount: Int!
+}
+
+input MiscCostsInput {
+  name: String!
+  amount: Int!
+}
+
+type MissingShirt {
+  _id: ID!
+  team_name: String
+  color: String
+  small: Int
+  medium: Int
+  large: Int
+  xlarge: Int
+  xxlarge: Int
+  xxxlarge: Int
+  style: String!
+}
+
+input MissingShirtInput {
+  team_name: String!
+  color: String!
+  small: Int
+  medium: Int
+  large: Int
+  xlarge: Int
+  xxlarge: Int
+  xxxlarge: Int
+  style: String
+}
+
+input MobileCommentsInput {
+  whichName: String!
+}
+
+type ModelInfo {
+  _id: ID!
+  name: String!
+  organizationName: String
+}
+
+input ModifyNeighborhoodInput {
+  organizationId: ID!
+  name: String!
+}
+
+type Mutation {
+  _: Boolean
+  groupCreateNew(input: GroupCreateNewInput!): AssemblerMutationResponse!
+  groupUpdateBasics(input: GroupUpdateBasicsInput!): AssemblerMutationResponse!
+  groupSetCaptain(input: GroupSetCaptainInput!): AssemblerMutationResponse!
+  groupAddRegistrant(input: GroupAddRegistrantInput!): AssemblerMutationResponse!
+  groupRemoveRegistrant(input: GroupRemoveRegistrantInput!): AssemblerMutationResponse!
+  groupDelete(input: GroupDeleteInput!): AssemblerMutationResponse!
+  groupChangeProgram(input: GroupChangeProgramInput!): AssemblerMutationResponse!
+  groupUpdateLocked(input: GroupUpdateLockedInput!): AssemblerMutationResponse!
+  groupSetAutolockThreshold(input: GroupSetAutolockThresholdInput!): AssemblerMutationResponse!
+  groupSetAutolockEnabled(input: GroupSetAutolockEnabledInput!): AssemblerMutationResponse!
+  registrantChangeProgram(input: RegistrantChangeProgramInput!): AssemblerMutationResponse!
+  registrantCreateManually(input: RegistrantCreateManuallyInput!): AssemblerMutationResponse!
+  registrantUpdateHostNotes(input: RegistrantUpdateHostNotesInput!): AssemblerMutationResponse!
+  registrantUpdateHostQuestions(input: RegistrantUpdateHostQuestionsInput!): AssemblerMutationResponse!
+  teamUpdateBasics(input: TeamUpdateBasicsInput!): AssemblerMutationResponse!
+  teamSetCaptain(input: TeamSetCaptainInput!): AssemblerMutationResponse!
+  teamCreateNew(input: TeamCreateNewInput!): AssemblerMutationResponse!
+  teamUpdateDropIns(input: TeamUpdateDropInsInput!): AssemblerMutationResponse!
+  teamAddFreeAgent(input: TeamAddFreeAgentInput!): AssemblerMutationResponse!
+  teamRemoveFreeAgent(input: TeamRemoveFreeAgentInput!): AssemblerMutationResponse!
+  teamAddGroup(input: TeamAddGroupInput!): AssemblerMutationResponse!
+  teamRemoveGroup(input: TeamRemoveGroupInput!): AssemblerMutationResponse!
+  teamDelete(input: TeamDeleteInput!): AssemblerMutationResponse!
+  teamCreateFromGroup(input: TeamCreateFromGroupInput!): AssemblerMutationResponse!
+  leagueReleaseTeams(input: LeagueReleaseTeamsInput!): AssemblerMutationResponse!
+  setPlayerCheckinStatus(input: SetPlayerCheckinStatusInput!): PlayerCheckinStatusResponse!
+  allowDropins(input: AllowDropinsInput!): UpdateDropinsResponse!
+  forbidDropins(input: ForbidDropinsInput!): UpdateDropinsResponse!
+  leagueCreateNew(input: LeagueBasicsInput!): LeagueResponse!
+  leagueCreateFromExisting(input: LeagueCreateFromExistingInput!): CreateFromExistingResponse!
+  leagueUpdateBasics(input: LeagueBasicsInput!): LeagueResponse!
+  leagueUpdateDatesTimes(input: LeagueUpdateDatesTimesInput!): LeagueResponse!
+  leagueUpdateScheduleAndCapacity(input: LeagueUpdateScheduleAndCapacityInput!): LeagueResponse!
+  leagueUpdateRSVP(input: LeagueUpdateRSVPInput!): LeagueResponse!
+  leagueUpdateRatingSurvey(input: LeagueUpdateRatingSurveyInput!): LeagueResponse!
+  leagueSetJerseys(input: LeagueSetJerseysInput!): LeagueResponse!
+  leagueUploadPhoto(input: LeagueUploadPhotoInput!): LeagueResponse!
+  leagueUpdateDetails(input: LeagueUpdateDetailsInput!): LeagueResponse!
+  leagueUpdateRegistrationOptions(input: LeagueUpdateRegistrationOptionsInput!): LeagueResponse!
+  leagueUpdatePricing(input: LeagueUpdatePricingInput!): LeagueResponse!
+  leagueUpdateExpenses(input: LeagueUpdateExpensesInput!): LeagueResponse!
+  leagueUpdatePermits(input: LeagueUpdatePermitsInput!): LeagueResponse!
+  leagueUpdateContact(input: LeagueUpdateContactInput!): LeagueResponse!
+  leagueUpdateMisc(input: LeagueUpdateMiscInput!): LeagueResponse!
+  validateAndCreateLeague(input: ValidateAndCreateLeagueInput!): ValidateAndCreateResponse!
+  reoccuringEventDeploy(input: ReoccuringEventUpdateInput!): LeagueResponse!
+  reoccuringEventUnstage(input: ReoccuringEventUpdateInput!): LeagueResponse!
+  organizationCreateCsv(input: CreateCsvInput!): OrganizationCsvResponse!
+  closeDropInSlotById(_id: ID!): DropInSlot!
+
+  """
+  Closes multiple drop in slots, tied to the _id of a recurring drop in slot (NOT the recurring reference)
+  """
+  closeRecurringDropInSlots(dropInSlotId: ID!): DropInSlot!
+  openDropInSlot(input: OpenDropInSlotInput!): DropInSlot!
+  shareDropInSlot(_id: ID!): DropInSlot!
+  updateDropInSlotCount(input: UpdateDropInSlotCountInput!): GenderCountResponse!
+  updateDropInSlot(input: UpdateDropInSlotInput!): DropInSlot!
+  unrsvp(gameId: ID!): Game!
+  sendEmails(input: SendEmailInput!): MessageCenterResponse!
+  sendBulkEmails(input: BulkEmailInput!): MessageCenterResponse!
+  addTemplateEmail(input: TemplateInputMutation!): OrganizationResponse!
+  editTemplateEmail(input: TemplateInputMutation!): OrganizationResponse!
+  deleteTemplateEmail(input: TemplateInputMutation!): OrganizationResponse!
+  addEmailTag(input: TagInputMutation!): OrganizationResponse!
+  deleteEmailTag(input: TagInputMutation!): OrganizationResponse!
+  sendContactUsEmail(input: ContactUsEmailInput!): MessageCenterResponse
+  updatePendingEmail(input: EditPendingEmailInput!): OrganizationResponse
+  sendContactUsChat(input: ContactUsChatInput!): ContactUsChatResponse
+  submitRatingsSurvey(input: SubmitRatingsSurveyInput!): SubmitRatingsSurveyResponse!
+  setRatingFlag(input: SetRatingFlagInput!): SetRatingFlagResponse!
+  sendCityPush(input: SendPushInput!): SubscriptionStatus!
+  sendLeaguePush(input: SendPushInput!): LeagueResponse!
+  viewNotification(notificationId: ID!): ActivityItem!
+  removeNotification(notificationId: ID!): ActivityItem
+  handleRatingPromptSubmit(input: ActivityItemInput!): RatingPrompt!
+  handleCovidPromptSubmit(input: ActivityItemInput!): CovidPrompt!
+  handleMemberRatingPromptSubmit(input: MemberRatingSubmitInput!): MemberRatingPrompt!
+  sendVerificationSms(input: SendVerificationSmsInput!): SendVerificationSmsResponse!
+  verifySmsToken(input: VerifySmsTokenInput!): VerifySmsTokenResponse!
+  currentUserRegisterForProgram(input: CurrentUserRegisterForProgramInput!): ProgramRegistrationResponse!
+  currentUserJoinPrepaidTeam(input: CurrentUserJoinPrepaidTeamInput!): RegistrantResponse!
+  currentUserConfirmDropin(input: CurrentUserConfirmDropinInput!): ConfirmDropinResponse!
+  currentUserRequestDropinRefund(input: CurrentUserRequestDropinRefund!): CurrentUserRequestDropinRefundResponse!
+  removeRegistrantFromDropin(input: RemoveRegistrantFromDropinInput!): RemoveRegistrantFromDropinResponse!
+  addPlayerToDropin(input: AddPlayerToDropinInput!): AddPlayerToDropinResponse!
+  currentUserSelfWithdraw(input: CurrentUserSelfWithdrawInput!): RegistrantRefundResponse!
+  signUpNewUser(input: SignUpNewUserInput!): CurrentUserResponse!
+  emailIsValid(input: EmailIsValidInput!): ValidFieldResponse!
+  usernameIsValid(input: UsernameIsValidInput!): ValidFieldResponse!
+  phoneNumberIsValid(input: PhoneNumberIsValidInput!): ValidFieldResponse!
+  zipIsValid(input: ZipIsValidInput!): ValidFieldResponse!
+  sendVerificationEmail(input: SendVerificationEmailInput!): SendVerificationEmailResponse!
+  checkVerificationEmail(input: CheckVerificationEmailInput!): SendVerificationEmailResponse!
+  groupUpdatePrepaidPassword(input: GroupUpdatePrepaidPasswordInput!): GroupResponse!
+  archiveLeague(input: ArchiveLeagueInput!): LeagueResponse!
+  unarchiveLeague(input: UnarchiveLeagueInput!): LeagueResponse!
+  reopenLeague(input: ReopenLeagueInput!): LeagueResponse!
+  leagueUpdateAllowedRegistrationKinds(input: LeagueUpdateAllowedRegistrationKindsInput!): LeagueResponse!
+  leagueUpdateDiscoverability(input: LeagueUpdateDiscoverabilityInput!): LeagueResponse!
+  leagueUpdateFeaturedOrder(input: LeagueUpdateFeaturedOrderInput!): LeagueResponse!
+  leagueUpdateBannerText(input: LeagueUpdateBannerTextInput!): LeagueResponse!
+  leagueUpdateNeighborhood(input: LeagueUpdateNeighborhoodInput!): LeagueResponse!
+  leagueUpdateRegistrationNotes(input: LeagueUpdateRegistrationNotesInput!): LeagueResponse!
+  removeLeague(input: RemoveLeagueInput!): RemoveLeagueResponse!
+  uploadProgramCsv(input: UploadProgramCsvInput!): [String]!
+  validateProgramsCsv(input: UploadProgramCsvInput!): [String]!
+  activateLeagueDivisions(input: ActivateDivisionsInput): LeagueResponse!
+  saveLeagueDivisions(input: LeagueDivisionsInput): LeagueResponse!
+  updateFaqs(input: HomepageFaqsInput!): HomepageFaqsType!
+  updateSportDefaults(input: SportDefaultsInput!): SportDefaultsType!
+  nationalUpdateSlides(input: OrganizationSlidesInput!): HomepageSlidesType!
+  nationalUpdateSlidesDuration(input: OrganizationSlidesDurationInput!): HomepageSlidesType!
+  nationalUpdateGlobalExpenses(input: GlobalExpensesInput!): GlobalExpensesType!
+  updateRulesetTemplate(input: RulesetTemplateInput!): [RulesetTemplate]!
+  addNationalProgramTag(input: AddNationalProgramTagInput!): ProgramTag!
+  removeNationalProgramTag(_id: ID!): ProgramTag!
+  editNationalProgramTag(input: EditNationalProgramTagInput!): ProgramTag!
+  editKidsFoundationStats(input: EditKidsFoundationStatsInput!): EditKidsFoundationStatsResponse!
+  addNeighborhood(input: ModifyNeighborhoodInput!): NeighborhoodListResponse!
+  deleteNeighborhood(input: ModifyNeighborhoodInput!): NeighborhoodListResponse!
+  organizationUpdateSeasonGoals(input: OrganizationUpdateSeasonGoalsInput!): OrganizationResponse!
+  organizationUpdateBrand(input: OrganizationUpdateBrandInput!): OrganizationResponse!
+  organizationConnectStripeExpressAccount(input: OrganizationConnectStripeExpressAccountInput!): OrganizationResponse!
+  organizationAddEmailTemplate(input: OrganizationAddEmailTemplateInput!): OrganizationResponse!
+  organizationRemoveEmailTemplate(input: OrganizationRemoveEmailTemplateInput!): OrganizationResponse!
+  organizationAcceptEmail(input: manageEmailInput!): OrganizationResponse!
+  organizationRejectEmail(input: manageEmailInput!): OrganizationResponse!
+  organizationAddUnsubReason(input: unsubReasonInput!): OrganizationResponse!
+  organizationUpdateLogo(input: imageUploadInput!): OrganizationResponse!
+  organizationUpdateSponsorLogos(input: OrganizationSponsorLogosInput!): OrganizationResponse!
+  organizationUpdateBasicInfo(input: basicInfoInput!): OrganizationResponse!
+  organizationUpdatePolicies(input: OrganizationPoliciesInput!): OrganizationResponse!
+  organizationAddPromo(input: OrganizationManagePromoInput!): OrganizationResponse!
+  organizationRemovePromo(input: OrganizationManagePromoInput!): OrganizationResponse!
+  organizationUpdatePromo(input: OrganizationManagePromoInput!): OrganizationResponse!
+  addStaffToProgram(input: ManageStaffInput!): CurrentUserResponse!
+  removeStaffFromProgram(input: ManageStaffInput!): CurrentUserResponse!
+  deleteStaffFromOrganization(input: ManageStaffInput!): CurrentUserResponse!
+  addStaffMember(input: ManageStaffInput!): CurrentUserResponse!
+  organizationUpdateHomepage(input: OrganizationHomepageInput!): OrganizationResponse!
+  membershipGetPromo(input: StripePromoInput!): StripePromoResponse!
+  organizationUpdateComments(input: CommentsInput!): Boolean!
+  organizationUpdateSlides(input: OrganizationSlidesInput!): OrganizationResponse!
+  organizationUpdateSlidesDuration(input: OrganizationSlidesDurationInput!): OrganizationResponse!
+  updateOrgFeatureFlag(input: UpdateOrgFeatureFlagInput!): OrganizationResponse!
+  updateMultipleOrgFeatureFlag(input: UpdateMultipleOrgFeatureFlag!): OrganizationResponse!
+  updateFeaturedPrograms(input: UpdateFeaturedProgramsInput!): OrganizationResponse!
+  updateVPTiers(input: UpdateVPTiersInput!): Boolean!
+  updateShirtOptions(input: UpdateShirtInput!): OrganizationResponse!
+  updateWeekOptions(input: UpdateWeekOptionsInput!): OrganizationResponse!
+  exportStaff(input: StaffListInput!): ExportStaffResponse!
+  updateShiftLogLink(input: UpdateShiftLogLinkInput!): OrganizationResponse!
+  addPermit(input: PermitEditInput!): PermitsResponse!
+  deletePermit(input: DeletePermitInput!): PermitsResponse!
+  updatePermit(input: UpdatePermitInput!): PermitsResponse!
+  registrantIssueRefund(input: RegistrantIssueRefundInput!): RegistrantRefundResponse!
+  registrantRemoveWithoutRefund(input: RegistrantRemoveWithoutRefundInput!): RegistrantRefundResponse!
+  registrantAddCredits(input: RegistrantAddCreditsInput!): RegistrantCreditsResponse!
+  registrantDeleteCredits(input: RegistrantDeleteCreditsInput!): RegistrantCreditsResponse!
+  registrantBulkCredits(input: RegistrantBulkCreditsInput!): RegistrantBulkCreditsResponse!
+  registrantUpdateTeamRole(input: RegistrantUpdateTeamRoleInput!): Team!
+  sendReminderEmail(input: ReminderEmailInput!): ReminderResponse!
+  signWaiver(registrantId: ID!): SignWaiverResponse!
+  modifyRuleset(input: RulesetsInput!): Ruleset!
+  deleteRuleset(input: RulesetsInput!): Ruleset
+  createScheduleGames(subScheduleId: ID!): SubscriptionStatus!
+  createCSVSchedule(input: CreateCSVScheduleInput!): SubScheduleResponse!
+  createTournament(input: CreateTournamentInput!): SubScheduleResponse!
+  releaseSchedule(input: ReleaseScheduleInput!): LeagueResponse!
+  unReleaseSchedule(input: ReleaseScheduleInput!): LeagueResponse!
+  releaseSubSchedule(input: ReleaseSubScheduleInput!): SubScheduleResponse!
+  unReleaseSubSchedule(input: ReleaseSubScheduleInput!): SubScheduleResponse!
+  updateSubScheduleNote(input: UpdateSubScheduleNoteInput!): SubScheduleResponse!
+  deleteSubSchedule(input: DeleteSubScheduleInput!): LeagueResponse!
+  updateTournament(input: UpdateTournamentInput!): TournamentResponse!
+  updateRoundNote(input: UpdateRoundNoteInput!): TournamentResponse!
+  updateGame(input: EditGameInput!): LeagueResponse!
+  createGame(input: CreateGameInput!): LeagueResponse!
+  deleteGame(input: DeleteGameInput!): LeagueResponse!
+  gameEditScore(input: GameEditScoreInput!): GameEditScoreResponse!
+  shareGame(_id: ID!): Game!
+  createWeek(input: CreateWeekInput!): WeekResponse!
+  deleteWeek(input: DeleteWeekInput!): LeagueResponse!
+  updateWeek(input: UpdateWeekInput!): LeagueResponse!
+  createDay(input: CreateDayInput!): LeagueResponse!
+  deleteDay(input: DeleteDayInput!): LeagueResponse!
+  updateDay(input: UpdateDayInput!): LeagueResponse!
+  createTbdTeam(input: CreateTbdTeamInput!): LeagueResponse!
+  swapTeamSchedules(input: SwapTeamSchedulesInput!): LeagueResponse!
+  upsertSubSchedule(input: UpsertSubScheduleInput!): SubScheduleResponse!
+  createTimeslots(input: TimeslotInput!): SubScheduleResponse!
+  removeTimeslots(input: RemoveTimeslotsInput!): SubScheduleResponse!
+  createTimeslotsFromRounds(input: TimeslotRoundInput!): SubScheduleResponse!
+  teamUpdateGameRsvp(input: teamUpdateGameRsvpInput!): TeamScheduleResponse!
+  rsvpForPlayer(input: RsvpForPlayerInput!): TeamScheduleResponse!
+  addBulkNote(input: BulkNoteInput!): CurrentUserResponse!
+  addPhoneToken(token: String!): CurrentUserResponse!
+  addProgramToFavorites(programId: ID!): CurrentUserResponse!
+  clearAllPhoneTokens: CurrentUserResponse!
+  currentUserAddPaymentSource(input: CurrentUserAddPaymentSourceInput!): CurrentUserResponse!
+  currentUserDeletePaymentSource(input: CurrentUserDeletePaymentSourceInput!): CurrentUserResponse!
+  currentUserRsvpNextGame(input: CurrentUserRsvpNextGameInput!): CurrentUserResponse!
+  currentUserSetPaymentSourceDefault(input: CurrentUserSetPaymentSourceDefaultInput!): CurrentUserResponse!
+  deactivateCurrentUser(input: DeactivateUserInput): UserDetailsResponse
+  deleteProfilePicture(userId: ID): UserDetailsResponse!
+  forgotPasswordEmail(input: ForgotPasswordInput!): CurrentUserResponse!
+  removeLeagueFromStaff(input: RemoveLeagueFromStaffInput!): CurrentUserResponse!
+  removePhoneToken(token: String!): CurrentUserResponse!
+  removeProgramFromFavorites(programId: ID!): CurrentUserResponse!
+  toggleUserAccountStatus(input: ToggleAccountStatusInput!): UserResponse!
+  unsubscribeUserSettings(input: UnsubscribeUserSettingsInput!): CurrentUserResponse!
+  updateCurrentUser(input: CurrentUserInput): CurrentUserResponse
+  updateNotificationPreferences(input: NotificationPreferencesInput!): NotificationPreferencesResponse!
+  updateOrgBannerMessage(input: BannerMessageInput!): UpdateBannerMessageResponse
+  updatePassword(input: UpdatePasswordInput!): CurrentUserResponse!
+  updatePrivacyPreferences(input: PrivacyPreferencesInput!): PrivacyPreferencesResponse!
+  updateUserData(input: UpdateUserDataInput!): CurrentUserResponse!
+  updateUserHomeOrganization(input: UpdateUserHomeOrganizationInput!): CurrentUserResponse!
+  updateUserRoles(input: UserRolesInput!): CurrentUserResponse!
+  uploadProfilePicture(input: UploadProfilePictureInput!): UserDetailsResponse!
+  userNoteAdd(input: UserNoteInput!): CurrentUserResponse!
+  userNoteDelete(input: UserNoteInput!): CurrentUserResponse!
+  userNoteEdit(input: UserNoteInput!): CurrentUserResponse!
+  editStrikeCount(input: EditStrikeCountInput!): User!
+  updateCurrentUserPlatformContext(input: PlatformContextInput!): CurrentUserResponse!
+  lookupVenueData(input: LookupVenueInput!): ApprovedVenue!
+  organizationAddApprovedVenue(input: OrganizationAddApprovedVenueInput!): OrganizationResponse!
+  organizationUpdateApprovedVenue(input: OrganizationAddApprovedVenueInput!): OrganizationResponse!
+  organizationRemoveApprovedVenue(input: OrganizationRemoveApprovedVenueInput!): OrganizationResponse!
+  uploadPdfsToApprovedVenue(input: uploadPdfsToApprovedVenueInput!): OrganizationResponse!
+  removePdfsFromApprovedVenue(input: removePdfsFromApprovedVenueInput!): OrganizationResponse!
+  organizationToggleApprovedVenue(input: OrganizationRemoveApprovedVenueInput!): OrganizationResponse!
+  venueUploadPdfs(input: VenueUploadPdfsInput!): OrganizationResponse!
+  venueRemovePdfs(input: VenueRemovePdfsInput!): OrganizationResponse!
+  venueEditPermits(input: VenueEditPermitsInput!): OrganizationResponse!
+  swapOldVenue(input: SwapVenueInput!): ApprovedVenue!
+  updateVenueSportDetails(input: UpdateVenueSportDetailsInput!): ApprovedVenue!
+  editDivision(input: DivisionInput!): Division!
+  createDivision(input: DivisionInput!): Division!
+  addTeamToDivision(input: AddTeamToDivisionInput!): Team!
+  addWaiverNotes(input: WaiverNotesInput!): SaveWaiverResponse!
+  saveWaiver(input: SaveWaiverInput!): SaveWaiverResponse!
+  updateWaiverStatus(input: UpdateWaiverStatusInput!): SaveWaiverResponse!
+  startMembership(input: StartMembershipInput!, referredBy: MembershipReferralInput): Membership!
+  startTrialMembership(input: StartTrialMembershipInput!, referredBy: MembershipReferralInput): Membership!
+  cancelMembership: MembershipCancelResponse!
+  reinstateMembership: Membership!
+  startMembershipForUser(input: StartMembershipInput!, userId: ID!): Membership!
+  startTrialMembershipForUser(input: StartTrialMembershipInput!, userId: ID!): Membership!
+  cancelMembershipForUser(userId: ID!): Membership!
+  reinstateMembershipForUser(userId: ID!): Membership!
+  createIncidentReport(input: CreateIncidentReportInput!): IncidentReport!
+  updateResolutionStatus(input: UpdateResolutionStatusInput!): IncidentReport!
+  assignIncidentReport(input: AssignIncidentReportInput!): IncidentReport!
+  updateIncidentFlag(input: UpdateIncidentFlagInput!): IncidentReport!
+  addResolutionNote(input: AddResolutionNoteInput!): IncidentReport!
+  deleteResolutionNote(input: DeleteResolutionNoteInput!): IncidentReport!
+  createIncidentReportsCsv(input: IncidentReportsQueryInput!): IncidentReportCSVResponse!
+  updateStandingsRule(input: UpdateStandingsRuleInput!): StandingsRule!
+  createStandingsRuleset(input: CreateStandingsRulesetInput!): StandingsRuleset!
+  deleteStandingsRuleset(standingsRulesetId: ID!): StandingsRuleset!
+  startRecurringDonation(price_id: String!): Donation!
+  updateRecurringDonation(price_id: String!): Donation!
+  cancelRecurringDonation: Donation!
+  sendTeamChatNotifications(input: TeamChatNotificationInput!): Boolean!
+  createShiftLog(input: CreateShiftLogInput!): ShiftLog!
+  assignShiftLog(input: AssignShiftLogInput!): ShiftLog!
+  assignShiftLogSection(input: AssignShiftLogSectionInput!): ShiftLog!
+  updateShiftLogStatus(input: UpdateShiftLogStatusInput!): ShiftLog!
+  updateShiftLogSectionStatus(input: UpdateShiftLogSectionStatusInput!): ShiftLog!
+  createShiftLogCsv(filters: ShiftLogFilters): CreateShiftLogCsvResponse!
+  assignProgramToShiftLog(input: AssignProgramToShiftLogInput!): ShiftLog!
+  editPlayerStrike(input: PlayerStrikeMutationInput!): PlayerStrike!
+}
+
+type MyRsvpsResponse {
+  rsvps: [RSVPResponse]!
+}
+
+type Neighborhood {
+  _id: ID!
+  name: String!
+  organizationId: ID!
+}
+
+type NeighborhoodListResponse {
+  neighborhoods: [Neighborhood]
+}
+
+input NextGameInput {
+  programId: ID!
+}
+
+type NextGameResponse {
+  nextGame: TeamGame
+}
+
+type NotesData {
+  _id: ID!
+  _updated: ID!
+  createdBy: String!
+  type: String!
+  note: String!
+}
+
+type NotificationPreferences {
+  email: Boolean
+  sms: Boolean
+  push: Boolean
+}
+
+input NotificationPreferencesInput {
+  _id: ID!
+  username: String
+  email: String
+  notificationPreferences: NotificationsInput
+}
+
+type NotificationPreferencesResponse {
+  currentUser: CurrentUser
+}
+
+type NotificationProgressResponse {
+  notificationsProcessed: Int!
+  notificationsRemaining: Int!
+  status: String!
+}
+
+type Notifications {
+  host_messages: HostMessages!
+  rivall_announcements: RivallAnnouncements!
+  recommendations: Recommendations!
+}
+
+input NotificationsInput {
+  email: Boolean
+  sms: Boolean
+  push: Boolean
+}
+
+type NotificationStats {
+  allNotifications: [ActivityItem]!
+  unreadNotifications: [ActivityItem]!
+  unreadCount: Int!
+}
+
+type OldVenuesResponses {
+  _id: ID!
+  name: String!
+  formatted_address: String!
+  leagueCount: Int!
+  leagues: [LeagueInfo]!
+}
+
+input OpenDropInSlotInput {
+  gameId: ID!
+  teamId: ID!
+  gender: String!
+}
+
+type OpponentCount {
+  opponent: Team!
+  count: Int!
+}
+
+type Organization {
+  _id: ID!
+  shift_log_email: String!
+  timezone: String!
+  name: String!
+  logo: String
+  icon: String
+  crest: String
+  website_url: String
+  is_dry: Boolean!
+  city: String
+  seasons: [OrganizationSeason]!
+  contact_email: String!
+  contact_phone_number: String
+  weather_line_number: String
+  stripe_connected: Boolean
+  brand: BrandOptions!
+  more_information: OrganizationInformation
+  waiver: String
+  hasStripeExpressAccount: Boolean!
+  hosts: [User]!
+  hostAdmins: [User]!
+  adminUserIds: [ID]!
+  tier: String!
+  pendingEmails: [Email]!
+  emailTemplates: [Email]!
+  savedEmailPictures: [String]
+  staff: [ID]
+  approvedVenues: [ApprovedVenue]!
+  location: LocationInfo
+  homepageDetails: HomepageDetails
+  heroSlides: [HeroSlides]
+  slideDuration: Int
+  dashboardBanner: String
+  isVoloPassTrialActive: Boolean!
+  voloPassTiers: VoloPassTiersType!
+  featuredProgramIds: [ID]
+  featuredPrograms: [League]
+  shirtOptions: [Color]!
+  weekOptions: [WeekOption]
+  sponsorLogos: [SponsorLogos]
+  shift_log_link: String
+  supportsRentals: Boolean!
+}
+
+input OrganizationAddApprovedVenueInput {
+  venueId: ID
+  organizationId: ID!
+  shorthandName: String!
+  neighborhood: String!
+  timezone: String!
+  place_id: String!
+  venueFeatures: [String]
+  image: ImageInput
+  sublocations: [String]
+}
+
+input OrganizationAddEmailTemplateInput {
+  organizationId: ID!
+  body: String!
+  subject: String!
+}
+
+input OrganizationConnectStripeExpressAccountInput {
+  organizationId: ID!
+  authorizationCode: String!
+}
+
+type OrganizationCsvResponse {
+  data: String!
+}
+
+input OrganizationDailyMetricsInput {
+  organizationId: ID!
+  timezone: String
+  limit: Int
+}
+
+input OrganizationDonationTotalInput {
+  organizationId: ID!
+  startDate: String!
+  endDate: String
+  timezone: String
+}
+
+input OrganizationHomepageInput {
+  organizationId: ID!
+  sportDetails: [SportDetailsInput]
+}
+
+type OrganizationInformation {
+  weather: OrgInfo
+  jerseys: OrgInfo
+  refunds: OrgInfo
+  forfeits: OrgInfo
+  faq: OrgInfo
+  about: OrgInfo
+  charity: OrgInfo
+}
+
+input OrganizationInformationInput {
+  weather: OrgInfoInput
+  jerseys: OrgInfoInput
+  refunds: OrgInfoInput
+  forfeits: OrgInfoInput
+  faq: OrgInfoInput
+  about: OrgInfoInput
+  charity: OrgInfoInput
+}
+
+input OrganizationManagePromoInput {
+  organizationId: ID!
+  promo: PromoCodeInput
+  promoId: ID
+  isMembership: Boolean
+}
+
+input OrganizationPoliciesInput {
+  organizationId: ID!
+  more_information: OrganizationInformationInput!
+}
+
+input OrganizationPromoCodesInput {
+  organizationId: ID!
+  limit: Int
+  skip: Int
+  searchText: String
+  sort: String
+  isMembership: Boolean
+  starting_after: ID
+}
+
+input OrganizationRemoveApprovedVenueInput {
+  venueId: ID!
+  organizationId: ID!
+}
+
+input OrganizationRemoveEmailTemplateInput {
+  organizationId: ID!
+  templateId: ID!
+}
+
+type OrganizationResponse {
+  organization: Organization!
+}
+
+input OrganizationRevenueBySportInput {
+  organizationId: ID!
+  seasonName: String
+  stage: String
+  status: String
+  includeArchived: Boolean
+  limit: Int
+}
+
+type OrganizationSeason {
+  name: String!
+  signupGoal: Int
+  revenueGoal: Float
+}
+
+input OrganizationSeasonMetricsInput {
+  organizationId: ID!
+  seasonName: String!
+  sportName: String
+  stage: String
+  status: String
+  includeArchived: Boolean
+  timezone: String
+  limit: Int
+}
+
+input OrganizationSlidesDurationInput {
+  organizationId: ID!
+  slideDuration: Int!
+}
+
+input OrganizationSlidesInput {
+  organizationId: ID!
+  heroSlides: [HeroSlidesInput]!
+}
+
+input OrganizationSponsorLogosInput {
+  organizationId: ID!
+  sponsorLogos: [SponsorLogosInput]!
+}
+
+input OrganizationStripeDashboardUrlInput {
+  organizationId: ID!
+}
+
+input OrganizationUpdateBrandInput {
+  organizationId: ID!
+  primaryColor: String
+  secondaryColor: String
+  headerHideName: Boolean
+  headerHideContact: Boolean
+}
+
+input OrganizationUpdateSeasonGoalsInput {
+  organizationId: ID!
+  seasonName: String!
+  revenueGoal: Float
+  signupGoal: Int
+}
+
+type OrgHomepageDefaultsType {
+  orgPrograms: [OrgProgramsType]
+  orgCompetitionLevels: [CompetitionLevelsType]
+}
+
+type OrgInfo {
+  website_url: String
+  html: String
+  prefer: String
+}
+
+input OrgInfoInput {
+  website_url: String
+  html: String
+  prefer: String
+}
+
+type OrgProgramsType {
+  name: String
+  hide: Boolean
+  description: String
+  programImage: ImageType
+}
+
+input Pagination {
+  pageNum: Int!
+  numPerPage: Int!
+}
+
+input PaginationInput {
+  pageNum: Int
+  numPerPage: Int
+}
+
+type PartyInvolved {
+  _id: ID!
+  user: User
+  name: String!
+  email: String
+  gender: String
+  birthday: String
+  team_name: String
+  phone_number: String!
+  injuries: [Injury]!
+}
+
+input PartyInvolvedInput {
+  user_id: ID
+  name: String!
+  email: String
+  gender: String
+  birthday: DateTime
+  team_name: String
+  phone_number: String!
+  injuries: [InjuryInput]
+}
+
+type PaymentData {
+  paymentId: String!
+  leagueId: ID
+  date: String
+  net: Int
+  credits: Int
+  revenue: Int
+  maxPartialRefund: Int
+  disableRefunds: Boolean
+  disablePartialRefunds: Boolean
+  fullRefund: Int
+  chargeId: String
+  status: String
+  type: String
+  reason: String
+  organizationId: ID
+  donation: Int
+  promoCode: String
+  manuallyAddedBy: String
+  platform: String
+  registrant: Registrant
+}
+
+type PaymentListItem {
+  paymentId: ID!
+  leagueId: ID!
+  date: String!
+  reason: String
+  net: Int!
+  credits: Int!
+  donation: Int!
+  refund: Int!
+}
+
+type PaymentListResponse {
+  payments: [PaymentListItem]!
+  totalPayments: Int!
+  count: Int!
+}
+
+type PaymentSource {
+  last4: Int!
+  isDefault: Boolean!
+  isExpired: Boolean!
+  exp_month: Int!
+  exp_year: Int!
+  brand: String!
+  id: String!
+}
+
+enum PaymentStatus {
+  pending
+  error
+  ok
+  refunded
+  partially_refunded
+}
+
+input PDFInput {
+  name: String
+  url: String
+}
+
+type PDFType {
+  name: String
+  url: String
+}
+
+input PeriodInput {
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+type Permit {
+  _id: ID!
+  approvedVenueId: ID
+  start: String!
+  end: String!
+  referenceId: String
+  sublocations: [String]
+  centsDaily: Int
+  centsHourly: Int
+  note: String
+  pdf: PDFType
+  timeframe: PermitTimeframe!
+  sublocationOptions: [String]
+  leagues: [League]
+  leagueIds: [ID]
+}
+
+input PermitEditInput {
+  permits: [PermitInput]!
+  approvedVenueId: ID!
+}
+
+input PermitInput {
+  _id: ID
+  centsDaily: Int!
+  centsHourly: Int!
+  sublocations: [String]
+  referenceId: String
+  note: String
+  pdf: PDFInput
+  timeframe: PermitTimeframeInput!
+}
+
+type PermitListResponse {
+  permits: [Permit]!
+  count: Int!
+  endCursor: Int!
+}
+
+input PermitQueryInput {
+  venueId: ID!
+  pagination: PaginationInput
+  start: String
+  end: String
+}
+
+type PermitsResponse {
+  permitList: [Permit]
+}
+
+type PermitTimeframe {
+  date: DateTime!
+  startTime: String!
+  endTime: String!
+  timezone: String!
+}
+
+input PermitTimeframeInput {
+  date: String!
+  startTime: String!
+  endTime: String!
+}
+
+type Personalizations {
+  to: String!
+  substitutions: Substitutions
+}
+
+input PhoneNumberIsValidInput {
+  phoneNumber: String!
+  countryCode: String!
+}
+
+input PlatformContextInput {
+  clientVersion: String!
+  clientBuildNumber: String!
+}
+
+type PlayerCheckinInfoResponse {
+  player: User!
+  game: Game!
+  team: Team!
+  league: League!
+  firsts: PlayerFirstExperiences!
+  isDropin: Boolean!
+}
+
+type PlayerCheckinStatusResponse {
+  status: Boolean!
+}
+
+type PlayerDetailsType {
+  _id: ID!
+  fullName: String!
+  email: String!
+  phone_number: String!
+  countryCode: String
+  birthday: String!
+  gender: String!
+  shirt_size: String!
+  username: String!
+  picture: String!
+  zip: String!
+  initials: String!
+}
+
+type PlayerFirstExperiences {
+  firstTime: Boolean
+  firstVenue: Boolean
+  firstActivity: Boolean
+  firstSeason: Boolean
+  firstProgramType: Boolean
+  firstGender: Boolean
+  firstOrganization: Boolean
+}
+
+input PlayerGetCheckinBarcodeInput {
+  gameId: ID!
+  teamId: ID!
+  isDropin: Boolean
+}
+
+type PlayerGetCheckinBarcodeResponse {
+  code: String!
+}
+
+type PlayerStrike {
+  _id: ID!
+  user: User!
+  name: String!
+  associated_game: Game
+  reason: PlayerStrikeReason!
+
+  """in cents"""
+  fee_applied: Int!
+  invalidated: Boolean!
+  invalidation_type: PlayerStrikeInvalidationType
+  updated_by: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum PlayerStrikeInvalidationType {
+  AUTOMATIC
+  MANUAL
+}
+
+input PlayerStrikeMutationInput {
+  _id: ID!
+  name: String
+  associated_game: ID
+  invalidated: Boolean
+}
+
+enum PlayerStrikeReason {
+  NO_SHOW
+  LATE_CANCELLATION
+  MANUAL
+  OTHER
+}
+
+type PlayerStrikes {
+  count: Int!
+  history: [PlayerStrike!]!
+}
+
+type PowerUserItem {
+  numRegistrants: Int!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+type PricePhase {
+  individualPrice: Int!
+  prepaidTeamPrice: Int!
+  startDateStr: String!
+  endDateStr: String!
+  allow: Boolean!
+  phaseName: String!
+  startDate: DateTime
+  endDate: DateTime
+  allowIndividual: Boolean!
+  allowPrepaidTeam: Boolean!
+}
+
+input PricePhaseInput {
+  allow: Boolean!
+  individualPrice: Int
+  prepaidTeamPrice: Int
+  startDateStr: String
+  endDateStr: String
+}
+
+type PricingBreakdown {
+  """
+  The price of the program taking into account the registration phase and the user's membership status.
+  """
+  programPriceCents: Int!
+
+  """The amount taken off by the user's promo code"""
+  promoDiscountCents: Int!
+
+  """
+  The programPriceCents after any discounts from promos and credits are applied
+  """
+  afterDiscountCents: Int!
+
+  """Only applies to Leagues. The amount of fees to remove TODO"""
+  processingFeeCents: Int!
+
+  """
+  Only applies to Leagues. The flat fee to apply depending on the Organization's
+  tier. Corresponds to Organization[tier].feePerPlayerCents. No fee is applied
+  if the cost after discounts is 0. If registering a pre-paid team, a fee equal
+  to the feePerPlayerCents * the minimum team size is applied.
+  """
+  flatFeeCents: Int!
+
+  """
+  Only applies to non-League registrations. A tech fee is not applied if the price after discounts is 0.
+  
+  If the program is an Event or Tournament, a fee using a percentage is computed using the TechFees enum.
+  
+  For other daily programs, a flat $1.00 fee is applied.
+  """
+  techFeeCents: Int!
+
+  """The amount the user chose to donate to the Volo Kids Foundation."""
+  donationCents: Int!
+
+  """The amount the user wishes to spend in credits"""
+  creditCents: Int!
+
+  """
+  The total amount of money that goes to the organization (afterDiscountCents + donationCents)
+  """
+  totalTransferCents: Int!
+
+  """Sum of all fees. processingFeeCents + flatFeeCents + techFeeCents"""
+  totalFeeCents: Int!
+
+  """
+  The amount of money the user is charged in Stripe. Includes fees and donations.
+  """
+  totalChargeCents: Int!
+
+  """
+  Only applies to Leagues. The feePercentage corresponding to the Organization's tier.
+  """
+  feePercentage: Float!
+
+  """The promo code object the user wishes to use."""
+  promoCode: PromoCode
+
+  """If the user has a discount applied due to Volo Pass."""
+  membershipDiscountApplied: Boolean
+
+  """
+  The member price, if it exists. This value is not accurate for Pre-paid team registrations.
+  """
+  memberPrice: Int
+
+  """The price of the program assuming the user is not a Volo Pass member."""
+  originalPrice: Int
+
+  """May not be used."""
+  nonMemberPrice: Int
+
+  """The registration phase the user registered in."""
+  currentPhase: String
+  processingFeePercentage: Int!
+  priceCents: Int!
+  supportFeeCents: Int!
+  donationAmount: Int!
+  creditAmount: Int!
+  totalCents: Int!
+}
+
+type PricingBreakdownResponse {
+  pricingBreakdown: PricingBreakdown!
+  promoCodeMessage: String
+}
+
+type PrimaryStaffWitness {
+  user: User
+  name: String!
+}
+
+input PrimaryStaffWitnessInput {
+  user_id: ID
+  name: String!
+}
+
+input PrivacyInput {
+  shareEmail: Boolean
+  sharePhone: Boolean
+  displayNameTeamRoster: String
+  displayNamePickups: String
+}
+
+type PrivacyPreferences {
+  shareEmail: Boolean
+  sharePhone: Boolean
+  displayNameTeamRoster: String
+  displayNamePickups: String
+}
+
+input PrivacyPreferencesInput {
+  _id: ID!
+  privacyPreferences: PrivacyInput
+}
+
+type PrivacyPreferencesResponse {
+  currentUser: CurrentUser
+}
+
+input ProgramDateDetails {
+  registrationStart: String!
+  registrationClose: String!
+  programStartDate: String!
+  programStartTime: String!
+  programEndDate: String!
+  programEndTime: String!
+  skillLevel: String!
+}
+
+input ProgramInput {
+  kind: String
+  item: ID
+}
+
+type ProgramPricePhases {
+  earlyBird: PricePhase!
+  regular: PricePhase!
+  lastChance: PricePhase!
+}
+
+input ProgramPricingForRegistrationInput {
+  leagueId: ID!
+  isPrepaidTeam: Boolean
+  promoCodeStr: String
+  donationAmount: Int
+  creditAmount: Int
+  ignoreLoggedIn: Boolean
+  isMember: Boolean
+}
+
+type ProgramRegistration {
+  pricingBreakdown: PricingBreakdown!
+  promoCode: PromoCode
+  paymentSource: PaymentSource
+  prepaidTeam: Group
+  group: Group
+  league: League
+  registrant: Registrant
+}
+
+type ProgramRegistrationResponse {
+  programRegistration: ProgramRegistration!
+}
+
+type ProgramTag {
+  _id: ID!
+  name: String!
+  icon: String
+}
+
+type ProgramType {
+  item: ID!
+  kind: String
+}
+
+input ProgramTypeDescriptionInput {
+  isCustom: Boolean
+  text: String
+}
+
+type ProgramTypeDescriptionType {
+  isCustom: Boolean
+  text: String
+}
+
+enum ProgramTypeEnum {
+  LEAGUE
+  TOURNAMENT
+  EVENT
+  PRACTICE
+  PICKUP
+  DROPIN
+  VOLUNTEER_EVENT
+  VOLUNTEER_LEAGUE
+  CLASS
+  CLINIC
+  SERIES
+}
+
+input ProgramTypeInput {
+  description: ProgramTypeDescriptionInput
+  hide: Boolean
+  name: String
+  programImage: ImageInput
+}
+
+type ProgramTypesType {
+  description: ProgramTypeDescriptionType
+  hide: Boolean
+  name: String
+  programImage: ImageType
+}
+
+type PromoCode {
+  promoCodeStr: String!
+  organizationId: ID!
+  discountPercentage: Int
+  discountCents: Int
+  disabled: Boolean
+  isPrepaidTeamCode: Boolean!
+  maxNumUses: Int
+  remainingUses: Int
+  expirationDateStr: String
+  notes: String
+  validProgramIds: [ID]
+  validPrograms: [League]
+  registrants: [Registrant]
+}
+
+input PromoCodeInput {
+  _id: ID
+  code: String
+  promoList: [PromoListInput]
+  is_first_time_customer_only: Boolean
+  organization: ID
+  notes: String
+  expiration_date: String
+  disabled: Boolean
+  max_num_uses: Int
+  discount_percentage: Float
+  discount_dollar_amount: Float
+  for_prepaid_teams: Boolean
+  approved_user_emails: [String]
+  usedBy: [ID]
+  programs: [ProgramInput]
+  _updated: String
+  leagues: [String]
+  maxNumPerAccount: Int
+  duration: String
+  duration_in_months: Int
+  _creator: String
+}
+
+type PromoCodeResponse {
+  promos: [PromoCodeSchema]
+  count: Int!
+  endCursor: Int
+  endCursorId: ID
+  hasMore: Boolean
+}
+
+type PromoCodeSchema {
+  _id: ID!
+  code: String!
+  promoList: [PromoListType]
+  is_first_time_customer_only: Boolean
+  organization: ID
+  notes: String
+  expiration_date: String
+  disabled: Boolean
+  max_num_uses: Int
+  discount_percentage: Float
+  discount_dollar_amount: Float
+  for_prepaid_teams: Boolean
+  approved_user_emails: [String]
+  usedBy: [ID]
+  programs: [ProgramType]
+  leagues: [String]
+  maxNumPerAccount: Int
+  duration: String
+  duration_in_months: Int
+  _updated: String
+  _creator: ID
+}
+
+input PromoListInput {
+  promoCode: String
+  firstTimeOnly: Boolean
+  promotionCodeId: String
+  isDeleted: Boolean
+  isNew: Boolean
+}
+
+type PromoListType {
+  promotionCodeId: String!
+  promoCode: String!
+  firstTimeOnly: Boolean!
+}
+
+type Query {
+  _: Boolean
+  findDropInTeams(input: FindDropInTeamsInput!): DropInTeamsResponse!
+  playerGetCheckinBarcode(input: PlayerGetCheckinBarcodeInput!): PlayerGetCheckinBarcodeResponse!
+  hostScanCheckinBarcode(input: HostScanCheckinBarcodeInput!): PlayerCheckinInfoResponse!
+  getPlayerCheckinStatus(input: GetPlayerCheckinStatusInput!): PlayerCheckinStatusResponse!
+  searchPlayerForCheckin(input: SearchPlayerForCheckinInput!): SearchPlayerForCheckinResponse!
+  searchCheckinCandidates(input: SearchCheckinCandidatesInput!): SearchCheckinCandidatesResponse!
+  getProgramsOnDay(input: GetProgramsOnDayInput!): GetProgramsOnDayResponse!
+  getGamesOnDay(input: GetGamesOnDayInput!): GetGamesOnDayResponse!
+  leagueGetBasicInfo(input: LeagueGetBasicInfoInput!): LeagueGetBasicInfoResponse!
+  discoverPrograms(input: DiscoverInput!): DiscoverProgramsResponse!
+  discoverDaily(input: DiscoverInput!): DiscoverDailyResponse!
+  discoverProgramTypes(input: DiscoverInput!): DiscoverProgramTypesResponse!
+  discoverSports(input: DiscoverInput!): DiscoverSportsResponse!
+  discoverTopSports(input: DiscoverInput!): DiscoverSportsResponse!
+  discoverNeighborhoods(input: DiscoverInput!): DiscoverNeighborhoodsResponse!
+  discoverTopNeighborhoods(input: DiscoverInput!): DiscoverNeighborhoodsResponse!
+  discoverDaysOfWeek(input: DiscoverInput!): DiscoverDaysOfWeekResponse!
+  discoverVenues(input: DiscoverInput!): DiscoverVenuesResponse!
+  discoverTopVenues(input: DiscoverInput!): DiscoverVenuesResponse!
+  discoverSeasons(input: DiscoverInput!): DiscoverSeasonsResponse!
+  discoverTeams(input: DiscoverInput!): DiscoverTeamsResponse!
+  discoverSkillLevels(input: DiscoverInput!): DiscoverSkillLevelsResponse!
+  discoverPerks(input: DiscoverInput!): DiscoverPerksResponse!
+  discoverProgramTags(input: DiscoverInput!): DiscoverProgramTagsResponse!
+  dropInGamesList(input: DropInGamesListInput!): GameList!
+  dropInSlot(_id: ID!): DropInSlot!
+  dropInSlotsByGameId(gameId: ID!): DropInSlotsByGameIdResponse!
+  dropInSlotsByGameAndTeam(gameId: ID!, teamId: ID!): [DropInSlot]!
+  myRsvps(pagination: PaginationInput!): MyRsvpsResponse!
+  dropInSlotsForDate(input: DropInSlotsForDateInput!): DropInSlotsForDateResponse!
+  getActivitiesGraph(input: HostDashboardFilterInput!): GetActivitiesGraphResponse!
+  getCreditsIssuedGraph(input: HostDashboardFilterInput!): GetCreditsIssuedGraphResponse!
+  getCreditsUsedGraph(input: HostDashboardFilterInput!): GetCreditsUsedGraphResponse!
+  getDonationsGraph(input: HostDashboardFilterInput!): GetDonationsGraphResponse!
+  getRatingSnapshot(input: HostDashboardFilterInput!): GetRatingsSnapshotResponse!
+  getRefundsIssuedGraph(input: HostDashboardFilterInput!): GetRefundsIssuedGraphResponse!
+  getRevenueGraph(input: HostDashboardFilterInput!): GetRevenueGraphResponse!
+  getSignupsBreakdown(input: HostDashboardFilterInput!): GetSignupsBreakdownResponse!
+  getStaffBreakdown(input: HostDashboardFilterInput!): GetStaffBreakdownResponse!
+  getActiveCreditsGraph(input: HostDashboardFilterInput!): GetActiveCreditsGraphResponse!
+  getRatingsModal(input: HostDashboardFilterInput!): GetRatingsModalResponse!
+  getRevenueBreakdown(input: HostDashboardFilterInput!): GetRevenueBreakdownResponse!
+  getSignupsModal(input: HostDashboardFilterInput!): GetSignupsModalResponse!
+  getActivitiesModal(input: HostDashboardFilterInput!): GetActivitiesModalResponse!
+  getStaffModal(input: HostDashboardFilterInput!): GetStaffModalResponse!
+  getMembershipRatingsSnapshot(input: HostDashboardFilterInput!): GetMembershipRatingsSnapshotResponse!
+  getDailyOperationsSnapshot(input: HostDashboardFilterInput!): GetDailyOperationsSnapshotResponse!
+  getDailyOperationsModal(input: HostDashboardFilterInput!): GetDailyOperationsModalResponse!
+  getSignupCapacitiesModal(input: HostDashboardFilterInput!): GetSignupCapacitiesModalResponse!
+  getMembershipSubscriptionsSnapshot(input: HostDashboardFilterInput!): GetMembershipSubscriptionsSnapshotResponse!
+  getMembershipRevenueSnapshot(input: HostDashboardFilterInput!): GetMembershipRevenueSnapshotResponse!
+  getMarginsSnapshot(input: HostDashboardFilterInput!): GetMarginsSnapshotResponse!
+  getMarginsModal(input: HostDashboardFilterInput!): GetMarginsModalResponse!
+  getSignupsGraph(input: HostDashboardFilterInput!): GetSignupsGraphResponse!
+  getSignupsTotals(input: HostDashboardFilterInput!): GetSignupsTotalResponse!
+  getGameMetrics(input: HostDashboardFilterInput!): GetGameMetricsResponse!
+  getLastRegistrations(input: HostDashboardFilterInput!): LastRegistrationResponse!
+  getLastGames(input: HostDashboardFilterInput!): GetLastGamesResponse!
+  getLastLeagues(input: HostDashboardFilterInput!): LeagueListResponse!
+  getGameForfeits(input: HostDashboardFilterInput!): GetGameForfeitsResponse!
+  getPowerUsersSnapshot(input: HostDashboardFilterInput!): GetPowerUsersSnapshot!
+  getPowerUsersModal(input: HostDashboardFilterInput!): GetPowerUsersModal!
+  getMembershipSubscriptionsModal(input: HostDashboardFilterInput!): GetMembershipSubscriptionsModalResponse!
+  getMembershipRevenueModal(input: HostDashboardFilterInput!): GetMembershipRevenueModalResponse!
+  getMembershipRatingsModal(input: HostDashboardFilterInput!): GetMembershipRatingsModalResponse!
+  getRetentionSnapshot(input: GetRetentionInput!): GetRetentionSnapshotResponse!
+  getRetentionModal(input: GetRetentionInput!): GetRetentionModalResponse!
+  getStaffRatings(input: HostDashboardFilterInput!): GetStaffRatingsResponse!
+  getEmails(input: EmailFilterInput!): [String]!
+  emailCount(input: EmailFilterInput!): MessageCenterResponse!
+  getTemplateEmails(_id: ID!): GetTemplateEmailsResponse!
+  getSentEmails(_id: ID!, pagination: EmailPaginationInput): GetSentEmailsResponse!
+  rating(_id: ID!): Rating!
+  ratingList(input: RatingListInput!): RatingListResponse!
+  getPromptedNotification(_id: ID!): ActivityItem!
+  getActivityList(pagination: PaginationInput, input: GetActivityListResponse): [ActivityItem]!
+  getNotificationsList(input: GetActivityListResponse): NotificationStats!
+  getSubmittedActivityList: [ActivityItem]!
+  getNotificationCount: GetNotificationCountResponse!
+  discoverNew(input: RecommenderInput): RecommenderResponse!
+  discoverRecommender(input: RecommenderInput): RecommenderResponse!
+  discoverStaffPicks(input: RecommenderInput): RecommenderResponse!
+  programPricingForRegistration(input: ProgramPricingForRegistrationInput!): PricingBreakdownResponse!
+  dropinPricingForRegistration(input: DropinPricingForRegistrationInput!): DropinPricingBreakdownResponse!
+  currentLeagueTeamPricing(input: CurrentLeagueTeamPricingInput!): TeamPricingBreakdownResponse!
+  group(_id: ID!): Group!
+  checkGroupPassword(input: CheckGroupPasswordInput!): Boolean!
+  league(_id: ID!): League!
+  leagues(input: LeaguesInput!): [League]!
+  leagueGetAllChildren(_id: ID!): LeagueAllChildrenResponse!
+  seasonList(organizationId: ID): SeasonListResponse!
+  leagueList(input: LeagueListInput!): LeagueListResponse!
+  leagueFreeAgents(_id: ID!): LeagueFreeAgentsResponse!
+  leagueGroups(registration: ID!): LeagueGroupsResponse!
+  programRoster(leagueId: ID!): [LeagueProgramRosterResponse]!
+  leaguePlayerSchedule(input: LeaguePlayerScheduleInput!): LeaguePlayerScheduleResponse!
+  homepageFaqs: HomepageFaqsType!
+  homepageNationalRules: HomepageRulesType!
+  nationalSlides: HomepageSlidesType!
+  globalExpenses: GlobalExpensesType!
+  sportDefaults: SportDefaultsType!
+  rulesetTemplates: [RulesetTemplate]!
+  nationalProgramTags: [ProgramTag]!
+  kidsFoundationStats: KidsFoundationStats!
+  Neighborhood(organizationId: ID!): Neighborhood
+  neighborhoodList(organizationId: ID!): NeighborhoodListResponse
+  organization(_id: ID, getVoloDetails: Boolean): Organization!
+  organizationList: [Organization]!
+  organizationRevenueBySport(input: OrganizationRevenueBySportInput!): RevenueBySportResponse!
+  organizationDailyMetrics(input: OrganizationDailyMetricsInput!): DailyMetrics!
+  organizationSeasonMetrics(input: OrganizationSeasonMetricsInput!): SeasonMetrics!
+  organizationDonationTotal(input: OrganizationDonationTotalInput!): DonationTotalResponse!
+  organizationStripeDashboardUrl(input: OrganizationStripeDashboardUrlInput!): StripeDashboardUrlResponse!
+  organizationPromoCodes(input: OrganizationPromoCodesInput!): PromoCodeResponse!
+  staffList(input: StaffListInput!): StaffListResponse!
+  organizationGetComments(input: MobileCommentsInput!): CommentsResponse!
+  organizationGetUnsubscribes(input: GetUnsubscribesInput!): UnsubscribeResponse!
+  organizationGetSportFormats(input: SportFormatInput!): SportDetails!
+  organizationGetSportCompetitionLevels(input: SportFormatInput!): CompetitionLevelsResponse!
+  permit(_id: ID!): Permit!
+  permitList: [Permit]!
+  permitsByDateRange(input: PermitQueryInput!): PermitListResponse!
+  registrant(_id: ID!): Registrant!
+  userPaymentList(input: UserDetailListInput!): UserPaymentListResponse!
+  userPayments(input: UserDetailListInput!): PaymentListResponse!
+  userRefunds(input: UserDetailListInput!): RefundListResponse!
+  userCredits(input: UserDetailListInput!): CreditListResponse!
+  ruleset(_id: ID!): Ruleset!
+  rulesetsList(input: RulesetsInput): RulesetsResponse!
+  cityRulesetsList(input: RulesetsInput!): RulesetsResponse!
+  game(_id: ID!): Game!
+  games(input: GamesInput!): [Game]!
+  schedule(subScheduleId: ID!): SubSchedule!
+  getScheduleDetails(leagueId: ID!): GetScheduleDetailsResponse!
+  scheduleCheckCounts(input: ScheduleCheckCountsInput!): ScheduleCounts!
+  team(_id: ID!): Team!
+  teamSchedule(input: TeamScheduleInput!): TeamScheduleResponse!
+  teamRsvpStatus(input: TeamRsvpStatusInput!): TeamRsvpStatusResponse!
+  teamRoster(teamId: ID!): TeamRosterResponse!
+  user(_id: ID!): User
+  currentUser: CurrentUser
+  getUserNextGame(input: NextGameInput!): NextGameResponse!
+  currentUserLeagueConnections(input: CurrentUserLeagueConnectionsInput): [CurrentUserLeagueConnection!]!
+  currentUserDailyConnections(input: CurrentUserDailyConnectionsInput): [CurrentUserLeagueConnection!]!
+  currentUserLeagueConnection(input: CurrentUserLeagueConnectionInput): CurrentUserLeagueConnection!
+  currentUserIsInProgram(input: CurrentUserIsInProgramInput!): CurrentUserIsInProgramResponse!
+  currentUserTrophyCounts: TrophyCounts!
+  currentUserGetOrgBanner(organizationId: ID): MessageResponse!
+  userList(input: UserListInput!): UserListResponse!
+  userRegistrants(input: UserDetailListInput!): [Registrant!]!
+  userNoteList(input: UserDetailListInput!): UserNoteListResponse!
+  getUserRoles(input: UserRolesInput): UserRoleListResponse!
+  getUserDetails(input: UserDetailsInput!): UserDetailsResponse!
+  getUserByInfo(input: UserInfoInput!): CurrentUser
+  getUserGamesByDateRange(input: UserGamesByDateRangeInput!): GetUserGamesByDateRangeResponse!
+  getUserGamesByDay(input: UserGamesByDayInput!): GetUserGamesByDayResponse!
+  getUserChatSearch(input: ChatSearchInput!): ChatSearchResponse
+  getUserWaivers(userId: ID!): [UserWaiversResponse]!
+  venue(_id: ID!): ApprovedVenue!
+  cityList: [City]!
+  getOldVenues(organizationId: ID!): [OldVenuesResponses]!
+  approvedVenuesList(input: ApprovedVenuesListInput!): [ApprovedVenue]!
+  division(_id: ID!): Division!
+  getDivisionsList(organizationId: ID!): [Division]
+  waiver(_id: ID!): Waiver!
+  waivers(input: WaiversInput!): [Waiver]!
+  membership(stripeSubscriptionId: String!): Membership!
+  activeMembership: Membership
+  activeMembershipForUser(userId: ID!): Membership
+  memberships(pagination: StripePaginationInput): MembershipsResponse!
+  membershipInvoices(pagination: StripePaginationInput): MembershipInvoicesResponse!
+  membershipInvoicesForUser(userId: ID!, pagination: StripePaginationInput): MembershipInvoicesResponse!
+  membershipCoupon(stripeCouponId: String!): MembershipCoupon!
+  membershipCoupons(pagination: StripePaginationInput): MembershipCouponsResponse!
+  userIsActiveMember: Boolean!
+  userHasPastMembership: Boolean!
+  incidentReport(_id: ID!): IncidentReport!
+  incidentReports(input: IncidentReportsQueryInput!): [IncidentReport]!
+  incidentReportSummary(input: IncidentReportsQueryInput!): IncidentReportSummaryResponse!
+  searchUserHostForms(input: SearchUserHostFormsInput!): SearchUserHostFormsResponse!
+  standingsRule(standingsRuleId: ID!): StandingsRule!
+  standingsRuleset(input: GetStandingsRulesetInput!): StandingsRuleset!
+  leagueStandings(input: LeagueStandingsInput!): [LeagueTeamStandings!]!
+  donation(stripeSubscriptionId: String!): Donation!
+  activeDonation: Donation
+  activeDonationForUser(userId: ID!): Donation
+  donations(pagination: StripePaginationInput): DonationsResponse!
+  getDonationInvoices(pagination: StripePaginationInput): DonationInvoicesResponse!
+  getDonationInvoicesForUser(userId: ID!, pagination: StripePaginationInput): DonationInvoicesResponse!
+  userIsActiveDonor: Boolean!
+  userHasPastDonation: Boolean!
+  getCurrentUserTeamChats(input: CurrentUserTeamChatsInput!): [TeamChatRoom!]!
+  shiftLog(_id: ID!): ShiftLog!
+  shiftLogs(filters: ShiftLogFilters, pagination: PaginationInput, skipPagination: Boolean): ShiftLogsResponse!
+  shiftLogSummary(filters: ShiftLogFilters): ShiftLogSummary!
+  playerStrike(playerStrikeId: ID!): PlayerStrike!
+  nextPlayerStrikeReset: DateTime!
+  dashboardSchedule(input: DashboardScheduleInput, pagination: PaginationInput): DashboardScheduleResponse!
+  dashboardScheduleDates(input: DashboardScheduleInput): [DateTime!]!
+  dashboardProgramTypes(input: DashboardScheduleInput): [ProgramTypeEnum!]!
+  dashboardRegistrants(pagination: PaginationInput): DashboardRegistrantsResponse!
+}
+
+type Rating {
+  _id: ID!
+  value: Int!
+  type: String!
+  customTypeQuestion: String
+  comment: String
+  user: RatingSubmitter!
+  _created: String
+  leagueName: String
+  activityName: String
+  seasonName: String
+  registrantKind: String
+  isCaptain: Boolean
+  ownTeamName: String
+  oppositionTeamName: String
+  gameDate: String
+  gameStartTime: String
+  gameEndTime: String
+  rsvpStatus: String
+  connections: RatingConnections
+  flaggedForReview: Boolean
+}
+
+type RatingConnections {
+  gameId: ID
+  ownTeamId: ID
+  ownCaptainId: ID
+  oppositionTeamId: ID
+  oppositionCaptainId: ID
+  registrantId: ID
+  leagueId: ID
+  venueId: ID
+  organizationId: ID
+}
+
+input RatingListInput {
+  organizationId: ID!
+  pagination: PaginationInput
+  gender: String
+  activityName: String
+  seasonName: String
+  playerNameSearch: String
+  captainsOnly: Boolean
+  leagueId: ID
+  ratingQuestionType: String
+  ratingValue: Int
+  flaggedForReview: Boolean
+  registrantKind: String
+}
+
+type RatingListResponse {
+  ratings: [Rating]!
+  count: Int!
+  endCursor: Int!
+}
+
+type RatingPrompt implements ActivityItem {
+  _id: ID!
+  userId: ID!
+  organizationId: ID!
+  leagueId: ID!
+  teamId: ID!
+  gameId: ID!
+  type: String!
+  _created: String!
+  status: String
+  user: User!
+  organization: Organization!
+  league: League!
+  team: Team!
+  game: Game!
+  questions: [RatingSurveyQuestionItem]!
+}
+
+type RatingsModalItem {
+  leagueId: ID!
+  leagueName: String!
+  value: Float!
+  start_date: DateTime
+}
+
+type RatingsSnapshotItem {
+  averageRating: Float!
+  type: String!
+}
+
+input RatingSubmissionItem {
+  value: Int!
+  type: String!
+  customTypeQuestion: String
+  comment: String
+}
+
+type RatingSubmitter {
+  _id: ID!
+  first_name: String
+  last_name: String
+  email: String
+  phone: String
+  gender: String
+  birthday: String
+}
+
+type RatingSurvey {
+  enabled: Boolean!
+  questions: [RatingSurveyQuestionItem]!
+}
+
+input RatingSurveyInput {
+  enabled: Boolean!
+  questions: [RatingSurveyQuestionItemInput]!
+}
+
+type RatingSurveyQuestionItem {
+  questionType: String!
+  customTypeQuestion: String
+}
+
+input RatingSurveyQuestionItemInput {
+  questionType: String!
+  customTypeQuestion: String
+}
+
+type Recommendations {
+  email: Boolean!
+}
+
+input RecommenderInput {
+  userId: ID
+  cityName: String
+}
+
+type RecommenderResponse {
+  leagues: [League]!
+  count: Int!
+}
+
+type RefundListResponse {
+  refunds: [PaymentListItem]!
+  totalRefunds: Int!
+}
+
+input RegisterGroupInput {
+  name: String!
+  color: ColorInput
+  sizeEstimate: Int
+}
+
+input RegisterPrepaidTeamInput {
+  name: String!
+  color: ColorInput
+  sizeEstimate: Int
+  password: String!
+  passwordHint: String
+}
+
+type Registrant {
+  _id: ID!
+  player: User!
+  playerId: ID!
+  gender: String!
+  birthday: String!
+  firstName: String!
+  lastName: String!
+  username: String!
+  email: String!
+  picture: String!
+  phone_number: String!
+  kind: RegistrantType!
+  payment_status: PaymentStatus!
+  charge_data: ChargeData!
+  division_selection: String
+  why_you_play_selection: String
+  group: Group
+  fullStripeCharge: StripeCharge
+  isWaitlisted: Boolean!
+  league: League!
+  activityName: String
+  seasonName: String
+  leagueId: ID
+  age: Int
+  stagedTeam: Team
+  team: Team
+  credits: [CreditsSchema]
+  availableCredits: [AvailableCreditSchema]
+  teamRole: String
+  _created: String
+  manuallyAddedBy: String
+  notes: String
+  customResponsesList: [CustomResponse]
+  isDropin: Boolean
+  dropInBegins: DateTime
+  dropInName: String
+  dropInGameId: ID
+  dropInSlotId: String
+  dropInSlot: DropInSlot
+  isCurrentMember: Boolean
+  waiver: WaiverDetails!
+}
+
+input RegistrantAddCreditsInput {
+  userId: ID!
+  creditAmount: Int!
+  creditNote: String!
+  sendEmail: Boolean
+  reasonType: String
+  organizationId: ID!
+}
+
+input RegistrantBulkCreditsInput {
+  creditAmount: Int!
+  creditNote: String!
+  sendEmail: Boolean
+  amountType: String!
+  actionType: String!
+  genders: [String!]
+  selectedStatus: String
+  cityName: String
+  dateLow: String
+  dateHigh: String
+  registrationOption: String
+  sportNames: [String!]
+  seasonNames: [String!]
+  registrantTypes: [String!]
+  selectedProgram: ID!
+  teamNames: [String!]
+  searchText: String
+  membershipOnly: Boolean
+  hasSelectedAll: Boolean!
+  selected: [ID!]!
+  isMore: Boolean!
+  organizationId: ID!
+}
+
+type RegistrantBulkCreditsResponse {
+  league: League!
+}
+
+input RegistrantChangeProgramInput {
+  registrantId: ID!
+  changeToProgramId: ID!
+}
+
+input RegistrantCreateManuallyInput {
+  leagueId: ID!
+  playerId: ID!
+}
+
+type RegistrantCreditsResponse {
+  currentUser: CurrentUser!
+}
+
+input RegistrantDeleteCreditsInput {
+  userId: ID!
+  creditId: ID!
+  organizationId: ID!
+}
+
+input RegistrantInput {
+  _id: ID!
+  charge_data: ChargeDataInput!
+}
+
+input RegistrantIssueRefundInput {
+  organizationId: ID!
+  registrantId: ID!
+  keepInProgram: Boolean
+  isPartialRefund: Boolean
+  refundCents: Int
+  sendEmail: Boolean
+}
+
+type RegistrantRefundResponse {
+  registrant: Registrant!
+  registrantWasDeleted: Boolean
+  groupWasDeleted: Boolean
+}
+
+input RegistrantRemoveWithoutRefundInput {
+  registrantId: ID!
+  sendEmail: Boolean
+}
+
+type RegistrantResponse {
+  registrant: Registrant!
+}
+
+enum RegistrantType {
+  group_captain
+  private_captain
+  group_member
+  private_member
+  individual
+  waitlist_individual
+  staff
+  cancelled
+}
+
+input RegistrantUpdateHostNotesInput {
+  registrantId: ID!
+  notes: String!
+}
+
+input RegistrantUpdateHostQuestionsInput {
+  registrantId: ID!
+  customResponsesList: [CustomHostResponsesInput]!
+}
+
+input RegistrantUpdateTeamRoleInput {
+  teamId: ID!
+  playerId: ID!
+
+  """TeamRoleEnum"""
+  teamRole: TeamRoleEnum!
+}
+
+type Registration {
+  _id: ID!
+  jersey_colors: [Color]!
+  min_team_size: Int!
+  max_team_size: Int!
+  min_team_amount: Int!
+  max_team_amount: Int!
+  phases: ProgramPricePhases!
+  memberPrice: Int
+  nonMemberPrice: Int
+  memberDropinPrice: Int
+  registration_open: DateTime!
+  registration_close: DateTime!
+  registrationOpenStr: String
+  registrationCloseStr: String
+  showPlusFeeString: Boolean
+  allowPrepaidTeams: Boolean!
+  projectedNumOfTeams: Int!
+  projectedNumOfPlayers: Int!
+  malesAllowed: Int
+  femalesAllowed: Int
+  freeAgentsAllowed: Int
+  freeAgentLimitsEnabled: Boolean
+  blockFreeAgents: Boolean!
+  allowWaitlist: Boolean!
+  genderLimitsEnabled: Boolean!
+  blockGroupCaptains: Boolean!
+  blockGroupMembers: Boolean!
+  blockPrepaidTeamCaptains: Boolean!
+  blockPrepaidTeamMembers: Boolean!
+  status: String
+  currentPhase: String!
+  currentStatus: String!
+  currentSize: Int
+  maxSize: Int!
+  minSize: Int!
+  early_bird: RegistrationPhase!
+  regular: RegistrationPhase!
+  last_chance: RegistrationPhase!
+  corporate_early_bird: RegistrationPhase!
+  corporate: RegistrationPhase!
+  corporate_last_chance: RegistrationPhase!
+  end_date: String
+  limit_individual_registrations: Boolean
+  block_individual_registrations: Boolean
+  block_group_captain_registrations: Boolean
+  block_group_member_registrations: Boolean
+  block_prepaid_team_captain_registrations: Boolean
+  block_prepaid_team_member_registrations: Boolean
+  block_all_registrations: Boolean
+}
+
+type RegistrationPhase {
+  allowed: Boolean
+  price: Float
+  start_date: DateTime
+}
+
+input ReleaseScheduleInput {
+  leagueId: ID!
+}
+
+input ReleaseSubScheduleInput {
+  leagueId: ID!
+  subScheduleId: ID!
+}
+
+input ReminderEmailInput {
+  _id: ID!
+}
+
+type ReminderResponse {
+  reminderSent: Boolean!
+}
+
+input RemoveLeagueFromStaffInput {
+  _id: ID!
+  leagueId: ID!
+}
+
+input RemoveLeagueInput {
+  leagueId: ID!
+}
+
+type RemoveLeagueResponse {
+  leagueId: ID!
+}
+
+input removePdfsFromApprovedVenueInput {
+  organizationId: ID!
+  venueId: ID!
+  pdfUploads: [String]
+}
+
+input RemoveRegistrantFromDropinInput {
+  gameId: ID!
+  registrantId: ID!
+  teamId: ID!
+}
+
+type RemoveRegistrantFromDropinResponse {
+  dropInSlotId: ID!
+  playerName: String!
+}
+
+input RemoveTimeslotsInput {
+  subScheduleId: ID!
+  timeslotIds: [ID!]!
+}
+
+input ReoccuringEventUpdateInput {
+  organizationId: ID!
+  parentLeagueId: ID!
+  childReoccuringDate: String!
+}
+
+input ReopenLeagueInput {
+  leagueId: ID!
+}
+
+type ReportedBy {
+  user: User
+  name: String!
+  phone_number: String!
+}
+
+input ReportedByInput {
+  user_id: ID
+  name: String!
+  phone_number: String!
+}
+
+type ResolutionNote {
+  _id: ID!
+  note: String!
+  created_by: User!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+enum ResolutionStatus {
+  new
+  in_progress
+  resolved
+}
+
+type RevenueBreakdownItem {
+  leagueId: ID!
+  leagueName: String!
+  totalRevenue: Int!
+  numSignups: Int!
+  averageRevenue: Int!
+  start_date: DateTime
+}
+
+type RevenueBySportResponse {
+  revenueBySport: String!
+}
+
+type RivallAnnouncements {
+  email: Boolean!
+}
+
+enum RoomStatus {
+  league_active
+  archived
+}
+
+type Round {
+  _id: String!
+  roundNum: Int!
+  roundName: String!
+  games: [Game!]!
+  note: RoundNote
+}
+
+type RoundNote {
+  _id: ID!
+  roundNum: Int!
+  note: String!
+  createdBy: ID!
+  updatedBy: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input RoundsInput {
+  defaultLength: Int
+  startTime: String!
+  endTime: String!
+  subLocations: [String]!
+  location: LocationInput!
+}
+
+type RSVP {
+  """
+  players who haven't RSVP'd won't have an _id but will still be included in results
+  """
+  _id: ID
+  userId: ID
+  registrantId: ID
+  teamId: ID!
+  fullName: String!
+  displayNameTeams: String
+  gender: String
+  picture: String
+  response: String
+  timestamp: DateTime
+  isDropin: Boolean
+  rsvpedBy: ID
+  email: String
+  phone_number: String
+}
+
+input RsvpForPlayerInput {
+  teamId: ID!
+  gameId: ID!
+  response: String!
+  playerId: ID!
+  dropInSlotId: ID
+}
+
+type RSVPResponse {
+  gameId: ID!
+  teamId: ID!
+  dropInSlotId: ID
+  registrantId: ID!
+  leagueId: ID!
+  startDate: DateTime!
+}
+
+type Ruleset {
+  _id: ID!
+  sport: String!
+  gender: String!
+  format: String!
+  subtitle: String
+  organizationId: ID
+  description: String
+  oneSheeter: String
+}
+
+type RulesetListType {
+  organizationId: ID
+  sport: String
+  rulesets: [Ruleset!]!
+}
+
+input RulesetsInput {
+  _id: ID
+  organizationId: ID
+  cityName: String
+  gender: String
+  format: String
+  sport: String
+  subtitle: String
+  description: String
+  oneSheeter: String
+}
+
+type RulesetsResponse {
+  rulesetsList: [RulesetListType!]!
+}
+
+type RulesetsType {
+  name: String
+  details: String
+  pdf: PDFType
+  oneSheeter: PDFType
+}
+
+type RulesetTemplate {
+  title: String
+  html: String
+}
+
+input RulesetTemplateInput {
+  title: String
+  html: String
+}
+
+input RulesInput {
+  sport: String!
+  details: String
+  pdf: PDFInput
+}
+
+type RulesType {
+  sport: String!
+  rulesets: [RulesetsType]
+  details: String
+  pdf: PDFType
+}
+
+input SaveWaiverInput {
+  _id: ID
+  content: String
+  is_general: Boolean
+  name: String
+  notes: String
+  organizationId: ID
+  status: String
+}
+
+type SaveWaiverResponse {
+  waiverId: ID!
+}
+
+input ScheduleCheckCountsInput {
+  leagueId: ID!
+  subScheduleIds: [ID!]
+}
+
+type ScheduleCounts {
+  opponentCounts: [TeamOpponentCount]!
+  gameTimeCounts: [TeamGameTimeCount]!
+  venueCounts: [TeamVenueCount]!
+}
+
+input ScheduleDaysInput {
+  name: String!
+  rounds: [RoundsInput!]!
+}
+
+input ScheduleFilterInput {
+  subScheduleIds: [ID!]
+  scheduleTypes: [ScheduleType!]
+  includeUnapprovedSubSchedules: Boolean
+}
+
+type ScheduleProgressResponse {
+  schedulesProcessed: Int!
+  totalSchedules: Int!
+  status: String!
+}
+
+enum ScheduleType {
+  league
+  tournament
+}
+
+input ScheduleVenuesInput {
+  _id: ID!
+  subvenues: [String!]!
+}
+
+enum ScoresReported {
+  reported
+  unreported
+}
+
+input SearchCheckinCandidatesInput {
+  userId: ID!
+}
+
+type SearchCheckinCandidatesResponse {
+  candidates: [UserLeagueConnection]!
+}
+
+input SearchPlayerForCheckinInput {
+  playerNameSearch: String!
+  pagination: PaginationInput
+}
+
+type SearchPlayerForCheckinResponse {
+  players: [CheckInPlayerResponse]!
+  totalCount: Int!
+  hasMore: Boolean!
+}
+
+input SearchUserHostFormsInput {
+  searchText: String
+  roles: [String]
+  pagination: PaginationInput
+}
+
+type SearchUserHostFormsResponse {
+  users: [SearchUserHostFormsUser]!
+  count: Int!
+}
+
+type SearchUserHostFormsUser {
+  _id: ID!
+  username: String!
+  firstName: String
+  lastName: String
+  fullName: String
+  birthday: String
+  phone_number: String
+  gender: String
+  email: String!
+  picture: String
+}
+
+type SeasonList {
+  label: String
+  value: String
+}
+
+type SeasonListResponse {
+  seasons: [SeasonList]
+}
+
+type SeasonMetrics {
+  revenue: Int!
+  signups: Int!
+  individual: Int!
+  groupCaptain: Int!
+  privateCaptain: Int!
+  groupMember: Int!
+  privateMember: Int!
+  powerUsers: Int!
+  byDay: String!
+}
+
+input SendEmailInput {
+  organizationId: ID!
+  filterOptions: EmailFilterInput
+  subject: String!
+  bcc: [String]
+  bodyHtml: String!
+  from: String
+}
+
+input SendPushInput {
+  organizationId: ID!
+  notification: String!
+  leagueId: ID
+}
+
+input SendVerificationEmailInput {
+  email: String!
+}
+
+type SendVerificationEmailResponse {
+  status: String!
+}
+
+input SendVerificationSmsInput {
+  phoneNumber: String!
+  countryCode: String
+  token: String!
+}
+
+type SendVerificationSmsResponse {
+  countryCode: String!
+  phoneNumber: String!
+  formattedPhoneNumber: String!
+}
+
+type SentEmailResponse {
+  _id: ID!
+  html: String!
+  tags: [ID]
+  subject: String!
+  _updated: String
+  leagueName: [String]
+  emailFilterString: String
+  emailFilters: EmailFilters
+  manualEmails: [String]
+  leagues: [ID]
+  from: FromResponse
+}
+
+input SetPlayerCheckinStatusInput {
+  userId: ID!
+  gameId: ID!
+  newStatus: Boolean!
+  isDropin: Boolean
+  teamId: ID
+}
+
+input SetRatingFlagInput {
+  ratingId: ID!
+  flaggedForReview: Boolean!
+}
+
+type SetRatingFlagResponse {
+  rating: Rating!
+}
+
+type ShiftLog {
+  _id: ID!
+  organization: Organization!
+  status: ShiftLogStatus!
+  reviewer: User
+  associated_programs: [League!]!
+  associated_program_ids: [ID!]!
+  day_of_week: String!
+  date_of_shift: DateTime!
+  venue: ApprovedVenue!
+  venueId: ID!
+  sub_venue: String
+  sports: [String!]!
+  pulse_check_rating: Int!
+  pulse_check_notes: String
+  referees_reported: Boolean!
+  referee_game_management_feedback: [String!]!
+  referee_notes: String
+  referees_resolution_status: ShiftLogSectionStatus
+  referees_reviewer: User
+  hosts_experience_feedback: [String!]!
+  co_host_names: String
+  hosts_reported: Boolean!
+  hosts_notes: String
+  hosts_resolution_status: ShiftLogSectionStatus
+  hosts_reviewer: User
+  players_reported: Boolean!
+  player_issues: [String!]!
+  player_notes: String
+  players_resolution_status: ShiftLogSectionStatus
+  players_reviewer: User
+  shirts_reported: Boolean!
+  missing_shirts: [MissingShirt!]!
+  shirts_notes: String
+  shirts_resolution_status: ShiftLogSectionStatus
+  shirts_reviewer: User
+  equipment_reported: Boolean!
+  equipment_issues: [String!]!
+  equipment_issues_notes: String
+  equipment_issues_media: [ShiftLogMedia!]!
+  equipment_resolution_status: ShiftLogSectionStatus
+  equipment_reviewer: User
+  venue_reported: Boolean!
+  venue_overview: [String!]!
+  lights_overview: [String!]!
+  venue_notes: String
+  venue_media: [ShiftLogMedia!]!
+  venue_resolution_status: ShiftLogSectionStatus
+  venue_reviewer: User
+  sponsor_bar_reported: Boolean!
+  sponsor_bar_overview: [String!]!
+  attendance_estimate_overview: String
+  sponsor_bar_name: String
+  sponsor_bar_notes: String
+  sponsor_bar_resolution_status: ShiftLogSectionStatus
+  sponsor_bar_reviewer: User
+  daily_programming_reported: Boolean!
+  daily_programs: [DailyProgram!]!
+  daily_programming_notes: String
+  daily_programming_resolution_status: ShiftLogSectionStatus
+  daily_programming_reviewer: User
+  technology_reported: Boolean!
+  technology_media: [ShiftLogMedia!]!
+  technology_notes: String
+  technology_resolution_status: ShiftLogSectionStatus
+  technology_reviewer: User
+  content_capture_reported: Boolean!
+  content_capture_media: [ShiftLogMedia!]!
+  content_capture_resolution_status: ShiftLogSectionStatus
+  content_capture_reviewer: User
+  miscellaneous_reported: Boolean!
+  miscellaneous_notes: String
+  miscellaneous_resolution_status: ShiftLogSectionStatus
+  miscellaneous_reviewer: User
+  created_by: User!
+  updated_by: User!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input ShiftLogFilters {
+  organizations: [ID!]
+  day_of_week: [String!]
+  sports: [String!]
+  venue: [ID!]
+  created_by: [ID!]
+  submitted_after: DateTime
+  submitted_before: DateTime
+  reviewer: [ID!]
+  status: [ShiftLogStatus!]
+  sections_resolved: [ShiftLogSection!]
+  sections_unresolved: [ShiftLogSection!]
+  rating: [Int!]
+  sort_order: SortOrderEnum
+}
+
+type ShiftLogMedia {
+  _id: ID!
+  url: String!
+  type: ShiftLogMediaType!
+  shift_log: ShiftLog!
+  shift_log_id: ID!
+  filename: String!
+  mimetype: String!
+  created_at: DateTime!
+  created_by: User!
+}
+
+enum ShiftLogMediaType {
+  venue
+  equipment
+  technology
+  content_capture
+}
+
+enum ShiftLogSection {
+  referees
+  hosts
+  players
+  shirts
+  equipment
+  venue
+  sponsor_bar
+  daily_programming
+  technology
+  content_capture
+  miscellaneous
+}
+
+enum ShiftLogSectionStatus {
+  new
+  open
+  in_progress
+  resolved
+}
+
+type ShiftLogsResponse {
+  shiftLogs: [ShiftLog!]!
+  hasMore: Boolean!
+  totalCount: Int!
+}
+
+enum ShiftLogStatus {
+  new
+  in_progress
+  resolved
+}
+
+type ShiftLogSummary {
+  total: Int!
+  unresolved_count: Int!
+  resolved_count: Int!
+  logs_with_content_count: Int!
+  average_resolution_time: Float!
+  average_pulse_check: Float!
+  referee_issue_count: Int!
+  host_issue_count: Int!
+  player_issue_count: Int!
+  shirt_issue_count: Int!
+  equipment_issue_count: Int!
+  venue_issue_count: Int!
+  sponsor_bar_issue_count: Int!
+  daily_program_issue_count: Int!
+  tech_issue_count: Int!
+  content_issue_count: Int!
+  misc_issue_count: Int!
+}
+
+type SignupCapacitiesModalItem {
+  leagueId: ID!
+  leagueName: String!
+  registrationEnds: DateTime
+  currRevenue: Float
+  currNumSignups: Int
+  maxNumSignups: Int
+  maxRevenue: Float
+  start_date: DateTime
+}
+
+type SignupModalItem {
+  leagueId: ID!
+  leagueName: String!
+  totalRevenue: Int!
+  numSignups: Int!
+  registrationEnds: DateTime
+  start_date: DateTime
+}
+
+input SignUpNewUserInput {
+  email: String!
+  username: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+  formattedPhoneNumber: String
+  phoneNumber: String
+  zip: String!
+  shirtSize: String!
+  birthday: String!
+  gender: String!
+  sports: [InterestInput]
+  days: [InterestInput]
+  locations: [InterestInput]
+  platform: String
+  streetAddress: String
+  emailEnabled: Boolean
+  smsEnabled: Boolean
+  pushEnabled: Boolean
+  termsAgreed: Boolean
+  homeOrganization: ID
+}
+
+type SignupsBreakdown {
+  kind: String!
+  total: Int!
+}
+
+type SignWaiverResponse {
+  registrantId: ID!
+}
+
+input SortInput {
+  orderBy: String
+  direction: Int
+}
+
+enum SortOrderEnum {
+  ASCENDING
+  DESCENDING
+}
+
+type SponsorBar {
+  _id: ID!
+  name: String
+  details: String
+  formatted_address: String
+  isTbd: Boolean
+}
+
+input SponsorBarInput {
+  name: String!
+  details: String
+  formatted_address: String
+  isTbd: Boolean!
+}
+
+type SponsorLogos {
+  _id: ID
+  sponsorLogo: String
+  sponsorName: String
+  sponsorLink: String
+}
+
+input SponsorLogosInput {
+  _id: ID
+  sponsorLogo: String
+  sponsorName: String
+  sponsorLink: String
+}
+
+type Sport {
+  _id: ID!
+  name: String!
+}
+
+input SportDefaultsInput {
+  programTypes: [DefaultsInput]
+  competitionLevels: [DefaultsInput]
+}
+
+type SportDefaultsType {
+  programTypes: [DefaultsType]
+  competitionLevels: [DefaultsType]
+}
+
+type SportDescription {
+  sportName: String!
+  description: String
+}
+
+input SportDescriptionInput {
+  sportName: String!
+  description: String
+}
+
+type SportDetails {
+  sportName: String!
+  notes: String
+  stylesOfPlay: [StylesOfPlayType]
+  hideSport: Boolean
+  faq: [FAQType]
+  hero: HeroType
+  formats: [FormatsType]
+  programTypes: [ProgramTypesType]
+  competitionLevels: [CompetitionLevelsType]
+}
+
+input SportDetailsInput {
+  sportName: String!
+  notes: String
+  competitionLevels: [CompetitionLevelsInput]
+  formats: [FormatsInput]
+  programTypes: [ProgramTypeInput]
+  stylesOfPlay: [StylesOfPlayInput]
+  hideSport: Boolean
+  faq: [FAQInput]
+  hero: HeroInput
+}
+
+type SportFormatDetails {
+  competitionLevels: [CompetitionLevelsType]
+}
+
+input SportFormatInput {
+  organizationId: ID!
+  sportName: String!
+  removeHidden: Boolean
+  formatType: String
+  gender: String
+}
+
+type SportShirtCost {
+  sport: String!
+  standardPrice: Int
+  premiumPrice: Int
+}
+
+input SportShirtCostInput {
+  sport: String!
+  standardPrice: Int
+  premiumPrice: Int
+}
+
+input StaffListInput {
+  organizationId: ID!
+}
+
+type StaffListResponse {
+  staff: [StaffResponse]!
+}
+
+type StaffModalItem {
+  firstName: String!
+  lastName: String!
+  phone: String!
+  email: String!
+  role: String!
+}
+
+type StaffResponse {
+  _id: ID
+  email: String
+  phone: String
+  firstName: String
+  lastName: String
+  gender: String
+  staff_of: [ID]
+}
+
+type StandingsRule {
+  _id: ID!
+  enabled: Boolean!
+  type: StandingsRuleType!
+  placement: Int!
+  standingsRuleset: StandingsRuleset!
+  standingsRulesetId: ID!
+  points_for_win: Int
+  points_for_loss: Int
+  points_for_tie: Int
+  points_for_forfeit: Int
+  createdBy: User!
+  updatedBy: User!
+  _created: DateTime!
+  _updated: DateTime!
+}
+
+type StandingsRuleset {
+  _id: ID!
+  type: StandingsRulesetScope!
+  organization: Organization
+  organizationId: ID
+  league: League
+  leagueId: ID
+  activity: String
+  rules: [StandingsRule!]!
+  createdBy: User!
+  updatedBy: User!
+  _created: DateTime!
+  _updated: DateTime!
+}
+
+enum StandingsRulesetScope {
+  global
+  organization
+  league
+}
+
+enum StandingsRuleType {
+  primary_game_record
+  secondary_game_record
+  cumulative_game_record
+  point_differential
+  point_differential_secondary
+  point_differential_cumulative
+  point_for
+  point_for_secondary
+  point_for_cumulative
+  point_against
+  point_against_secondary
+  point_against_cumulative
+  head_to_head
+  number_of_forfeits
+  sportsmanship_demerit
+}
+
+input StartMembershipInput {
+  planId: String!
+  promoCode: String
+}
+
+input StartTrialMembershipInput {
+  planId: String!
+  trialType: MembershipTrialType
+}
+
+type StripeCharge {
+  id: String!
+  amount: Int!
+  amount_refunded: Int!
+  description: String
+  source: StripeChargeSource!
+  donationAmount: Int
+  creditAmount: Int
+  metadata: String!
+}
+
+type StripeChargeSource {
+  id: String!
+  object: String!
+  brand: String!
+  exp_month: Int!
+  exp_year: Int!
+  last4: String!
+}
+
+type StripeDashboardUrlResponse {
+  stripeDashboardUrl: String!
+}
+
+enum StripeInvoiceStatus {
+  draft
+  open
+  paid
+  uncollectible
+  void
+}
+
+input StripePaginationInput {
+  limit: Int
+  cursor: String
+}
+
+input StripePromoInput {
+  promoId: String!
+}
+
+type StripePromoResponse {
+  id: String
+  amount_off: Int
+  created: Int
+  currency: String
+  duration: String
+  duration_in_months: Int
+  livemode: Boolean
+  max_redemptions: Int
+  name: String
+  percent_off: Float
+  redeem_by: Int
+  times_redeemed: Int
+  valid: Boolean!
+}
+
+enum StripeSubscriptionStatus {
+  active
+  trialing
+  incomplete
+  incomplete_expired
+  past_due
+  canceled
+  unpaid
+}
+
+input StylesOfPlayInput {
+  title: String!
+  description: String!
+  image: ImageInput
+}
+
+type StylesOfPlayType {
+  title: String!
+  description: String!
+  image: ImageType
+}
+
+input SubmitRatingsSurveyInput {
+  gameId: ID!
+  submission: [RatingSubmissionItem]!
+}
+
+type SubmitRatingsSurveyResponse {
+  submitted: [Rating]!
+}
+
+type SubSchedule {
+  _id: ID!
+  schedule_type: ScheduleType!
+  schedule_name: String!
+  note: String
+  subschedule_approved: Boolean!
+  league: League!
+  games(input: GameFilterInput): [Game!]!
+  venues: [SubScheduleVenue!]!
+  start_date: DateTime!
+  startDateStr: String!
+  startTimeStr: String!
+  endTimeStr: String!
+  timezone: String!
+  num_weeks: Int!
+  days_of_week: [String!]!
+  num_time_slots: Int!
+  num_games_per_team_per_week: Int!
+  num_simultaneous_games: Int!
+  game_length_in_minutes: Int!
+  _created: DateTime!
+  _updated: DateTime!
+  teams: [Team]!
+  timeslots: [Timeslot]!
+  weeks: [Week]!
+  days: [Day]!
+  tournament: Tournament
+  has_tournament: Boolean!
+  num_tournament_weeks: Int!
+  dow_values: [Int]!
+  perDayMinutes: String!
+  num_reg_weeks: Int!
+  has_games: Boolean!
+}
+
+type SubScheduleResponse {
+  subSchedule: SubSchedule!
+}
+
+type SubScheduleVenue {
+  _id: ID!
+  venue: ApprovedVenue!
+  subvenues: [String!]!
+}
+
+type Subscription {
+  _: Boolean
+  notificationProgress: NotificationProgressResponse!
+  scheduleProgress: ScheduleProgressResponse!
+}
+
+type SubscriptionStatus {
+  status: String!
+}
+
+type Substitutions {
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input SwapTeamSchedulesInput {
+  leagueId: ID!
+  teams: [ID]!
+  subScheduleId: ID
+}
+
+input SwapVenueInput {
+  oldVenueId: ID!
+  newVenueId: ID!
+}
+
+input TagInput {
+  name: String
+  color: String
+  _id: ID
+}
+
+input TagInputMutation {
+  tag: TagInput!
+  organizationId: ID!
+}
+
+type TagsResponse {
+  _id: ID
+  name: String!
+  color: String!
+  organizationId: ID
+}
+
+type Team {
+  _id: ID!
+  name: String!
+  color: Color!
+  groupIds: [ID]!
+  freeAgentIds: [ID]!
+  captainId: ID
+  captain: User
+  coCaptains: [User!]!
+  coCaptainIds: [ID]!
+  players: [User]!
+  registrants: [Registrant!]!
+  hostNotes: String!
+  division: ID
+  isVoloPassTeam: Boolean
+  anySpots: Int
+  femaleSpots: Int
+  maleSpots: Int
+  scheduleEnabled: Boolean
+  stats: TeamStats
+  upcomingGameCount: Int!
+}
+
+input TeamAddFreeAgentInput {
+  teamId: ID!
+  registrantId: ID!
+}
+
+input TeamAddGroupInput {
+  teamId: ID!
+  groupId: ID!
+  copyBasicAttributes: Boolean
+}
+
+type TeamCapacity {
+  teamId: ID!
+  dropInSlots: [DropInSlot]!
+}
+
+type TeamChatDetails {
+  _id: ID!
+  name: String!
+  color: Color
+}
+
+input TeamChatNotificationInput {
+  type: ChatNotificationType!
+  teamId: ID!
+  message: String!
+}
+
+type TeamChatRoom {
+  _id: ID!
+  league: LeagueChatDetails!
+  team: TeamChatDetails!
+}
+
+input TeamCreateFromGroupInput {
+  groupId: ID!
+}
+
+input TeamCreateNewInput {
+  leagueId: ID!
+  isVoloPassTeam: Boolean
+  men: Int
+  women: Int
+  any: Int
+}
+
+input TeamDeleteInput {
+  teamId: ID!
+}
+
+type TeamGame {
+  _id: ID!
+  teams: [ID]
+  opponent: Team
+  start_time: DateTime
+  end_time: DateTime
+  timezone: String!
+  startTimeStr: String!
+  endTimeStr: String!
+  dateStr: String!
+  teamScore: Int
+  opponentScore: Int
+  outcome: String!
+  opponentId: ID
+  location: GameLocation
+  field_name: String
+  is_tournament: Boolean
+  rsvp: TeamGameRsvp!
+}
+
+type TeamGameRsvp {
+  _id: ID
+  playerResponse: String!
+  playerTeam: TeamRsvpAggregate!
+  opponentTeam: TeamRsvpAggregate!
+  all: [RSVP]!
+}
+
+type TeamGameTimeCount {
+  team: Team!
+  startTimes: [GameTimeCount]!
+}
+
+type TeamOpponentCount {
+  team: Team!
+  opponents: [OpponentCount]!
+}
+
+type TeamOptions {
+  _id: ID!
+  name: String!
+}
+
+type TeamPricingBreakdownResponse {
+  earlyBird: Int
+  regular: Int
+  lastChance: Int
+}
+
+input TeamRemoveFreeAgentInput {
+  teamId: ID!
+  registrantId: ID!
+}
+
+input TeamRemoveGroupInput {
+  teamId: ID!
+  groupId: ID!
+}
+
+enum TeamRoleEnum {
+  team_captain
+  co_captain
+  team_member
+}
+
+type TeamRosterFreeAgent {
+  _id: ID!
+  gender: String!
+  firstName: String!
+  lastName: String!
+  playerId: ID!
+}
+
+type TeamRosterGroup {
+  _id: ID!
+  name: String!
+  registrants: [Registrant]!
+}
+
+type TeamRosterResponse {
+  freeAgents: [TeamRosterFreeAgent]!
+  groups: [TeamRosterGroup]!
+}
+
+type TeamRsvpAggregate {
+  YES: Int!
+  NO: Int!
+  MAYBE: Int!
+}
+
+type TeamRSVPS {
+  teamId: ID!
+  femaleYesCount: Int!
+  maleYesCount: Int!
+  anyYesCount: Int!
+  totalYesCount: Int!
+  players: [RSVP]!
+}
+
+input TeamRsvpStatusInput {
+  teamId: ID!
+  gameId: ID!
+}
+
+type TeamRsvpStatusResponse {
+  teamRsvps: [RSVP]!
+  criteria: CriteriaResponse!
+}
+
+input TeamScheduleInput {
+  teamId: ID!
+}
+
+type TeamScheduleResponse {
+  games: [TeamGame]!
+  nextGame: TeamGame
+  wins: Int!
+  losses: Int!
+  ties: Int!
+}
+
+input TeamScoreInput {
+  teamId: ID!
+  score: Int!
+  forfeit: Boolean
+}
+
+type TeamScoresType {
+  team_id: ID
+  forfeit: Boolean
+  score: Int
+  _id: ID
+}
+
+input TeamSetCaptainInput {
+  teamId: ID!
+  playerId: ID!
+}
+
+type TeamStats {
+  count: Int!
+  composition: GenderComposition!
+  hasPrepaidGroup: Boolean!
+}
+
+input TeamUpdateBasicsInput {
+  teamId: ID!
+  name: String
+  color: ColorInput
+  hostNotes: String
+}
+
+input TeamUpdateDropInsInput {
+  teamId: ID!
+  leagueId: ID!
+  men: Int!
+  women: Int!
+  any: Int!
+}
+
+input teamUpdateGameRsvpInput {
+  teamId: ID!
+  gameId: ID!
+  response: String!
+  dropInSlotId: ID
+}
+
+type TeamVenueCount {
+  team: Team!
+  venues: [VenueCounts]!
+}
+
+input TemplateInput {
+  html: String
+  subject: String
+  tags: [ID]
+  _id: ID
+}
+
+input TemplateInputMutation {
+  template: TemplateInput!
+  organizationId: ID!
+}
+
+"""
+A time string at UTC, such as 10:15:30Z, compliant with the `full-time` format
+outlined in section 5.6 of the RFC 3339profile of the ISO 8601 standard for
+representation of dates and times using the Gregorian calendar.
+"""
+scalar Time
+
+input TimeframeInput {
+  start: String!
+  end: String!
+}
+
+type Timeslot {
+  _id: ID!
+  day_of_week: String!
+  start: String!
+  end: String!
+  venue: ApprovedVenue!
+  venueId: ID!
+  subvenue: String
+  time_between_games: Int
+}
+
+input TimeslotInput {
+  subScheduleId: ID!
+  daysOfWeek: [String!]!
+  start: String!
+  end: String!
+  timeBetweenGames: Int!
+  venues: [ScheduleVenuesInput!]!
+}
+
+input TimeslotRoundInput {
+  days: [ScheduleDaysInput!]!
+  subScheduleId: ID!
+}
+
+input ToggleAccountStatusInput {
+  userId: ID!
+  type: String!
+}
+
+input TotalsInput {
+  total: Int
+  male: Int
+  female: Int
+}
+
+type TotalsType {
+  total: Int
+  male: Int
+  female: Int
+}
+
+type Tournament {
+  _id: ID!
+  name: String
+  start_at: String
+  league_id: ID!
+  league: League!
+  url: String
+  challonge_id: String
+  tournament_type: String
+  rounds: [Round!]!
+  games: [Game!]!
+  subSchedule: SubSchedule!
+  round_notes: [RoundNote!]!
+  days: [Day!]!
+}
+
+type TournamentDay {
+  dateStr: String!
+  games: [LeaguePlayerScheduleGame]!
+}
+
+type TournamentResponse {
+  tournament: Tournament!
+}
+
+input TournamentSeedInput {
+  team: ID!
+  seed: Int!
+}
+
+input TournamentTeamsInput {
+  teamId: ID!
+  seeds: Int!
+}
+
+type TrophyCounts {
+  countsByActivity: String!
+  countsBySeason: String!
+  countsByType: String!
+  totalCount: Int!
+  completedCount: Int!
+  activeCount: Int!
+  captainCount: Int!
+  teamCaptainCount: Int!
+  recruitCount: Int!
+}
+
+input UnarchiveLeagueInput {
+  leagueId: ID!
+}
+
+type UnsignedWaiverNotification implements ActivityItem {
+  _id: ID!
+  userId: ID!
+  organizationId: ID!
+  leagueId: ID!
+  type: String!
+  _created: String!
+  status: String!
+  user: User!
+  organization: Organization!
+  league: League!
+  registrantId: ID!
+  waiverName: String!
+  programName: String
+  waiverId: ID!
+}
+
+input unsubReasonInput {
+  organizationId: ID!
+  userId: ID!
+  reason: String!
+  emailId: String
+}
+
+input UnsubscribeInput {
+  whichAction: String!
+  unsubId: ID!
+}
+
+type UnsubscribeResponse {
+  noMoreCount: Int!
+  neverDidCount: Int!
+  inappropriateCount: Int!
+  spamCount: Int!
+  total: Int!
+  otherReasons: [String]!
+}
+
+input UnsubscribeUserSettingsInput {
+  email: String!
+}
+
+type UpdateBannerMessageResponse {
+  message: String!
+}
+
+input UpdateDayInput {
+  dayId: ID!
+  date: String!
+  weekId: ID!
+  subScheduleId: ID
+}
+
+input UpdateDropInSlotCountInput {
+  gameId: ID!
+  teamId: ID!
+  anyQuantity: Int!
+  femaleQuantity: Int!
+  maleQuantity: Int!
+}
+
+input UpdateDropInSlotInput {
+  _id: ID!
+  gender: GenderEnum
+  note: String
+  isRecurring: Boolean
+  gameCount: Int
+  entireSeason: Boolean
+}
+
+type UpdateDropinsResponse {
+  leagueId: ID!
+  maxDropinsPerGame: Int!
+}
+
+input UpdateFeaturedProgramsInput {
+  leagueIds: [ID]!
+  organizationId: ID!
+}
+
+input UpdateIncidentFlagInput {
+  incidentReportId: ID!
+  incidentFlag: IncidentFlag!
+}
+
+input UpdateMultipleOrgFeatureFlag {
+  flags: [String]!
+  values: [Boolean]!
+  organizationId: ID!
+}
+
+input UpdateOrgFeatureFlagInput {
+  flag: String!
+  value: Boolean!
+  organizationId: ID!
+}
+
+input UpdatePasswordInput {
+  _id: ID!
+  currentPassword: String!
+  newPassword: String!
+}
+
+input UpdatePermitInput {
+  permit: PermitInput!
+  approvedVenueId: ID!
+  organizationId: ID!
+}
+
+input UpdateResolutionStatusInput {
+  incidentReportId: ID!
+  status: ResolutionStatus!
+}
+
+input UpdateRoundNoteInput {
+  tournamentId: ID!
+  roundNum: Int!
+  note: String!
+}
+
+input UpdateShiftLogLinkInput {
+  organizationId: ID!
+  link: String!
+}
+
+input UpdateShiftLogSectionStatusInput {
+  shift_log_id: ID!
+  status: ShiftLogSectionStatus!
+  section: ShiftLogSection!
+}
+
+input UpdateShiftLogStatusInput {
+  shift_log_id: ID!
+  status: ShiftLogStatus!
+}
+
+input UpdateShirtInput {
+  organizationId: ID!
+  shirtOptions: [ColorInput]!
+}
+
+input UpdateStandingsRuleInput {
+  standingsRuleId: ID!
+  enabled: Boolean
+  placement: Int
+  points_for_win: Int
+  points_for_loss: Int
+  points_for_tie: Int
+  points_for_forfeit: Int
+}
+
+input UpdateSubScheduleNoteInput {
+  subScheduleId: ID!
+  note: String
+}
+
+input UpdateTournamentInput {
+  leagueId: ID!
+  tournamentId: ID!
+  tournament_round: Int!
+  date: String!
+}
+
+input UpdateUserDataInput {
+  firstName: String
+  lastName: String
+  email: String
+  phoneNumber: String
+  countryCode: String
+  gender: String
+  birthday: String
+  userId: ID!
+}
+
+input UpdateUserHomeOrganizationInput {
+  organizationId: ID!
+}
+
+input UpdateVenueSportDetailsInput {
+  venueId: ID!
+  sportDetails: [SportDescriptionInput]!
+}
+
+input UpdateVPTiersInput {
+  organizations: [VPTierOrganizationInput]!
+}
+
+input UpdateWaiverStatusInput {
+  _id: ID!
+  status: String
+}
+
+input UpdateWeekInput {
+  weekId: ID!
+  notes: String
+  weekTag: String
+}
+
+input UpdateWeekOptionsInput {
+  organizationId: ID!
+  weekOptions: [WeekOptionInput]!
+}
+
+input uploadPdfsToApprovedVenueInput {
+  organizationId: ID!
+  venueId: ID!
+  pdfToStringArray: [String]!
+  fileType: String!
+  pdfNamesArray: [String]!
+}
+
+input UploadProfilePictureInput {
+  profilePicture: String!
+  fileType: String!
+}
+
+input UploadProgramCsvInput {
+  data: [[String]]!
+  organizationId: ID!
+  seasonName: String!
+  isDaily: Boolean!
+  importPlanningType: String!
+}
+
+input UpsertSubScheduleInput {
+  leagueId: ID
+  subScheduleId: ID
+  scheduleName: String
+  scheduleType: ScheduleType
+  startDate: String
+  numberOfWeeks: Int
+  gamesPerTeamPerWeek: Int
+  gameLength: Int
+  teams: [ID!]
+  venues: [ScheduleVenuesInput!]
+  tournament_seeds: [TournamentSeedInput!]
+}
+
+type User implements CommonUser {
+  _id: ID!
+  isVoloPassMember: Boolean!
+  username: String!
+  fullName: String
+  firstName: String
+  lastName: String
+  is_host: Boolean!
+  displayNameTeams: String
+  displayNamePickups: String
+  address: String
+  gender: String
+  deactivated: Boolean
+  zip: String
+  shirt_size: String
+  birthday: String
+  picture: String
+  shiftLogs(pagination: PaginationInput, skipPagination: Boolean): ShiftLogsResponse!
+  leagues: [League]
+  allLeagues: [League]
+  activeLeagues: [League]
+  email: String!
+  roles: [String]!
+  age: Int
+  phone_number: String
+  countryCode: String
+  contactInfoHidden: Boolean!
+  staffOff: [ID]!
+  player_details: PlayerDetailsType
+  phoneTokens: [String]
+  favoritePrograms: [League]
+  favoriteProgramIds: [ID]
+  emailHidden: Boolean!
+  phoneHidden: Boolean!
+  notificationPreferences: NotificationPreferences
+  privacyPreferences: PrivacyPreferences
+  player_strikes(showInvalidatedStrikes: Boolean): PlayerStrikes!
+  mobile_client_version: String
+  mobile_client_build_number: String
+}
+
+type UserData {
+  _id: String!
+  username: String
+  firstName: String
+  lastName: String
+  blockedUsers: [UserData]
+}
+
+input UserDetailListInput {
+  userId: ID!
+  pagination: PaginationInput
+}
+
+input UserDetailsInput {
+  userId: ID!
+  teamId: ID
+  groupId: ID
+  isDropIn: Boolean
+}
+
+type UserDetailsResponse {
+  _id: ID
+  picture: String
+  email: String
+  phone: String
+  firstName: String
+  lastName: String
+  displayNameTeams: String
+  gender: String
+  teamRole: String
+}
+
+type UserDisplayInfo {
+  displayName: String
+  displayEmail: String
+  displayPhone: String
+}
+
+input UserGamesByDateRangeInput {
+  startDate: String!
+  endDate: String
+  timezone: String!
+}
+
+input UserGamesByDayInput {
+  date: String!
+  timezone: String!
+}
+
+input UserInfoInput {
+  search: String!
+  which: String!
+}
+
+type UserLeagueConnection {
+  league: League
+  group: Group
+  team: Team
+  nextGame: TeamGame
+}
+
+input UserListInput {
+  genders: [String]
+  selectedStatus: String
+  cityName: String
+  dateLow: String
+  dateHigh: String
+  registrationOption: String
+  sportNames: [String]
+  seasonNames: [String]
+  registrantTypes: [String]
+  selectedPrograms: [ID]
+  teamNames: [String]
+  searchText: String
+  membershipOnly: Boolean
+  endCursor: Int
+}
+
+type UserListResponse {
+  users: [UserResponse]!
+  endCursor: Int!
+  isMore: Boolean!
+  count: Int!
+}
+
+input UsernameIsValidInput {
+  username: String!
+}
+
+input UserNoteInput {
+  userId: ID
+  type: String
+  note: String
+  _id: ID
+}
+
+type UserNoteListResponse {
+  notes: [NotesData]!
+}
+
+type UserPaymentListResponse {
+  payments: [PaymentData]!
+  totalPayments: Int!
+  totalRefunds: Int!
+  availableCredits: Int!
+  netRevenue: Int!
+}
+
+type UserResponse {
+  _id: ID!
+  picture: String
+  firstName: String
+  lastName: String
+  email: String!
+  phone_number: String
+  deactivated: Boolean
+  created: String
+  paid: Int
+  revenue: Int
+  status: String
+  leagueCount: Int
+  birthday: String
+  gender: String
+  membershipExpires: String
+  lastSignIn: String
+  lastMobileSignIn: String
+}
+
+type UserRoleList {
+  _id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  roles: [String]!
+  organizations: [ID]!
+}
+
+type UserRoleListResponse {
+  roleList: [UserRoleList]!
+  organizations: [Organization]!
+}
+
+input UserRolesInput {
+  selectedUser: ID
+  userEmail: String
+  organizations: [ID]
+  roles: [String]
+}
+
+type UserWaiversResponse {
+  waiver_name: String!
+  waiver_id: ID!
+  waiver_type: String
+  program_name: String!
+  program_id: ID!
+  season: String!
+  signed: Boolean!
+  date_signed: DateTime
+  reminders_sent: [WaiverReminder]
+  organizationId: ID!
+  registrant_id: ID!
+}
+
+input ValidateAndCreateLeagueInput {
+  leagueId: ID!
+  programInfo: [ProgramDateDetails]
+}
+
+type ValidateAndCreateResponse {
+  leagueId: ID
+  leagueIds: [ID]
+}
+
+type ValidFieldResponse {
+  isValid: Boolean!
+  value: String!
+  message: String
+}
+
+type VenueCounts {
+  venue: ApprovedVenue
+  venueId: ID!
+  venueName: String!
+  subvenue: String!
+  count: Int!
+}
+
+"""delete once migration to permit model is finished"""
+input VenueEditPermitsInput {
+  organizationId: ID!
+  venueId: ID!
+  venuePermits: [VenuePermitsInput]
+}
+
+input VenuePermitsInput {
+  timeframe: TimeframeInput!
+  note: String
+  permitDuration: Float
+  centsHourly: Float
+  centsDaily: Float
+  sublocations: [String]
+}
+
+input VenueRemovePdfsInput {
+  organizationId: ID!
+  venueId: ID!
+  pdfUploads: [String]
+}
+
+type VenueResponse {
+  venue: ApprovedVenue!
+}
+
+input VenueUploadPdfsInput {
+  organizationId: ID!
+  venueId: ID!
+  pdfToStringArray: [String]!
+  fileType: String!
+  pdfNamesArray: [String]!
+}
+
+input VerifySmsTokenInput {
+  token: String!
+  phoneNumber: String!
+}
+
+type VerifySmsTokenResponse {
+  success: Boolean!
+}
+
+type Viewport {
+  northeast: Coordinates!
+  southwest: Coordinates!
+}
+
+type VoloPassTiersType {
+  isActive: Boolean!
+  monthlyPlanId: String
+  monthlyDollarPrice: Float
+  monthlyFee: Float
+  annualPlanId: String
+  annualDollarPrice: Float
+  annualFee: Float
+}
+
+input VPTierOrganizationInput {
+  organizationId: ID!
+  isActive: Boolean!
+  monthlyPlanId: String
+  annualPlanId: String
+}
+
+type Waiver {
+  _id: ID!
+  organizationId: ID!
+  status: String!
+  name: String
+  content: String
+  notes: String
+  created_by: ID!
+  updated_by: ID
+  is_general: Boolean
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type WaiverDetails {
+  _id: ID! @deprecated(reason: "11/01/2023: Use waiverId instead. This field can cause cache conflicts when resolving a list of registrants.")
+  waiverId: ID!
+  signed: Boolean!
+  date_signed: DateTime
+  reminders_sent: [WaiverReminder!]!
+}
+
+input WaiverNotesInput {
+  _id: ID!
+  notes: String!
+}
+
+type WaiverReminder {
+  date_sent: DateTime!
+  sent_by: String!
+}
+
+input WaiversInput {
+  organizationId: ID!
+  status: String!
+}
+
+type Week {
+  _id: ID!
+  week_num: Int!
+  games(input: GameFilterInput): [Game!]!
+  days: [Day!]!
+  notes: String
+  weekTag: String
+  byes: [String!]!
+  teamByes: [Team!]!
+  is_tournament: Boolean
+}
+
+input WeekFilterInput {
+  weekIds: [ID!]
+}
+
+type WeekOption {
+  _id: ID
+  weeks: [String]
+}
+
+input WeekOptionInput {
+  _id: ID
+  weeks: [String]
+}
+
+type WeekResponse {
+  week: Week!
+}
+
+type Witness {
+  name: String!
+  email: String
+  phone_number: String
+  involvement: String!
+}
+
+input WitnessInput {
+  name: String!
+  email: String
+  phone_number: String
+  involvement: String!
+}
+
+input ZipIsValidInput {
+  zip: String!
+}
+

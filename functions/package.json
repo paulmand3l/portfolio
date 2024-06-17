@@ -7,10 +7,11 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "schema": "get-graphql-schema https://www.volosports.com/graphql > schema.graphql"
   },
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "main": "index.js",
   "dependencies": {

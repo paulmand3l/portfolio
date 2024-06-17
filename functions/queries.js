@@ -7,10 +7,11 @@ module.exports.getSchedulePayload = userId => ({
     },
   },
   query: `
-    query UserGames($input: UserInfoInput!) {
-      getUserByInfo(input: $input) {
-        activeLeagues {
+    query UserGames {
+      currentUserLeagueConnections {
+        league {
           _id
+          stage
           displayName
           schedules {
             games {
