@@ -84,7 +84,7 @@ module.exports.getBirthdaysPayload = () => ({
         }
         league {
           name
-          archived
+          stage
         }
       }
     }

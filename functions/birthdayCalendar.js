@@ -37,7 +37,7 @@ module.exports.getBirthdayICalForUserId = async (userId, authToken) => {
   const players = {};
   const leagues = {};
   response.data.data.currentUserLeagueConnections.forEach(({league, team}) => {
-    if (league.archived) {
+    if (league.stage === 'archived') {
       return;
     }
 
