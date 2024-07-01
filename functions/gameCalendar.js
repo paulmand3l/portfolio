@@ -103,11 +103,15 @@ module.exports.getICalForUserId = async (userId, authToken) => {
           game[teamId].rsvps = totalYesCount;
         });
 
+        if (game.teamRsvps.length < 2) {
+          console.log('Game missing rsvps', game);
+        }
+
         gameDays[gameDay].push(game);
       });
 
       Object.values(gameDays).forEach(games => {
-        const game = games.find(game => game.isMyGame);
+        const myGames = games.filter(game => game.isMyGame);
         const otherGames = games.filter(game => !game.isMyGame);
 
         const gameTimes = {};
@@ -141,7 +145,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
             });
           });
 
-        if (!game) {
+        if (myGames.length === 0) {
           console.log('BYE WEEK');
           try {
             calendar.createEvent({
@@ -160,49 +164,46 @@ ${otherGameInfo.join('\n')}`,
           return;
         }
 
-        let myTeam = null;
-        let myTeamIndex = null;
-        game.teams.forEach((team, i) => {
-          if (team.isMyTeam) {
-            myTeam = team;
-            myTeamIndex = i;
-          }
-        });
-
-        const teamRSVPs = {};
-        game.teamRsvps.forEach(({teamId, totalYesCount}) => {
-          teamRSVPs[teamId] = totalYesCount;
-        });
-
-        if (!myTeam) return;
-
-        const otherTeam = game.teams[1 - myTeamIndex];
-
-        // eslint-disable-next-line max-len
-        console.log(
-          `Making calendar event from ${game.start_time}->${game.end_time}, ${myTeam.name} vs ${otherTeam.name} at ${game.field_name}`
-        );
-
-        try {
-          calendar.createEvent({
-            start: new Date(game.start_time),
-            end: new Date(game.end_time),
-            summary: `${myTeam.name}(${myTeam.rsvps}) v. ${otherTeam.name}(${otherTeam.rsvps})`,
-            description: `${game.field_name}
-
-${myTeam.name} ${myTeam.record} (${myTeam.color.name})
-v.
-${otherTeam.name} ${otherTeam.record} (${otherTeam.color.name})
-
-Other games:
-
-${otherGameInfo.join('\n')}`,
-            location: game.address,
+        myGames.forEach(game => {
+          let myTeam = null;
+          let myTeamIndex = null;
+          game.teams.forEach((team, i) => {
+            if (team.isMyTeam) {
+              myTeam = team;
+              myTeamIndex = i;
+            }
           });
-        } catch (err) {
-          console.log('Error creating calendar event');
-          console.log(err);
-        }
+
+          if (!myTeam) return;
+
+          const otherTeam = game.teams[1 - myTeamIndex];
+
+          // eslint-disable-next-line max-len
+          console.log(
+            `Making calendar event from ${game.start_time}->${game.end_time}, ${myTeam.name} vs ${otherTeam.name} at ${game.field_name}`
+          );
+
+          try {
+            calendar.createEvent({
+              start: new Date(game.start_time),
+              end: new Date(game.end_time),
+              summary: `${myTeam.name}(${myTeam.rsvps || 0}) v. ${otherTeam.name}(${otherTeam.rsvps || 0})`,
+              description: `${game.field_name}
+
+  ${myTeam.name} ${myTeam.record} (${myTeam.color.name})
+  v.
+  ${otherTeam.name} ${otherTeam.record} (${otherTeam.color.name})
+
+  Other games:
+
+  ${otherGameInfo.join('\n')}`,
+              location: game.address,
+            });
+          } catch (err) {
+            console.log('Error creating calendar event');
+            console.log(err);
+          }
+        })
       });
     })
   );
