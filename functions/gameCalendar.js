@@ -2,9 +2,16 @@ const axios = require('axios');
 const ical = require('ical-generator');
 const {getSchedulePayload, getLeagueStandingsPayload} = require('./queries');
 const {GRAPH_URL} = require('./constants');
+const { jwtDecode } = require("jwt-decode");
 
 module.exports.getICalForUserId = async (userId, authToken) => {
   console.log('Fetching schedule for', userId);
+  const { exp } = jwtDecode(authToken);
+
+  if (exp < Date.now() / 1000) {
+    return ical({name: 'Expired Token'});
+  }
+
   if (
     !userId ||
     !authToken ||
@@ -16,6 +23,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
 
   const response = await axios.post(GRAPH_URL, getSchedulePayload(userId), {
     headers: {
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
       Authorization: `Bearer ${authToken}`,
     },
   });
@@ -49,6 +57,7 @@ module.exports.getICalForUserId = async (userId, authToken) => {
         getLeagueStandingsPayload(leagueId),
         {
           headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
             Authorization: `Bearer ${authToken}`,
           },
         }

@@ -1,11 +1,6 @@
-module.exports.getSchedulePayload = userId => ({
+module.exports.getSchedulePayload = () => ({
   operationName: 'UserGames',
-  variables: {
-    input: {
-      which: '_id',
-      search: userId,
-    },
-  },
+  variables: {},
   query: `
     query UserGames {
       currentUserLeagueConnections {

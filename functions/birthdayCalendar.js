@@ -2,9 +2,17 @@ const axios = require('axios');
 const ical = require('ical-generator');
 const {getBirthdaysPayload} = require('./queries');
 const {GRAPH_URL} = require('./constants');
+const { jwtDecode } = require("jwt-decode");
+
 
 module.exports.getBirthdayICalForUserId = async (userId, authToken) => {
   console.log('Fetching birthday calendar for', userId, 'with', authToken);
+  const { exp } = jwtDecode(authToken);
+
+  if (exp < Date.now() / 1000) {
+    return ical({name: 'Expired Token'});
+  }
+
   if (
     !userId ||
     !authToken ||
