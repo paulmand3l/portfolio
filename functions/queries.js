@@ -25,9 +25,6 @@ module.exports.getSchedulePayload = () => ({
                   name
                   hex
                 }
-                players {
-                  _id
-                }
               }
               teamRsvps {
                 teamId
@@ -35,6 +32,9 @@ module.exports.getSchedulePayload = () => ({
               }
             }
           }
+        }
+        team {
+          _id
         }
       }
     }

@@ -5,8 +5,9 @@ const {GRAPH_URL} = require('./constants');
 const { jwtDecode } = require("jwt-decode");
 
 module.exports.getICalForUserId = async (userId, authToken) => {
-  console.log('Fetching schedule for', userId);
-  const { exp } = jwtDecode(authToken);
+  const {username, email, exp} = jwtDecode(authToken);
+
+  console.log(`Fetching schedule for ${username} ${email} (${userId})`);
 
   if (exp < Date.now() / 1000) {
     return ical({name: 'Expired Token'});
@@ -50,145 +51,160 @@ module.exports.getICalForUserId = async (userId, authToken) => {
     });
 
   await Promise.all(
-    relevantLeagues.map(async ({league: {_id: leagueId, stage, schedules}}) => {
-      console.log('Fetching standings for user', userId, 'in league', leagueId);
-      const response = await axios.post(
-        GRAPH_URL,
-        getLeagueStandingsPayload(leagueId),
-        {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
-      response.data.data.leagueStandings.forEach(standing => {
-        teamRecords[standing.teamId] = {
-          win: Number(standing.WIN),
-          lose: Number(standing.LOSE) + Number(standing.FORFEIT || 0),
-          tie: Number(standing.TIE),
-        };
-      });
-
-      const games = schedules.flatMap(schedule => schedule.games);
-
-      const gameDays = {};
-
-      games.map(game => {
-        const gameDay = new Date(game.start_time).toDateString();
-        if (!gameDays[gameDay]) {
-          gameDays[gameDay] = [];
-        }
-
-        game.teams.forEach(team => {
-          if (team.players.some(player => player._id === userId)) {
-            team.isMyTeam = true;
-            game.isMyGame = true;
+    relevantLeagues.map(
+      async ({league: {_id: leagueId, stage, schedules}, team: myTeam}) => {
+        console.log(
+          'Fetching standings for user',
+          userId,
+          'in league',
+          leagueId
+        );
+        const response = await axios.post(
+          GRAPH_URL,
+          getLeagueStandingsPayload(leagueId),
+          {
+            headers: {
+              'User-Agent':
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+              Authorization: `Bearer ${authToken}`,
+            },
           }
-
-          team.name = team.name.trim();
-
-          if (!teamRecords[team._id]) {
-            throw new Error(`No record for team ${team.name} (${team._id})`);
-          }
-          const record = teamRecords[team._id];
-          team.record = `${record.win}-${record.lose}-${record.tie}`;
-
-          game[team._id] = team;
+        );
+        response.data.data.leagueStandings.forEach(standing => {
+          teamRecords[standing.teamId] = {
+            win: Number(standing.WIN),
+            lose: Number(standing.LOSE) + Number(standing.FORFEIT || 0),
+            tie: Number(standing.TIE),
+          };
         });
 
-        game.address = `${game.location.name}, ${game.location.formatted_address}`;
+        const games = schedules.flatMap(schedule => schedule.games);
 
-        game.teamRsvps.forEach(({teamId, totalYesCount}) => {
-          game[teamId].rsvps = totalYesCount;
-        });
+        const gameDays = {};
 
-        if (game.teamRsvps.length < 2) {
-          console.log('Game missing rsvps', game);
-        }
-
-        gameDays[gameDay].push(game);
-      });
-
-      Object.values(gameDays).forEach(games => {
-        const myGames = games.filter(game => game.isMyGame);
-        const otherGames = games.filter(game => !game.isMyGame);
-
-        const gameTimes = {};
-        otherGames.forEach(otherGame => {
-          const timeSlot = otherGame.start_time;
-          if (!gameTimes[timeSlot]) {
-            gameTimes[timeSlot] = [];
+        games.map(game => {
+          const gameDay = new Date(game.start_time).toDateString();
+          if (!gameDays[gameDay]) {
+            gameDays[gameDay] = [];
           }
-          gameTimes[timeSlot].push(otherGame);
-        });
 
-        const otherGameInfo = [];
-        Object.keys(gameTimes)
-          .sort((t1, t2) => new Date(t1).getTime() - new Date(t2).getTime())
-          .forEach(timeSlot => {
-            let [hours, minutes] = new Date(timeSlot)
-              .toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles'})
-              .split(' ')[0]
-              .split(':');
-            hours = parseInt(hours);
-            if (hours > 12) {
-              hours -= 12;
+          game.teams.forEach(team => {
+            if (team._id === myTeam._id) {
+              team.isMyTeam = true;
+              game.isMyGame = true;
             }
-            otherGameInfo.push(`${hours}:${minutes} PT`);
-            gameTimes[timeSlot].forEach(game => {
-              otherGameInfo.push(
-                game.teams
-                  .map(team => `${team.name}(${team.rsvps})`)
-                  .join(' v. ')
-              );
-            });
+
+            team.name = team.name.trim();
+
+            if (!teamRecords[team._id]) {
+              throw new Error(`No record for team ${team.name} (${team._id})`);
+            }
+            const record = teamRecords[team._id];
+            team.record = `${record.win}-${record.lose}-${record.tie}`;
+
+            game[team._id] = team;
           });
 
-        if (myGames.length === 0) {
-          console.log('BYE WEEK');
-          try {
-            calendar.createEvent({
-              start: new Date(otherGames[0].start_time),
-              end: new Date(otherGames[0].end_time),
-              summary: 'BYE WEEK',
-              description: `Other games:
+          game.address = `${game.location.name}, ${game.location.formatted_address}`;
+
+          game.teamRsvps.forEach(({teamId, totalYesCount}) => {
+            if (game[teamId]) {
+              game[teamId].rsvps = totalYesCount;
+            }
+          });
+
+          if (game.teamRsvps.length < 2) {
+            console.log('Game missing rsvps', game.teamRsvps);
+          }
+
+          if (game.teamRsvps.length > 2) {
+            console.log('Found extra rsvps', game.teamRsvps);
+          }
+
+          gameDays[gameDay].push(game);
+        });
+
+        Object.values(gameDays).forEach(games => {
+          const myGames = games.filter(game => game.isMyGame);
+          const otherGames = games.filter(game => !game.isMyGame);
+
+          const gameTimes = {};
+          otherGames.forEach(otherGame => {
+            const timeSlot = otherGame.start_time;
+            if (!gameTimes[timeSlot]) {
+              gameTimes[timeSlot] = [];
+            }
+            gameTimes[timeSlot].push(otherGame);
+          });
+
+          const otherGameInfo = [];
+          Object.keys(gameTimes)
+            .sort((t1, t2) => new Date(t1).getTime() - new Date(t2).getTime())
+            .forEach(timeSlot => {
+              let [hours, minutes] = new Date(timeSlot)
+                .toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles'})
+                .split(' ')[0]
+                .split(':');
+              hours = parseInt(hours);
+              if (hours > 12) {
+                hours -= 12;
+              }
+              otherGameInfo.push(`${hours}:${minutes} PT`);
+              gameTimes[timeSlot].forEach(game => {
+                otherGameInfo.push(
+                  game.teams
+                    .map(team => `${team.name}(${team.rsvps})`)
+                    .join(' v. ')
+                );
+              });
+            });
+
+          if (myGames.length === 0) {
+            console.log('BYE WEEK');
+            try {
+              calendar.createEvent({
+                start: new Date(otherGames[0].start_time),
+                end: new Date(otherGames[0].end_time),
+                summary: 'BYE WEEK',
+                description: `Other games:
 
 ${otherGameInfo.join('\n')}`,
-              location: otherGames[0].address,
-            });
-          } catch (err) {
-            console.log('Error creating calendar event');
-            console.log(err);
-          }
-          return;
-        }
-
-        myGames.forEach(game => {
-          let myTeam = null;
-          let myTeamIndex = null;
-          game.teams.forEach((team, i) => {
-            if (team.isMyTeam) {
-              myTeam = team;
-              myTeamIndex = i;
+                location: otherGames[0].address,
+              });
+            } catch (err) {
+              console.log('Error creating calendar event');
+              console.log(err);
             }
-          });
+            return;
+          }
 
-          if (!myTeam) return;
+          myGames.forEach(game => {
+            let myTeam = null;
+            let myTeamIndex = null;
+            game.teams.forEach((team, i) => {
+              if (team.isMyTeam) {
+                myTeam = team;
+                myTeamIndex = i;
+              }
+            });
 
-          const otherTeam = game.teams[1 - myTeamIndex];
+            if (!myTeam) return;
 
-          // eslint-disable-next-line max-len
-          console.log(
-            `Making calendar event from ${game.start_time}->${game.end_time}, ${myTeam.name} vs ${otherTeam.name} at ${game.field_name}`
-          );
+            const otherTeam = game.teams[1 - myTeamIndex];
 
-          try {
-            calendar.createEvent({
-              start: new Date(game.start_time),
-              end: new Date(game.end_time),
-              summary: `${myTeam.name}(${myTeam.rsvps || 0}) v. ${otherTeam.name}(${otherTeam.rsvps || 0})`,
-              description: `${game.field_name}
+            // eslint-disable-next-line max-len
+            console.log(
+              `Making calendar event from ${game.start_time}->${game.end_time}, ${myTeam.name} vs ${otherTeam.name} at ${game.field_name}`
+            );
+
+            try {
+              calendar.createEvent({
+                start: new Date(game.start_time),
+                end: new Date(game.end_time),
+                summary: `${myTeam.name}(${myTeam.rsvps || 0}) v. ${
+                  otherTeam.name
+                }(${otherTeam.rsvps || 0})`,
+                description: `${game.field_name}
 
   ${myTeam.name} ${myTeam.record} (${myTeam.color.name})
   v.
@@ -197,15 +213,16 @@ ${otherGameInfo.join('\n')}`,
   Other games:
 
   ${otherGameInfo.join('\n')}`,
-              location: game.address,
-            });
-          } catch (err) {
-            console.log('Error creating calendar event');
-            console.log(err);
-          }
-        })
-      });
-    })
+                location: game.address,
+              });
+            } catch (err) {
+              console.log('Error creating calendar event');
+              console.log(err);
+            }
+          });
+        });
+      }
+    )
   );
 
   return calendar;

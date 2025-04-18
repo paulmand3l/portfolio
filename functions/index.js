@@ -3,6 +3,8 @@ const functions = require('firebase-functions');
 const {getICalForUserId} = require('./gameCalendar');
 const {getBirthdayICalForUserId} = require('./birthdayCalendar');
 
+const rawTokenLookup = functions.params.defineString('TOKEN_LOOKUP');
+
 initializeApp();
 
 exports.volocal = functions.https.onRequest(async (req, res) => {
@@ -11,8 +13,11 @@ exports.volocal = functions.https.onRequest(async (req, res) => {
     JSON.stringify(req.headers),
     JSON.stringify(req.query)
   );
+
   const userId = req.query.userId;
-  const authToken = req.query.authToken;
+
+  const tokenLookup = JSON.parse(rawTokenLookup.value());
+  const authToken = tokenLookup[userId] || req.query.authToken;
 
   try {
     const calendar = await getICalForUserId(userId, authToken);
@@ -30,8 +35,11 @@ exports.volobirthday = functions.https.onRequest(async (req, res) => {
     JSON.stringify(req.headers),
     JSON.stringify(req.query)
   );
+
   const userId = req.query.userId;
-  const authToken = req.query.authToken;
+
+  const tokenLookup = JSON.parse(rawTokenLookup.value());
+  const authToken = tokenLookup[userId] || req.query.authToken;
 
   try {
     const calendar = await getBirthdayICalForUserId(userId, authToken);
